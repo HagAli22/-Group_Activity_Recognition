@@ -11,7 +11,6 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import pickle
-from data_loader import *
 root_dataset = 'D:/volleyball-datasets'
 
 
