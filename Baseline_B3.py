@@ -5,17 +5,12 @@ import cv2
 import numpy as np
 import torch
 import torch.nn as nn
-import albumentations as A
-from albumentations.pytorch import ToTensorV2
 from torch.cuda.amp import autocast, GradScaler
 import torchvision.models as models
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
-from boxinfo import BoxInfo
-from pathlib import Path
 import pickle
-from typing import List,Tuple
 from data_loader import *
 root_dataset = 'D:/volleyball-datasets'
 
