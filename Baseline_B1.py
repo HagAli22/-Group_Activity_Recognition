@@ -11,83 +11,9 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 import pickle
+from load_data import get_B1_loaders
 root_dataset = 'D:/volleyball-datasets'
 
-
-def check():
-    print('torch: version', torch.__version__)
-    # Check for availability of CUDA (GPU)
-    if torch.cuda.is_available():
-        print("CUDA is available.")
-        # Get the number of GPU devices
-        num_devices = torch.cuda.device_count()
-        print(f"Number of GPU devices: {num_devices}")
-
-        # Print details for each CUDA device
-        for i in range(num_devices):
-            print(f"Device {i}: {torch.cuda.get_device_name(i)}")
-    else:
-        print("CUDA is not available. Using CPU.")
-
-    # Get the name of the current device
-    current_device = torch.cuda.current_device() if torch.cuda.is_available() else "CPU"
-    print(f"Current device: {current_device}")
-
-
-class VolleyballDataset(Dataset):
-    def __init__(self, videos_path,annot_path, split, transform=None):
-        self.samples = []
-        self.transform = transform
-        self.categories_dct = {
-            'l-pass': 0,
-            'r-pass': 1,
-            'l-spike': 2,
-            'r_spike': 3,
-            'l_set': 4,
-            'r_set': 5,
-            'l_winpoint': 6,
-            'r_winpoint': 7
-        }
-        # print("Available videos in data:", list(dataset_dict.keys()))
-        # print("Available labels in labels_dict:", list(label_dict.keys()))
-
-        self.data=[]
-        with open(annot_path,'rb')as file:
-            videos_annot=pickle.load(file)
-
-
-        for idx in split:
-            video_annot=videos_annot[str(idx)]
-
-            for clip in video_annot.keys():
-                frames_data = video_annot[str(clip)]['frame_boxes_dct']
-                category = video_annot[str(clip)]['category']
-                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items())
-
-                for frame_id,boxes in dir_frames:
-                    #if str(clip)==str(frame_id):
-                    self.data.append(
-                        {
-                            'frame_path':f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg',
-                            'category':category
-                        }
-                    )
-
-    def __len__(self):
-        return len(self.data)
-
-    def __getitem__(self, idx):
-        sample=self.data[idx]
-        num_classes=len(self.categories_dct)
-        labels=torch.zeros(num_classes)
-        labels[self.categories_dct[sample['category']]]=1
-
-        frame = Image.open(sample['frame_path']).convert('RGB')
-
-        if self.transform:
-            frame = self.transform(frame)
-
-        return frame, labels
 
 
 class ResNetSequenceClassifier(nn.Module):
@@ -136,7 +62,7 @@ def validate_model(model, val_loader, criterion, device):
 
 
 if __name__ == '__main__':
-    check()
+    
     videos_root = f'{root_dataset}/videos'
 
 
@@ -193,13 +119,13 @@ if __name__ == '__main__':
         verbose=True,
     )
 
-    train_dataset = VolleyballDataset(
+    train_dataset = get_B1_loaders(
         videos_path=f"{root_dataset}/videos",
         annot_path=f"{root_dataset}/annot_all.pkl",
         split=train,
         transform=train_preprocess)
 
-    val_dataset = VolleyballDataset(
+    val_dataset = get_B1_loaders(
         videos_path=f"{root_dataset}/videos",
         annot_path=f"{root_dataset}/annot_all.pkl",
         split=val,
