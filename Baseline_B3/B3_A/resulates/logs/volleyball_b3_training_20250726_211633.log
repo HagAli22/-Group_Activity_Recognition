@@ -1,0 +1,237 @@
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Starting volleyball B3 player action classification training
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Training videos: 24 videos
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Validation videos: 15 videos
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Training video IDs: [1, 3, 6, 7, 10, 13, 15, 16, 18, 22, 23, 31, 32, 36, 38, 39, 40, 41, 42, 48, 50, 52, 53, 54]
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Validation video IDs: [0, 2, 8, 12, 17, 19, 24, 26, 27, 28, 30, 33, 46, 49, 51]
+2025-07-26 21:16:33 - volleyball_b3_classifier - INFO - Using device: cuda
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Training dataset size: 231327
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Validation dataset size: 143829
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Data loaders created with batch_size=128, pin_memory=True
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Training loader: 4 workers, Validation loader: 2 workers
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Checkpoint directory created: checkpoints
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Starting training for 8 epochs
+2025-07-26 21:16:44 - volleyball_b3_classifier - INFO - Starting epoch 1/8
+2025-07-26 21:18:30 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 1.3214, Acc: 67.58%
+2025-07-26 21:20:10 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 1.0815, Acc: 69.72%
+2025-07-26 21:21:47 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.6292, Acc: 71.32%
+2025-07-26 21:23:23 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.5959, Acc: 72.47%
+2025-07-26 21:24:59 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.7578, Acc: 73.35%
+2025-07-26 21:26:33 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.6692, Acc: 74.10%
+2025-07-26 21:28:08 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.5176, Acc: 74.74%
+2025-07-26 21:29:43 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.4350, Acc: 75.29%
+2025-07-26 21:31:18 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.6697, Acc: 75.67%
+2025-07-26 21:32:53 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.4636, Acc: 76.11%
+2025-07-26 21:34:29 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.6541, Acc: 76.45%
+2025-07-26 21:36:06 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.5591, Acc: 76.74%
+2025-07-26 21:37:41 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.4763, Acc: 77.01%
+2025-07-26 21:39:16 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.5656, Acc: 77.27%
+2025-07-26 21:40:51 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.4771, Acc: 77.52%
+2025-07-26 21:42:26 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.6450, Acc: 77.76%
+2025-07-26 21:44:01 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.3540, Acc: 78.04%
+2025-07-26 21:45:36 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.5620, Acc: 78.27%
+2025-07-26 21:45:41 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-26 21:58:36 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.6767, Accuracy: 77.60%
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 1 at checkpoints/checkpoint_epoch_1.pth
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - Epoch 1/8 Results:
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO -   Train Loss: 0.6589, Train Acc: 78.29%
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO -   Val Loss: 0.6767, Val Acc: 77.60%
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - New best model saved with validation loss: 0.6767
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - Best model saved to: best_volleyball_b3_model.pth
+2025-07-26 21:58:37 - volleyball_b3_classifier - INFO - Starting epoch 2/8
+2025-07-26 22:00:17 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.4664, Acc: 83.12%
+2025-07-26 22:01:58 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.4163, Acc: 83.04%
+2025-07-26 22:03:36 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.4171, Acc: 83.24%
+2025-07-26 22:05:13 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.4035, Acc: 83.34%
+2025-07-26 22:06:50 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.5090, Acc: 83.34%
+2025-07-26 22:08:26 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.4702, Acc: 83.39%
+2025-07-26 22:10:00 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.4386, Acc: 83.52%
+2025-07-26 22:11:37 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.4416, Acc: 83.54%
+2025-07-26 22:13:12 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.5131, Acc: 83.62%
+2025-07-26 22:14:47 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.5556, Acc: 83.70%
+2025-07-26 22:16:22 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.4448, Acc: 83.74%
+2025-07-26 22:17:58 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.4694, Acc: 83.86%
+2025-07-26 22:19:33 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.3600, Acc: 83.93%
+2025-07-26 22:21:09 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.3550, Acc: 84.02%
+2025-07-26 22:22:44 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.4572, Acc: 84.06%
+2025-07-26 22:24:20 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.4732, Acc: 84.15%
+2025-07-26 22:25:56 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.5505, Acc: 84.20%
+2025-07-26 22:27:32 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.3063, Acc: 84.26%
+2025-07-26 22:27:36 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.7007, Accuracy: 77.94%
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 2 at checkpoints/checkpoint_epoch_2.pth
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO - Epoch 2/8 Results:
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO -   Train Loss: 0.4460, Train Acc: 84.26%
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO -   Val Loss: 0.7007, Val Acc: 77.94%
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-26 22:39:56 - volleyball_b3_classifier - INFO - Starting epoch 3/8
+2025-07-26 22:41:35 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.3920, Acc: 86.27%
+2025-07-26 22:43:12 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.3045, Acc: 86.33%
+2025-07-26 22:44:48 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.3351, Acc: 86.40%
+2025-07-26 22:46:24 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.3968, Acc: 86.39%
+2025-07-26 22:48:00 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.4626, Acc: 86.45%
+2025-07-26 22:49:37 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.4005, Acc: 86.65%
+2025-07-26 22:51:12 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.4078, Acc: 86.74%
+2025-07-26 22:52:50 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.3262, Acc: 86.79%
+2025-07-26 22:54:27 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.5347, Acc: 86.86%
+2025-07-26 22:56:03 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.3477, Acc: 86.91%
+2025-07-26 22:57:39 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.3117, Acc: 86.96%
+2025-07-26 22:59:15 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.3670, Acc: 86.97%
+2025-07-26 23:00:51 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.3293, Acc: 87.05%
+2025-07-26 23:02:27 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.1950, Acc: 87.15%
+2025-07-26 23:04:03 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.4304, Acc: 87.20%
+2025-07-26 23:05:39 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.2794, Acc: 87.26%
+2025-07-26 23:07:14 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.3958, Acc: 87.30%
+2025-07-26 23:08:50 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.2686, Acc: 87.35%
+2025-07-26 23:08:55 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.7692, Accuracy: 77.19%
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 3 at checkpoints/checkpoint_epoch_3.pth
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO - Epoch 3/8 Results:
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO -   Train Loss: 0.3491, Train Acc: 87.35%
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO -   Val Loss: 0.7692, Val Acc: 77.19%
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-26 23:21:19 - volleyball_b3_classifier - INFO - Starting epoch 4/8
+2025-07-26 23:22:57 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.2741, Acc: 90.09%
+2025-07-26 23:24:35 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.2315, Acc: 89.69%
+2025-07-26 23:26:10 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.3610, Acc: 89.53%
+2025-07-26 23:27:45 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.2294, Acc: 89.62%
+2025-07-26 23:29:21 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.3196, Acc: 89.57%
+2025-07-26 23:30:56 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.2102, Acc: 89.62%
+2025-07-26 23:32:32 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.2986, Acc: 89.71%
+2025-07-26 23:34:09 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.2784, Acc: 89.77%
+2025-07-26 23:35:46 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.1924, Acc: 89.81%
+2025-07-26 23:37:23 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.3108, Acc: 89.81%
+2025-07-26 23:39:00 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.1999, Acc: 89.85%
+2025-07-26 23:40:37 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.2967, Acc: 89.88%
+2025-07-26 23:42:13 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.3618, Acc: 89.90%
+2025-07-26 23:43:49 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.3065, Acc: 89.89%
+2025-07-26 23:45:25 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.3005, Acc: 89.94%
+2025-07-26 23:47:01 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.3070, Acc: 89.97%
+2025-07-26 23:48:36 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.3109, Acc: 90.02%
+2025-07-26 23:50:12 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.2143, Acc: 90.07%
+2025-07-26 23:50:17 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-27 00:03:16 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.8789, Accuracy: 76.17%
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 4 at checkpoints/checkpoint_epoch_4.pth
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO - Epoch 4/8 Results:
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO -   Train Loss: 0.2710, Train Acc: 90.07%
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO -   Val Loss: 0.8789, Val Acc: 76.17%
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-27 00:03:17 - volleyball_b3_classifier - INFO - Starting epoch 5/8
+2025-07-27 00:04:55 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.1696, Acc: 91.74%
+2025-07-27 00:06:32 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.2350, Acc: 91.92%
+2025-07-27 00:08:07 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.1863, Acc: 91.96%
+2025-07-27 00:09:43 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.1528, Acc: 92.00%
+2025-07-27 00:11:19 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.1623, Acc: 92.02%
+2025-07-27 00:12:55 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.3416, Acc: 91.98%
+2025-07-27 00:14:31 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.1698, Acc: 92.04%
+2025-07-27 00:16:08 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.2223, Acc: 92.03%
+2025-07-27 00:17:44 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.3005, Acc: 92.02%
+2025-07-27 00:19:20 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.3148, Acc: 92.02%
+2025-07-27 00:20:56 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.1383, Acc: 92.09%
+2025-07-27 00:22:33 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.2348, Acc: 92.13%
+2025-07-27 00:24:09 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.1441, Acc: 92.13%
+2025-07-27 00:25:44 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.1370, Acc: 92.15%
+2025-07-27 00:27:20 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.1769, Acc: 92.15%
+2025-07-27 00:28:55 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.2269, Acc: 92.17%
+2025-07-27 00:30:31 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.1452, Acc: 92.21%
+2025-07-27 00:32:07 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.1281, Acc: 92.23%
+2025-07-27 00:32:12 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-27 00:44:36 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.9890, Accuracy: 75.52%
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 5 at checkpoints/checkpoint_epoch_5.pth
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO - Epoch 5/8 Results:
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO -   Train Loss: 0.2126, Train Acc: 92.23%
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO -   Val Loss: 0.9890, Val Acc: 75.52%
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-27 00:44:37 - volleyball_b3_classifier - INFO - Starting epoch 6/8
+2025-07-27 00:46:15 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.1209, Acc: 93.70%
+2025-07-27 00:47:51 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.1750, Acc: 93.68%
+2025-07-27 00:49:27 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.2310, Acc: 93.68%
+2025-07-27 00:51:02 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.0815, Acc: 93.64%
+2025-07-27 00:52:40 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.1780, Acc: 93.69%
+2025-07-27 00:54:17 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.2064, Acc: 93.66%
+2025-07-27 00:55:54 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.1729, Acc: 93.61%
+2025-07-27 00:57:31 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.1531, Acc: 93.56%
+2025-07-27 00:59:07 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.1412, Acc: 93.59%
+2025-07-27 01:00:44 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.1739, Acc: 93.61%
+2025-07-27 01:02:21 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.1812, Acc: 93.60%
+2025-07-27 01:03:58 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.2610, Acc: 93.59%
+2025-07-27 01:05:35 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.2787, Acc: 93.61%
+2025-07-27 01:07:12 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.2081, Acc: 93.60%
+2025-07-27 01:08:49 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.1615, Acc: 93.60%
+2025-07-27 01:10:26 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.2069, Acc: 93.60%
+2025-07-27 01:12:03 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.1454, Acc: 93.62%
+2025-07-27 01:13:40 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.2738, Acc: 93.60%
+2025-07-27 01:13:46 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.9814, Accuracy: 75.38%
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 6 at checkpoints/checkpoint_epoch_6.pth
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO - Epoch 6/8 Results:
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO -   Train Loss: 0.1755, Train Acc: 93.60%
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO -   Val Loss: 0.9814, Val Acc: 75.38%
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000100
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-27 01:26:26 - volleyball_b3_classifier - INFO - Starting epoch 7/8
+2025-07-27 01:28:06 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.1312, Acc: 94.73%
+2025-07-27 01:29:43 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.1634, Acc: 95.01%
+2025-07-27 01:31:23 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.0920, Acc: 94.98%
+2025-07-27 01:33:00 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.1122, Acc: 94.94%
+2025-07-27 01:34:37 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.1326, Acc: 94.88%
+2025-07-27 01:36:14 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.1767, Acc: 94.84%
+2025-07-27 01:37:52 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.1956, Acc: 94.82%
+2025-07-27 01:39:30 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.2317, Acc: 94.81%
+2025-07-27 01:41:07 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.0711, Acc: 94.76%
+2025-07-27 01:42:44 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.1458, Acc: 94.75%
+2025-07-27 01:44:20 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.1462, Acc: 94.75%
+2025-07-27 01:45:56 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.1967, Acc: 94.77%
+2025-07-27 01:47:32 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.1327, Acc: 94.78%
+2025-07-27 01:49:08 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.1693, Acc: 94.79%
+2025-07-27 01:50:46 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.1112, Acc: 94.79%
+2025-07-27 01:52:22 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.1388, Acc: 94.79%
+2025-07-27 01:53:57 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.2123, Acc: 94.78%
+2025-07-27 01:55:32 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.1117, Acc: 94.77%
+2025-07-27 01:55:38 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - Validation completed - Loss: 1.0856, Accuracy: 75.67%
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 7 at checkpoints/checkpoint_epoch_7.pth
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - Learning rate reduced from 0.000100 to 0.000010
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - Epoch 7/8 Results:
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO -   Train Loss: 0.1457, Train Acc: 94.78%
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO -   Val Loss: 1.0856, Val Acc: 75.67%
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000010
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-27 02:08:03 - volleyball_b3_classifier - INFO - Starting epoch 8/8
+2025-07-27 02:09:42 - volleyball_b3_classifier - INFO -   Batch 100/1808 - Loss: 0.0796, Acc: 96.15%
+2025-07-27 02:11:17 - volleyball_b3_classifier - INFO -   Batch 200/1808 - Loss: 0.1307, Acc: 96.23%
+2025-07-27 02:12:52 - volleyball_b3_classifier - INFO -   Batch 300/1808 - Loss: 0.1491, Acc: 96.35%
+2025-07-27 02:14:27 - volleyball_b3_classifier - INFO -   Batch 400/1808 - Loss: 0.1081, Acc: 96.43%
+2025-07-27 02:16:01 - volleyball_b3_classifier - INFO -   Batch 500/1808 - Loss: 0.0490, Acc: 96.53%
+2025-07-27 02:17:36 - volleyball_b3_classifier - INFO -   Batch 600/1808 - Loss: 0.0775, Acc: 96.60%
+2025-07-27 02:19:11 - volleyball_b3_classifier - INFO -   Batch 700/1808 - Loss: 0.1137, Acc: 96.66%
+2025-07-27 02:20:46 - volleyball_b3_classifier - INFO -   Batch 800/1808 - Loss: 0.0754, Acc: 96.72%
+2025-07-27 02:22:21 - volleyball_b3_classifier - INFO -   Batch 900/1808 - Loss: 0.0982, Acc: 96.77%
+2025-07-27 02:23:56 - volleyball_b3_classifier - INFO -   Batch 1000/1808 - Loss: 0.1164, Acc: 96.82%
+2025-07-27 02:25:30 - volleyball_b3_classifier - INFO -   Batch 1100/1808 - Loss: 0.0889, Acc: 96.88%
+2025-07-27 02:27:05 - volleyball_b3_classifier - INFO -   Batch 1200/1808 - Loss: 0.0823, Acc: 96.92%
+2025-07-27 02:28:40 - volleyball_b3_classifier - INFO -   Batch 1300/1808 - Loss: 0.0851, Acc: 96.96%
+2025-07-27 02:30:14 - volleyball_b3_classifier - INFO -   Batch 1400/1808 - Loss: 0.0607, Acc: 96.99%
+2025-07-27 02:31:49 - volleyball_b3_classifier - INFO -   Batch 1500/1808 - Loss: 0.1102, Acc: 97.01%
+2025-07-27 02:33:24 - volleyball_b3_classifier - INFO -   Batch 1600/1808 - Loss: 0.1231, Acc: 97.04%
+2025-07-27 02:34:59 - volleyball_b3_classifier - INFO -   Batch 1700/1808 - Loss: 0.0617, Acc: 97.07%
+2025-07-27 02:36:33 - volleyball_b3_classifier - INFO -   Batch 1800/1808 - Loss: 0.1481, Acc: 97.10%
+2025-07-27 02:36:39 - volleyball_b3_classifier - INFO - Running validation...
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Validation completed - Loss: 1.1315, Accuracy: 76.70%
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Checkpoint saved for epoch 8 at checkpoints/checkpoint_epoch_8.pth
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Epoch 8/8 Results:
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO -   Train Loss: 0.0837, Train Acc: 97.11%
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO -   Val Loss: 1.1315, Val Acc: 76.70%
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO -   Learning Rate: 0.000010
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - ------------------------------------------------------------
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Training completed!
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Best validation loss achieved: 0.6767
+2025-07-27 02:49:02 - volleyball_b3_classifier - INFO - Loading best model for final evaluation...
+2025-07-27 03:01:11 - volleyball_b3_classifier - INFO - Validation completed - Loss: 0.6767, Accuracy: 77.60%
+2025-07-27 03:01:11 - volleyball_b3_classifier - INFO - Final validation accuracy: 77.60%
+2025-07-27 03:01:11 - volleyball_b3_classifier - INFO - B3 player action classification training completed successfully!

@@ -1,0 +1,35 @@
+VOLLEYBALL MODEL TEST RESULTS
+==================================================
+
+Overall Test Accuracy: 75.53%
+
+Per-Class Accuracies:
+------------------------------
+waiting     :  16.37%
+setting     :  79.49%
+digging     :  37.22%
+falling     :  71.80%
+spiking     :  76.43%
+blocking    :  88.98%
+jumping     :   0.11%
+moving      :  51.23%
+standing    :  86.56%
+
+==================================================
+DETAILED CLASSIFICATION REPORT
+==================================================
+              precision    recall  f1-score   support
+
+     waiting      0.590     0.164     0.256      9657
+     setting      0.556     0.795     0.654      3204
+     digging      0.406     0.372     0.388      5796
+     falling      0.858     0.718     0.782      2943
+     spiking      0.437     0.764     0.556      3411
+    blocking      0.644     0.890     0.747      7389
+     jumping      0.029     0.001     0.002       936
+      moving      0.568     0.512     0.539     12978
+    standing      0.837     0.866     0.851     97515
+
+    accuracy                          0.755    143829
+   macro avg      0.547     0.565     0.531    143829
+weighted avg      0.748     0.755     0.741    143829

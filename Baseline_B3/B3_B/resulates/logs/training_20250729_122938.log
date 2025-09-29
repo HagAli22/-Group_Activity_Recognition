@@ -1,0 +1,210 @@
+2025-07-29 12:29:38 - root - INFO - Starting Baseline_B3_B Training
+2025-07-29 12:29:38 - root - INFO - Training videos: 24 videos
+2025-07-29 12:29:38 - root - INFO - Validation videos: 15 videos
+2025-07-29 12:29:38 - root - INFO - Training video IDs: [1, 3, 6, 7, 10, 13, 15, 16, 18, 22, 23, 31, 32, 36, 38, 39, 40, 41, 42, 48, 50, 52, 53, 54]
+2025-07-29 12:29:38 - root - INFO - Validation video IDs: [0, 2, 8, 12, 17, 19, 24, 26, 27, 28, 30, 33, 46, 49, 51]
+2025-07-29 12:29:38 - root - INFO - Using device: cuda
+2025-07-29 12:29:50 - root - INFO - Training dataset size: 19368
+2025-07-29 12:29:50 - root - INFO - Validation dataset size: 12069
+2025-07-29 12:29:50 - root - INFO - Data loaders created with batch_size=32, pin_memory=True
+2025-07-29 12:29:50 - root - INFO - Training loader: 4 workers, Validation loader: 2 workers
+2025-07-29 12:29:50 - root - INFO - Checkpoint directory created: checkpoints
+2025-07-29 12:29:50 - root - INFO - Starting training for 12 epochs
+2025-07-29 12:29:50 - root - INFO - Starting epoch 1/12
+2025-07-29 12:30:49 - root - INFO -   Batch 100/606 - Loss: 1.1088, Acc: 52.94%
+2025-07-29 12:31:44 - root - INFO -   Batch 200/606 - Loss: 0.8766, Acc: 59.19%
+2025-07-29 12:32:39 - root - INFO -   Batch 300/606 - Loss: 0.7949, Acc: 63.22%
+2025-07-29 12:33:34 - root - INFO -   Batch 400/606 - Loss: 0.5681, Acc: 65.77%
+2025-07-29 12:34:29 - root - INFO -   Batch 500/606 - Loss: 0.5746, Acc: 67.84%
+2025-07-29 12:35:25 - root - INFO -   Batch 600/606 - Loss: 0.7713, Acc: 69.34%
+2025-07-29 12:35:27 - root - INFO - Running validation...
+2025-07-29 12:39:41 - root - INFO - Validation completed - Loss: 0.8495, Accuracy: 68.46%
+2025-07-29 12:39:41 - root - INFO - Checkpoint saved for epoch 1 at checkpoints/checkpoint_epoch_1.pth
+2025-07-29 12:39:41 - root - INFO - Epoch 1/12 Results:
+2025-07-29 12:39:41 - root - INFO -   Train Loss: 0.8387, Train Acc: 69.43%
+2025-07-29 12:39:41 - root - INFO -   Val Loss: 0.8495, Val Acc: 68.46%
+2025-07-29 12:39:41 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 12:39:41 - root - INFO - ------------------------------------------------------------
+2025-07-29 12:39:41 - root - INFO - New best model saved with validation loss: 0.8495
+2025-07-29 12:39:41 - root - INFO - Best model saved to: best_volleyball_model.pth
+2025-07-29 12:39:41 - root - INFO - Starting epoch 2/12
+2025-07-29 12:40:36 - root - INFO -   Batch 100/606 - Loss: 0.6156, Acc: 78.84%
+2025-07-29 12:41:27 - root - INFO -   Batch 200/606 - Loss: 0.3095, Acc: 79.75%
+2025-07-29 12:42:20 - root - INFO -   Batch 300/606 - Loss: 0.5703, Acc: 80.19%
+2025-07-29 12:43:12 - root - INFO -   Batch 400/606 - Loss: 0.4172, Acc: 80.49%
+2025-07-29 12:44:04 - root - INFO -   Batch 500/606 - Loss: 0.6132, Acc: 80.89%
+2025-07-29 12:44:56 - root - INFO -   Batch 600/606 - Loss: 0.5239, Acc: 81.22%
+2025-07-29 12:44:59 - root - INFO - Running validation...
+2025-07-29 12:48:23 - root - INFO - Validation completed - Loss: 0.8161, Accuracy: 69.16%
+2025-07-29 12:48:23 - root - INFO - Checkpoint saved for epoch 2 at checkpoints/checkpoint_epoch_2.pth
+2025-07-29 12:48:23 - root - INFO - Epoch 2/12 Results:
+2025-07-29 12:48:23 - root - INFO -   Train Loss: 0.5630, Train Acc: 81.22%
+2025-07-29 12:48:23 - root - INFO -   Val Loss: 0.8161, Val Acc: 69.16%
+2025-07-29 12:48:23 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 12:48:23 - root - INFO - ------------------------------------------------------------
+2025-07-29 12:48:24 - root - INFO - New best model saved with validation loss: 0.8161
+2025-07-29 12:48:24 - root - INFO - Best model saved to: best_volleyball_model.pth
+2025-07-29 12:48:24 - root - INFO - Starting epoch 3/12
+2025-07-29 12:49:19 - root - INFO -   Batch 100/606 - Loss: 0.6842, Acc: 84.47%
+2025-07-29 12:50:11 - root - INFO -   Batch 200/606 - Loss: 0.4985, Acc: 84.88%
+2025-07-29 12:51:04 - root - INFO -   Batch 300/606 - Loss: 0.5030, Acc: 84.78%
+2025-07-29 12:51:55 - root - INFO -   Batch 400/606 - Loss: 0.4566, Acc: 84.88%
+2025-07-29 12:52:47 - root - INFO -   Batch 500/606 - Loss: 0.4511, Acc: 84.86%
+2025-07-29 12:53:39 - root - INFO -   Batch 600/606 - Loss: 0.5699, Acc: 85.06%
+2025-07-29 12:53:41 - root - INFO - Running validation...
+2025-07-29 12:57:05 - root - INFO - Validation completed - Loss: 0.7789, Accuracy: 71.31%
+2025-07-29 12:57:06 - root - INFO - Checkpoint saved for epoch 3 at checkpoints/checkpoint_epoch_3.pth
+2025-07-29 12:57:06 - root - INFO - Epoch 3/12 Results:
+2025-07-29 12:57:06 - root - INFO -   Train Loss: 0.4566, Train Acc: 85.05%
+2025-07-29 12:57:06 - root - INFO -   Val Loss: 0.7789, Val Acc: 71.31%
+2025-07-29 12:57:06 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 12:57:06 - root - INFO - ------------------------------------------------------------
+2025-07-29 12:57:06 - root - INFO - New best model saved with validation loss: 0.7789
+2025-07-29 12:57:06 - root - INFO - Best model saved to: best_volleyball_model.pth
+2025-07-29 12:57:06 - root - INFO - Starting epoch 4/12
+2025-07-29 12:58:01 - root - INFO -   Batch 100/606 - Loss: 0.2031, Acc: 86.72%
+2025-07-29 12:58:52 - root - INFO -   Batch 200/606 - Loss: 0.3930, Acc: 86.75%
+2025-07-29 12:59:44 - root - INFO -   Batch 300/606 - Loss: 0.5417, Acc: 87.05%
+2025-07-29 13:00:36 - root - INFO -   Batch 400/606 - Loss: 0.4301, Acc: 86.87%
+2025-07-29 13:01:28 - root - INFO -   Batch 500/606 - Loss: 0.4973, Acc: 86.99%
+2025-07-29 13:02:20 - root - INFO -   Batch 600/606 - Loss: 0.4960, Acc: 87.08%
+2025-07-29 13:02:23 - root - INFO - Running validation...
+2025-07-29 13:05:46 - root - INFO - Validation completed - Loss: 0.7789, Accuracy: 71.29%
+2025-07-29 13:05:46 - root - INFO - Checkpoint saved for epoch 4 at checkpoints/checkpoint_epoch_4.pth
+2025-07-29 13:05:46 - root - INFO - Epoch 4/12 Results:
+2025-07-29 13:05:46 - root - INFO -   Train Loss: 0.4024, Train Acc: 87.06%
+2025-07-29 13:05:46 - root - INFO -   Val Loss: 0.7789, Val Acc: 71.29%
+2025-07-29 13:05:46 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:05:46 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:05:46 - root - INFO - New best model saved with validation loss: 0.7789
+2025-07-29 13:05:46 - root - INFO - Best model saved to: best_volleyball_model.pth
+2025-07-29 13:05:46 - root - INFO - Starting epoch 5/12
+2025-07-29 13:06:41 - root - INFO -   Batch 100/606 - Loss: 0.3074, Acc: 88.41%
+2025-07-29 13:07:33 - root - INFO -   Batch 200/606 - Loss: 0.3768, Acc: 88.47%
+2025-07-29 13:08:25 - root - INFO -   Batch 300/606 - Loss: 0.2966, Acc: 88.17%
+2025-07-29 13:09:19 - root - INFO -   Batch 400/606 - Loss: 0.1333, Acc: 88.30%
+2025-07-29 13:10:10 - root - INFO -   Batch 500/606 - Loss: 0.3554, Acc: 88.47%
+2025-07-29 13:11:02 - root - INFO -   Batch 600/606 - Loss: 0.2239, Acc: 88.51%
+2025-07-29 13:11:05 - root - INFO - Running validation...
+2025-07-29 13:14:29 - root - INFO - Validation completed - Loss: 0.8076, Accuracy: 70.69%
+2025-07-29 13:14:29 - root - INFO - Checkpoint saved for epoch 5 at checkpoints/checkpoint_epoch_5.pth
+2025-07-29 13:14:29 - root - INFO - Epoch 5/12 Results:
+2025-07-29 13:14:29 - root - INFO -   Train Loss: 0.3642, Train Acc: 88.53%
+2025-07-29 13:14:29 - root - INFO -   Val Loss: 0.8076, Val Acc: 70.69%
+2025-07-29 13:14:29 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:14:29 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:14:29 - root - INFO - Starting epoch 6/12
+2025-07-29 13:15:23 - root - INFO -   Batch 100/606 - Loss: 0.3272, Acc: 89.69%
+2025-07-29 13:16:18 - root - INFO -   Batch 200/606 - Loss: 0.5826, Acc: 89.41%
+2025-07-29 13:17:11 - root - INFO -   Batch 300/606 - Loss: 0.3392, Acc: 89.23%
+2025-07-29 13:18:05 - root - INFO -   Batch 400/606 - Loss: 0.4154, Acc: 89.41%
+2025-07-29 13:18:58 - root - INFO -   Batch 500/606 - Loss: 0.2394, Acc: 89.28%
+2025-07-29 13:19:50 - root - INFO -   Batch 600/606 - Loss: 0.4467, Acc: 89.46%
+2025-07-29 13:19:53 - root - INFO - Running validation...
+2025-07-29 13:23:17 - root - INFO - Validation completed - Loss: 0.7889, Accuracy: 71.13%
+2025-07-29 13:23:17 - root - INFO - Checkpoint saved for epoch 6 at checkpoints/checkpoint_epoch_6.pth
+2025-07-29 13:23:17 - root - INFO - Epoch 6/12 Results:
+2025-07-29 13:23:17 - root - INFO -   Train Loss: 0.3352, Train Acc: 89.44%
+2025-07-29 13:23:17 - root - INFO -   Val Loss: 0.7889, Val Acc: 71.13%
+2025-07-29 13:23:17 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:23:17 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:23:17 - root - INFO - Starting epoch 7/12
+2025-07-29 13:24:12 - root - INFO -   Batch 100/606 - Loss: 0.3987, Acc: 90.69%
+2025-07-29 13:25:06 - root - INFO -   Batch 200/606 - Loss: 0.2217, Acc: 90.66%
+2025-07-29 13:25:59 - root - INFO -   Batch 300/606 - Loss: 0.3251, Acc: 90.74%
+2025-07-29 13:26:52 - root - INFO -   Batch 400/606 - Loss: 0.3525, Acc: 90.75%
+2025-07-29 13:27:45 - root - INFO -   Batch 500/606 - Loss: 0.2802, Acc: 90.70%
+2025-07-29 13:28:38 - root - INFO -   Batch 600/606 - Loss: 0.3128, Acc: 90.70%
+2025-07-29 13:28:40 - root - INFO - Running validation...
+2025-07-29 13:32:04 - root - INFO - Validation completed - Loss: 0.7976, Accuracy: 72.07%
+2025-07-29 13:32:04 - root - INFO - Checkpoint saved for epoch 7 at checkpoints/checkpoint_epoch_7.pth
+2025-07-29 13:32:04 - root - INFO - Epoch 7/12 Results:
+2025-07-29 13:32:04 - root - INFO -   Train Loss: 0.3079, Train Acc: 90.70%
+2025-07-29 13:32:04 - root - INFO -   Val Loss: 0.7976, Val Acc: 72.07%
+2025-07-29 13:32:04 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:32:04 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:32:04 - root - INFO - Starting epoch 8/12
+2025-07-29 13:32:59 - root - INFO -   Batch 100/606 - Loss: 0.2355, Acc: 91.12%
+2025-07-29 13:33:52 - root - INFO -   Batch 200/606 - Loss: 0.2419, Acc: 90.86%
+2025-07-29 13:34:45 - root - INFO -   Batch 300/606 - Loss: 0.3514, Acc: 90.97%
+2025-07-29 13:35:37 - root - INFO -   Batch 400/606 - Loss: 0.1904, Acc: 90.92%
+2025-07-29 13:36:29 - root - INFO -   Batch 500/606 - Loss: 0.1987, Acc: 91.01%
+2025-07-29 13:37:22 - root - INFO -   Batch 600/606 - Loss: 0.2087, Acc: 91.01%
+2025-07-29 13:37:25 - root - INFO - Running validation...
+2025-07-29 13:40:48 - root - INFO - Validation completed - Loss: 0.8269, Accuracy: 70.54%
+2025-07-29 13:40:48 - root - INFO - Checkpoint saved for epoch 8 at checkpoints/checkpoint_epoch_8.pth
+2025-07-29 13:40:48 - root - INFO - Epoch 8/12 Results:
+2025-07-29 13:40:48 - root - INFO -   Train Loss: 0.2914, Train Acc: 91.03%
+2025-07-29 13:40:48 - root - INFO -   Val Loss: 0.8269, Val Acc: 70.54%
+2025-07-29 13:40:48 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:40:48 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:40:48 - root - INFO - Starting epoch 9/12
+2025-07-29 13:41:42 - root - INFO -   Batch 100/606 - Loss: 0.2320, Acc: 92.41%
+2025-07-29 13:42:34 - root - INFO -   Batch 200/606 - Loss: 0.2959, Acc: 92.08%
+2025-07-29 13:43:27 - root - INFO -   Batch 300/606 - Loss: 0.2141, Acc: 91.95%
+2025-07-29 13:44:19 - root - INFO -   Batch 400/606 - Loss: 0.3152, Acc: 91.77%
+2025-07-29 13:45:11 - root - INFO -   Batch 500/606 - Loss: 0.2482, Acc: 91.71%
+2025-07-29 13:46:04 - root - INFO -   Batch 600/606 - Loss: 0.3410, Acc: 91.60%
+2025-07-29 13:46:07 - root - INFO - Running validation...
+2025-07-29 13:49:32 - root - INFO - Validation completed - Loss: 0.8079, Accuracy: 71.23%
+2025-07-29 13:49:32 - root - INFO - Learning rate reduced from 0.000100 to 0.000010
+2025-07-29 13:49:32 - root - INFO - Checkpoint saved for epoch 9 at checkpoints/checkpoint_epoch_9.pth
+2025-07-29 13:49:32 - root - INFO - Epoch 9/12 Results:
+2025-07-29 13:49:32 - root - INFO -   Train Loss: 0.2799, Train Acc: 91.58%
+2025-07-29 13:49:32 - root - INFO -   Val Loss: 0.8079, Val Acc: 71.23%
+2025-07-29 13:49:32 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 13:49:32 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:49:32 - root - INFO - Starting epoch 10/12
+2025-07-29 13:50:27 - root - INFO -   Batch 100/606 - Loss: 0.3062, Acc: 92.22%
+2025-07-29 13:51:20 - root - INFO -   Batch 200/606 - Loss: 0.1554, Acc: 92.38%
+2025-07-29 13:52:12 - root - INFO -   Batch 300/606 - Loss: 0.2784, Acc: 92.70%
+2025-07-29 13:53:05 - root - INFO -   Batch 400/606 - Loss: 0.2243, Acc: 92.86%
+2025-07-29 13:53:57 - root - INFO -   Batch 500/606 - Loss: 0.1953, Acc: 92.98%
+2025-07-29 13:54:50 - root - INFO -   Batch 600/606 - Loss: 0.2810, Acc: 93.03%
+2025-07-29 13:54:53 - root - INFO - Running validation...
+2025-07-29 13:58:17 - root - INFO - Validation completed - Loss: 0.7813, Accuracy: 72.42%
+2025-07-29 13:58:17 - root - INFO - Checkpoint saved for epoch 10 at checkpoints/checkpoint_epoch_10.pth
+2025-07-29 13:58:17 - root - INFO - Epoch 10/12 Results:
+2025-07-29 13:58:17 - root - INFO -   Train Loss: 0.2473, Train Acc: 93.00%
+2025-07-29 13:58:17 - root - INFO -   Val Loss: 0.7813, Val Acc: 72.42%
+2025-07-29 13:58:17 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 13:58:17 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:58:17 - root - INFO - Starting epoch 11/12
+2025-07-29 13:59:12 - root - INFO -   Batch 100/606 - Loss: 0.2097, Acc: 93.72%
+2025-07-29 14:00:04 - root - INFO -   Batch 200/606 - Loss: 0.1943, Acc: 93.70%
+2025-07-29 14:00:56 - root - INFO -   Batch 300/606 - Loss: 0.2978, Acc: 93.54%
+2025-07-29 14:01:49 - root - INFO -   Batch 400/606 - Loss: 0.1468, Acc: 93.65%
+2025-07-29 14:02:41 - root - INFO -   Batch 500/606 - Loss: 0.2216, Acc: 93.61%
+2025-07-29 14:03:33 - root - INFO -   Batch 600/606 - Loss: 0.3095, Acc: 93.71%
+2025-07-29 14:03:36 - root - INFO - Running validation...
+2025-07-29 14:06:59 - root - INFO - Validation completed - Loss: 0.7907, Accuracy: 72.45%
+2025-07-29 14:06:59 - root - INFO - Checkpoint saved for epoch 11 at checkpoints/checkpoint_epoch_11.pth
+2025-07-29 14:06:59 - root - INFO - Epoch 11/12 Results:
+2025-07-29 14:06:59 - root - INFO -   Train Loss: 0.2283, Train Acc: 93.69%
+2025-07-29 14:06:59 - root - INFO -   Val Loss: 0.7907, Val Acc: 72.45%
+2025-07-29 14:06:59 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 14:06:59 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:06:59 - root - INFO - Starting epoch 12/12
+2025-07-29 14:07:54 - root - INFO -   Batch 100/606 - Loss: 0.1922, Acc: 93.94%
+2025-07-29 14:08:46 - root - INFO -   Batch 200/606 - Loss: 0.2081, Acc: 93.64%
+2025-07-29 14:09:38 - root - INFO -   Batch 300/606 - Loss: 0.1183, Acc: 93.86%
+2025-07-29 14:10:31 - root - INFO -   Batch 400/606 - Loss: 0.1660, Acc: 94.07%
+2025-07-29 14:11:22 - root - INFO -   Batch 500/606 - Loss: 0.1445, Acc: 93.88%
+2025-07-29 14:12:14 - root - INFO -   Batch 600/606 - Loss: 0.2504, Acc: 93.88%
+2025-07-29 14:12:17 - root - INFO - Running validation...
+2025-07-29 14:15:40 - root - INFO - Validation completed - Loss: 0.8003, Accuracy: 71.99%
+2025-07-29 14:15:41 - root - INFO - Checkpoint saved for epoch 12 at checkpoints/checkpoint_epoch_12.pth
+2025-07-29 14:15:41 - root - INFO - Epoch 12/12 Results:
+2025-07-29 14:15:41 - root - INFO -   Train Loss: 0.2199, Train Acc: 93.87%
+2025-07-29 14:15:41 - root - INFO -   Val Loss: 0.8003, Val Acc: 71.99%
+2025-07-29 14:15:41 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 14:15:41 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:15:41 - root - INFO - Training completed!
+2025-07-29 14:15:41 - root - INFO - Best validation loss achieved: 0.7789
+2025-07-29 14:15:41 - root - INFO - Loading best model for final evaluation...
+2025-07-29 14:19:05 - root - INFO - Validation completed - Loss: 0.7789, Accuracy: 71.29%
+2025-07-29 14:19:05 - root - INFO - Final validation accuracy: 71.29%
+2025-07-29 14:19:05 - root - INFO - Loading best model for final evaluation...
+2025-07-29 14:22:28 - root - INFO - Validation completed - Loss: 0.7789, Accuracy: 71.29%
+2025-07-29 14:22:28 - root - INFO - Final validation accuracy: 71.29%
+2025-07-29 14:22:28 - root - INFO - training completed successfully
