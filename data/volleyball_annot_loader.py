@@ -2,9 +2,23 @@ import cv2
 import os
 import pickle
 from typing import List
-from data.boxinfo import BoxInfo
 
 
+class BoxInfo:
+    def __init__(self, line):
+        #line like : 0 361 469 413 569 24735 0 1 0 setting
+        words = line.split()
+        self.category = words.pop()
+        words = [int(string) for string in words]
+        self.player_ID = words[0]
+        del words[0]
+
+        x1, y1, x2, y2, frame_ID, lost, grouping, generated = words
+        self.box = x1, y1, x2, y2
+        self.frame_ID = frame_ID
+        self.lost = lost
+        self.grouping = grouping
+        self.generated = generated
 
 dataset_root = 'D:/volleyball-datasets'
 
@@ -118,17 +132,17 @@ def load_volleyball_dataset(videos_root, annot_root):
 
 def create_pkl_version():
     # You can use this function to create and save pkl version of the dataset
-    videos_root = f'{dataset_root}/videos_sample'
+    videos_root = f'{dataset_root}/videos'
     annot_root = f'{dataset_root}/volleyball_tracking_annotation'
 
     videos_annot = load_volleyball_dataset(videos_root, annot_root)
 
-    with open(f'{dataset_root}/annot_all2.pkl', 'wb') as file:
+    with open(f'{dataset_root}/annot_all.pkl', 'wb') as file:
         pickle.dump(videos_annot, file)
 
 
 def test_pkl_version():
-    with open(f'{dataset_root}/annot_all2.pkl', 'rb') as file:
+    with open(f'{dataset_root}/annot_all.pkl', 'rb') as file:
         videos_annot = pickle.load(file)
 
     boxes: List[BoxInfo] = videos_annot['7']['38025']['frame_boxes_dct'][38025]
@@ -141,6 +155,6 @@ if __name__ == '__main__':
     clip_dir_path = os.path.dirname(annot_file).replace('volleyball_tracking_annotation', 'videos')
 
     # vis_clip(annot_file, clip_dir_path)
-    #create_pkl_version()
+    create_pkl_version()
     test_pkl_version()
 

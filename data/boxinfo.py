@@ -1,4 +1,7 @@
+import os
+import sys
 
+sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/warmup-code')
 
 
 class BoxInfo:
@@ -16,3 +19,5 @@ class BoxInfo:
         self.lost = lost
         self.grouping = grouping
         self.generated = generated
+    
+    sys.modules['boxinfo'] = sys.modules[__name__]   
