@@ -1,0 +1,925 @@
+2025-07-29 13:40:24 - root - INFO - Starting Baseline_B4 Training
+2025-07-29 13:40:24 - root - INFO - Training videos: 24 videos
+2025-07-29 13:40:24 - root - INFO - Validation videos: 15 videos
+2025-07-29 13:40:24 - root - INFO - Training video IDs: [1, 3, 6, 7, 10, 13, 15, 16, 18, 22, 23, 31, 32, 36, 38, 39, 40, 41, 42, 48, 50, 52, 53, 54]
+2025-07-29 13:40:24 - root - INFO - Validation video IDs: [0, 2, 8, 12, 17, 19, 24, 26, 27, 28, 30, 33, 46, 49, 51]
+2025-07-29 13:40:24 - root - INFO - Using device: cuda
+2025-07-29 13:40:34 - root - INFO - Training dataset size: 2152
+2025-07-29 13:40:34 - root - INFO - Validation dataset size: 1341
+2025-07-29 13:42:41 - root - INFO - Checkpoint directory created: checkpoints
+2025-07-29 13:42:41 - root - INFO - Starting training for 40 epochs
+2025-07-29 13:42:41 - root - INFO - Starting epoch 1/40
+2025-07-29 13:42:53 - root - INFO -   Batch 10/135 - Loss: 2.1742, Acc: 13.12%
+2025-07-29 13:43:00 - root - INFO -   Batch 20/135 - Loss: 2.3396, Acc: 11.56%
+2025-07-29 13:43:08 - root - INFO -   Batch 30/135 - Loss: 2.0794, Acc: 12.29%
+2025-07-29 13:43:16 - root - INFO -   Batch 40/135 - Loss: 1.9484, Acc: 13.12%
+2025-07-29 13:43:25 - root - INFO -   Batch 50/135 - Loss: 1.9774, Acc: 12.50%
+2025-07-29 13:43:33 - root - INFO -   Batch 60/135 - Loss: 1.9919, Acc: 13.12%
+2025-07-29 13:43:41 - root - INFO -   Batch 70/135 - Loss: 2.2501, Acc: 13.66%
+2025-07-29 13:43:50 - root - INFO -   Batch 80/135 - Loss: 1.9285, Acc: 13.52%
+2025-07-29 13:43:58 - root - INFO -   Batch 90/135 - Loss: 2.4307, Acc: 13.33%
+2025-07-29 13:44:05 - root - INFO -   Batch 100/135 - Loss: 2.4228, Acc: 13.31%
+2025-07-29 13:44:13 - root - INFO -   Batch 110/135 - Loss: 1.9939, Acc: 13.47%
+2025-07-29 13:44:23 - root - INFO -   Batch 120/135 - Loss: 2.1367, Acc: 13.39%
+2025-07-29 13:44:31 - root - INFO -   Batch 130/135 - Loss: 2.0016, Acc: 13.85%
+2025-07-29 13:44:34 - root - INFO - Running validation...
+2025-07-29 13:46:40 - root - INFO - Validation completed - Loss: 2.1080, Accuracy: 19.91%
+2025-07-29 13:46:41 - root - INFO - Checkpoint saved for epoch 1 at checkpoints/checkpoint_epoch_1.pth
+2025-07-29 13:46:41 - root - INFO - Epoch 1/40 Results:
+2025-07-29 13:46:41 - root - INFO -   Train Loss: 2.1435, Train Acc: 13.71%
+2025-07-29 13:46:41 - root - INFO -   Val Loss: 2.1080, Val Acc: 19.91%
+2025-07-29 13:46:41 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:46:41 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:46:41 - root - INFO - New best model saved with validation loss: 2.1080
+2025-07-29 13:46:41 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 13:46:41 - root - INFO - Starting epoch 2/40
+2025-07-29 13:46:52 - root - INFO -   Batch 10/135 - Loss: 1.9949, Acc: 18.12%
+2025-07-29 13:47:00 - root - INFO -   Batch 20/135 - Loss: 1.8818, Acc: 18.12%
+2025-07-29 13:47:09 - root - INFO -   Batch 30/135 - Loss: 1.9543, Acc: 17.71%
+2025-07-29 13:47:16 - root - INFO -   Batch 40/135 - Loss: 1.9732, Acc: 17.97%
+2025-07-29 13:47:25 - root - INFO -   Batch 50/135 - Loss: 1.8804, Acc: 18.62%
+2025-07-29 13:47:33 - root - INFO -   Batch 60/135 - Loss: 1.8572, Acc: 19.17%
+2025-07-29 13:47:42 - root - INFO -   Batch 70/135 - Loss: 2.1459, Acc: 19.11%
+2025-07-29 13:47:49 - root - INFO -   Batch 80/135 - Loss: 2.0435, Acc: 18.83%
+2025-07-29 13:47:57 - root - INFO -   Batch 90/135 - Loss: 2.1320, Acc: 19.51%
+2025-07-29 13:48:05 - root - INFO -   Batch 100/135 - Loss: 2.1127, Acc: 19.88%
+2025-07-29 13:48:13 - root - INFO -   Batch 110/135 - Loss: 2.1167, Acc: 20.40%
+2025-07-29 13:48:21 - root - INFO -   Batch 120/135 - Loss: 1.8607, Acc: 20.99%
+2025-07-29 13:48:29 - root - INFO -   Batch 130/135 - Loss: 1.8554, Acc: 21.59%
+2025-07-29 13:48:32 - root - INFO - Running validation...
+2025-07-29 13:49:49 - root - INFO - Validation completed - Loss: 1.8934, Accuracy: 29.60%
+2025-07-29 13:49:49 - root - INFO - Checkpoint saved for epoch 2 at checkpoints/checkpoint_epoch_2.pth
+2025-07-29 13:49:49 - root - INFO - Epoch 2/40 Results:
+2025-07-29 13:49:49 - root - INFO -   Train Loss: 2.0223, Train Acc: 21.79%
+2025-07-29 13:49:49 - root - INFO -   Val Loss: 1.8934, Val Acc: 29.60%
+2025-07-29 13:49:49 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:49:49 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:49:49 - root - INFO - New best model saved with validation loss: 1.8934
+2025-07-29 13:49:49 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 13:49:49 - root - INFO - Starting epoch 3/40
+2025-07-29 13:49:59 - root - INFO -   Batch 10/135 - Loss: 1.9592, Acc: 23.12%
+2025-07-29 13:50:07 - root - INFO -   Batch 20/135 - Loss: 1.7337, Acc: 28.12%
+2025-07-29 13:50:16 - root - INFO -   Batch 30/135 - Loss: 1.9297, Acc: 29.38%
+2025-07-29 13:50:24 - root - INFO -   Batch 40/135 - Loss: 1.6855, Acc: 31.25%
+2025-07-29 13:50:32 - root - INFO -   Batch 50/135 - Loss: 1.8755, Acc: 31.75%
+2025-07-29 13:50:39 - root - INFO -   Batch 60/135 - Loss: 1.9516, Acc: 32.29%
+2025-07-29 13:50:48 - root - INFO -   Batch 70/135 - Loss: 1.7703, Acc: 33.12%
+2025-07-29 13:50:55 - root - INFO -   Batch 80/135 - Loss: 1.7023, Acc: 33.36%
+2025-07-29 13:51:04 - root - INFO -   Batch 90/135 - Loss: 1.7574, Acc: 33.33%
+2025-07-29 13:51:11 - root - INFO -   Batch 100/135 - Loss: 1.7133, Acc: 33.75%
+2025-07-29 13:51:20 - root - INFO -   Batch 110/135 - Loss: 1.6047, Acc: 34.09%
+2025-07-29 13:51:28 - root - INFO -   Batch 120/135 - Loss: 1.7499, Acc: 34.64%
+2025-07-29 13:51:35 - root - INFO -   Batch 130/135 - Loss: 1.6860, Acc: 35.19%
+2025-07-29 13:51:38 - root - INFO - Running validation...
+2025-07-29 13:52:52 - root - INFO - Validation completed - Loss: 1.6433, Accuracy: 47.58%
+2025-07-29 13:52:52 - root - INFO - Checkpoint saved for epoch 3 at checkpoints/checkpoint_epoch_3.pth
+2025-07-29 13:52:52 - root - INFO - Epoch 3/40 Results:
+2025-07-29 13:52:52 - root - INFO -   Train Loss: 1.7956, Train Acc: 35.46%
+2025-07-29 13:52:52 - root - INFO -   Val Loss: 1.6433, Val Acc: 47.58%
+2025-07-29 13:52:52 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:52:52 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:52:52 - root - INFO - New best model saved with validation loss: 1.6433
+2025-07-29 13:52:52 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 13:52:52 - root - INFO - Starting epoch 4/40
+2025-07-29 13:53:03 - root - INFO -   Batch 10/135 - Loss: 1.7761, Acc: 51.25%
+2025-07-29 13:53:11 - root - INFO -   Batch 20/135 - Loss: 1.9293, Acc: 47.50%
+2025-07-29 13:53:19 - root - INFO -   Batch 30/135 - Loss: 1.5527, Acc: 49.17%
+2025-07-29 13:53:27 - root - INFO -   Batch 40/135 - Loss: 1.3807, Acc: 49.53%
+2025-07-29 13:53:35 - root - INFO -   Batch 50/135 - Loss: 1.5314, Acc: 51.00%
+2025-07-29 13:53:43 - root - INFO -   Batch 60/135 - Loss: 1.3480, Acc: 51.46%
+2025-07-29 13:53:50 - root - INFO -   Batch 70/135 - Loss: 1.4072, Acc: 52.05%
+2025-07-29 13:53:58 - root - INFO -   Batch 80/135 - Loss: 1.5369, Acc: 52.58%
+2025-07-29 13:54:07 - root - INFO -   Batch 90/135 - Loss: 1.3516, Acc: 53.40%
+2025-07-29 13:54:14 - root - INFO -   Batch 100/135 - Loss: 1.3439, Acc: 53.62%
+2025-07-29 13:54:22 - root - INFO -   Batch 110/135 - Loss: 1.4243, Acc: 54.09%
+2025-07-29 13:54:30 - root - INFO -   Batch 120/135 - Loss: 1.4016, Acc: 54.48%
+2025-07-29 13:54:38 - root - INFO -   Batch 130/135 - Loss: 1.2800, Acc: 54.62%
+2025-07-29 13:54:41 - root - INFO - Running validation...
+2025-07-29 13:55:55 - root - INFO - Validation completed - Loss: 1.4430, Accuracy: 58.84%
+2025-07-29 13:55:56 - root - INFO - Checkpoint saved for epoch 4 at checkpoints/checkpoint_epoch_4.pth
+2025-07-29 13:55:56 - root - INFO - Epoch 4/40 Results:
+2025-07-29 13:55:56 - root - INFO -   Train Loss: 1.5060, Train Acc: 54.28%
+2025-07-29 13:55:56 - root - INFO -   Val Loss: 1.4430, Val Acc: 58.84%
+2025-07-29 13:55:56 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:55:56 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:55:56 - root - INFO - New best model saved with validation loss: 1.4430
+2025-07-29 13:55:56 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 13:55:56 - root - INFO - Starting epoch 5/40
+2025-07-29 13:56:07 - root - INFO -   Batch 10/135 - Loss: 1.2870, Acc: 70.00%
+2025-07-29 13:56:14 - root - INFO -   Batch 20/135 - Loss: 1.2174, Acc: 68.44%
+2025-07-29 13:56:22 - root - INFO -   Batch 30/135 - Loss: 1.2758, Acc: 70.00%
+2025-07-29 13:56:29 - root - INFO -   Batch 40/135 - Loss: 1.2665, Acc: 70.00%
+2025-07-29 13:56:38 - root - INFO -   Batch 50/135 - Loss: 1.2066, Acc: 68.25%
+2025-07-29 13:56:46 - root - INFO -   Batch 60/135 - Loss: 1.7110, Acc: 68.33%
+2025-07-29 13:56:54 - root - INFO -   Batch 70/135 - Loss: 1.3817, Acc: 68.75%
+2025-07-29 13:57:02 - root - INFO -   Batch 80/135 - Loss: 1.2691, Acc: 68.44%
+2025-07-29 13:57:11 - root - INFO -   Batch 90/135 - Loss: 1.1397, Acc: 69.17%
+2025-07-29 13:57:19 - root - INFO -   Batch 100/135 - Loss: 1.1339, Acc: 69.44%
+2025-07-29 13:57:27 - root - INFO -   Batch 110/135 - Loss: 1.2740, Acc: 69.03%
+2025-07-29 13:57:34 - root - INFO -   Batch 120/135 - Loss: 1.3352, Acc: 68.96%
+2025-07-29 13:57:43 - root - INFO -   Batch 130/135 - Loss: 1.2197, Acc: 68.75%
+2025-07-29 13:57:46 - root - INFO - Running validation...
+2025-07-29 13:58:58 - root - INFO - Validation completed - Loss: 1.3725, Accuracy: 62.57%
+2025-07-29 13:58:59 - root - INFO - Checkpoint saved for epoch 5 at checkpoints/checkpoint_epoch_5.pth
+2025-07-29 13:58:59 - root - INFO - Epoch 5/40 Results:
+2025-07-29 13:58:59 - root - INFO -   Train Loss: 1.2973, Train Acc: 68.68%
+2025-07-29 13:58:59 - root - INFO -   Val Loss: 1.3725, Val Acc: 62.57%
+2025-07-29 13:58:59 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 13:58:59 - root - INFO - ------------------------------------------------------------
+2025-07-29 13:58:59 - root - INFO - New best model saved with validation loss: 1.3725
+2025-07-29 13:58:59 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 13:58:59 - root - INFO - Starting epoch 6/40
+2025-07-29 13:59:09 - root - INFO -   Batch 10/135 - Loss: 1.0207, Acc: 79.38%
+2025-07-29 13:59:17 - root - INFO -   Batch 20/135 - Loss: 1.0776, Acc: 79.38%
+2025-07-29 13:59:26 - root - INFO -   Batch 30/135 - Loss: 1.3676, Acc: 80.00%
+2025-07-29 13:59:34 - root - INFO -   Batch 40/135 - Loss: 1.0858, Acc: 79.38%
+2025-07-29 13:59:42 - root - INFO -   Batch 50/135 - Loss: 0.9377, Acc: 78.25%
+2025-07-29 13:59:49 - root - INFO -   Batch 60/135 - Loss: 1.3897, Acc: 78.23%
+2025-07-29 13:59:58 - root - INFO -   Batch 70/135 - Loss: 1.0648, Acc: 78.12%
+2025-07-29 14:00:06 - root - INFO -   Batch 80/135 - Loss: 1.2351, Acc: 78.28%
+2025-07-29 14:00:14 - root - INFO -   Batch 90/135 - Loss: 1.0592, Acc: 78.12%
+2025-07-29 14:00:21 - root - INFO -   Batch 100/135 - Loss: 1.1581, Acc: 78.19%
+2025-07-29 14:00:29 - root - INFO -   Batch 110/135 - Loss: 1.3065, Acc: 77.73%
+2025-07-29 14:00:37 - root - INFO -   Batch 120/135 - Loss: 1.1874, Acc: 77.66%
+2025-07-29 14:00:45 - root - INFO -   Batch 130/135 - Loss: 1.1181, Acc: 76.88%
+2025-07-29 14:00:48 - root - INFO - Running validation...
+2025-07-29 14:02:00 - root - INFO - Validation completed - Loss: 1.5814, Accuracy: 52.50%
+2025-07-29 14:02:00 - root - INFO - Checkpoint saved for epoch 6 at checkpoints/checkpoint_epoch_6.pth
+2025-07-29 14:02:00 - root - INFO - Epoch 6/40 Results:
+2025-07-29 14:02:00 - root - INFO -   Train Loss: 1.1793, Train Acc: 76.77%
+2025-07-29 14:02:00 - root - INFO -   Val Loss: 1.5814, Val Acc: 52.50%
+2025-07-29 14:02:00 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:02:00 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:02:00 - root - INFO - Starting epoch 7/40
+2025-07-29 14:02:10 - root - INFO -   Batch 10/135 - Loss: 1.1359, Acc: 80.62%
+2025-07-29 14:02:18 - root - INFO -   Batch 20/135 - Loss: 0.9443, Acc: 81.88%
+2025-07-29 14:02:26 - root - INFO -   Batch 30/135 - Loss: 1.2126, Acc: 81.04%
+2025-07-29 14:02:34 - root - INFO -   Batch 40/135 - Loss: 0.8960, Acc: 82.50%
+2025-07-29 14:02:42 - root - INFO -   Batch 50/135 - Loss: 1.1102, Acc: 83.12%
+2025-07-29 14:02:50 - root - INFO -   Batch 60/135 - Loss: 1.0517, Acc: 83.96%
+2025-07-29 14:02:58 - root - INFO -   Batch 70/135 - Loss: 0.9642, Acc: 83.66%
+2025-07-29 14:03:06 - root - INFO -   Batch 80/135 - Loss: 0.9866, Acc: 83.67%
+2025-07-29 14:03:14 - root - INFO -   Batch 90/135 - Loss: 1.3148, Acc: 83.12%
+2025-07-29 14:03:22 - root - INFO -   Batch 100/135 - Loss: 0.9153, Acc: 83.12%
+2025-07-29 14:03:30 - root - INFO -   Batch 110/135 - Loss: 0.8575, Acc: 83.07%
+2025-07-29 14:03:38 - root - INFO -   Batch 120/135 - Loss: 1.0768, Acc: 82.86%
+2025-07-29 14:03:46 - root - INFO -   Batch 130/135 - Loss: 0.9098, Acc: 82.55%
+2025-07-29 14:03:48 - root - INFO - Running validation...
+2025-07-29 14:05:01 - root - INFO - Validation completed - Loss: 1.3951, Accuracy: 61.89%
+2025-07-29 14:05:02 - root - INFO - Checkpoint saved for epoch 7 at checkpoints/checkpoint_epoch_7.pth
+2025-07-29 14:05:02 - root - INFO - Epoch 7/40 Results:
+2025-07-29 14:05:02 - root - INFO -   Train Loss: 1.0749, Train Acc: 82.57%
+2025-07-29 14:05:02 - root - INFO -   Val Loss: 1.3951, Val Acc: 61.89%
+2025-07-29 14:05:02 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:05:02 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:05:02 - root - INFO - Starting epoch 8/40
+2025-07-29 14:05:13 - root - INFO -   Batch 10/135 - Loss: 1.1210, Acc: 83.12%
+2025-07-29 14:05:20 - root - INFO -   Batch 20/135 - Loss: 0.8813, Acc: 85.94%
+2025-07-29 14:05:28 - root - INFO -   Batch 30/135 - Loss: 1.0613, Acc: 86.04%
+2025-07-29 14:05:36 - root - INFO -   Batch 40/135 - Loss: 0.8590, Acc: 86.56%
+2025-07-29 14:05:44 - root - INFO -   Batch 50/135 - Loss: 0.9179, Acc: 87.12%
+2025-07-29 14:05:51 - root - INFO -   Batch 60/135 - Loss: 0.9860, Acc: 87.40%
+2025-07-29 14:06:00 - root - INFO -   Batch 70/135 - Loss: 0.9830, Acc: 87.59%
+2025-07-29 14:06:07 - root - INFO -   Batch 80/135 - Loss: 1.0434, Acc: 87.58%
+2025-07-29 14:06:16 - root - INFO -   Batch 90/135 - Loss: 0.9243, Acc: 87.71%
+2025-07-29 14:06:24 - root - INFO -   Batch 100/135 - Loss: 1.1682, Acc: 87.38%
+2025-07-29 14:06:32 - root - INFO -   Batch 110/135 - Loss: 1.1130, Acc: 87.50%
+2025-07-29 14:06:40 - root - INFO -   Batch 120/135 - Loss: 0.9728, Acc: 87.40%
+2025-07-29 14:06:48 - root - INFO -   Batch 130/135 - Loss: 0.8745, Acc: 87.40%
+2025-07-29 14:06:51 - root - INFO - Running validation...
+2025-07-29 14:08:05 - root - INFO - Validation completed - Loss: 1.4719, Accuracy: 61.15%
+2025-07-29 14:08:06 - root - INFO - Checkpoint saved for epoch 8 at checkpoints/checkpoint_epoch_8.pth
+2025-07-29 14:08:06 - root - INFO - Epoch 8/40 Results:
+2025-07-29 14:08:06 - root - INFO -   Train Loss: 0.9986, Train Acc: 87.31%
+2025-07-29 14:08:06 - root - INFO -   Val Loss: 1.4719, Val Acc: 61.15%
+2025-07-29 14:08:06 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:08:06 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:08:06 - root - INFO - Starting epoch 9/40
+2025-07-29 14:08:16 - root - INFO -   Batch 10/135 - Loss: 0.9691, Acc: 90.00%
+2025-07-29 14:08:23 - root - INFO -   Batch 20/135 - Loss: 0.9119, Acc: 89.06%
+2025-07-29 14:08:32 - root - INFO -   Batch 30/135 - Loss: 1.0236, Acc: 89.17%
+2025-07-29 14:08:39 - root - INFO -   Batch 40/135 - Loss: 0.8591, Acc: 89.84%
+2025-07-29 14:08:48 - root - INFO -   Batch 50/135 - Loss: 0.8644, Acc: 90.00%
+2025-07-29 14:08:56 - root - INFO -   Batch 60/135 - Loss: 0.8845, Acc: 89.79%
+2025-07-29 14:09:05 - root - INFO -   Batch 70/135 - Loss: 0.9901, Acc: 90.09%
+2025-07-29 14:09:12 - root - INFO -   Batch 80/135 - Loss: 1.1625, Acc: 90.08%
+2025-07-29 14:09:20 - root - INFO -   Batch 90/135 - Loss: 0.8943, Acc: 90.14%
+2025-07-29 14:09:28 - root - INFO -   Batch 100/135 - Loss: 0.8363, Acc: 90.50%
+2025-07-29 14:09:37 - root - INFO -   Batch 110/135 - Loss: 0.8328, Acc: 90.57%
+2025-07-29 14:09:44 - root - INFO -   Batch 120/135 - Loss: 0.9567, Acc: 90.62%
+2025-07-29 14:09:52 - root - INFO -   Batch 130/135 - Loss: 0.9198, Acc: 90.48%
+2025-07-29 14:09:55 - root - INFO - Running validation...
+2025-07-29 14:11:10 - root - INFO - Validation completed - Loss: 1.4540, Accuracy: 60.10%
+2025-07-29 14:11:11 - root - INFO - Checkpoint saved for epoch 9 at checkpoints/checkpoint_epoch_9.pth
+2025-07-29 14:11:11 - root - INFO - Epoch 9/40 Results:
+2025-07-29 14:11:11 - root - INFO -   Train Loss: 0.9518, Train Acc: 90.43%
+2025-07-29 14:11:11 - root - INFO -   Val Loss: 1.4540, Val Acc: 60.10%
+2025-07-29 14:11:11 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:11:11 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:11:11 - root - INFO - Starting epoch 10/40
+2025-07-29 14:11:21 - root - INFO -   Batch 10/135 - Loss: 1.3469, Acc: 91.88%
+2025-07-29 14:11:28 - root - INFO -   Batch 20/135 - Loss: 1.0135, Acc: 94.06%
+2025-07-29 14:11:37 - root - INFO -   Batch 30/135 - Loss: 0.8173, Acc: 94.38%
+2025-07-29 14:11:45 - root - INFO -   Batch 40/135 - Loss: 0.9099, Acc: 94.69%
+2025-07-29 14:11:54 - root - INFO -   Batch 50/135 - Loss: 0.8837, Acc: 95.12%
+2025-07-29 14:12:01 - root - INFO -   Batch 60/135 - Loss: 0.7953, Acc: 94.79%
+2025-07-29 14:12:10 - root - INFO -   Batch 70/135 - Loss: 0.9925, Acc: 94.91%
+2025-07-29 14:12:18 - root - INFO -   Batch 80/135 - Loss: 0.9987, Acc: 94.53%
+2025-07-29 14:12:27 - root - INFO -   Batch 90/135 - Loss: 0.9311, Acc: 94.51%
+2025-07-29 14:12:35 - root - INFO -   Batch 100/135 - Loss: 0.9179, Acc: 94.19%
+2025-07-29 14:12:43 - root - INFO -   Batch 110/135 - Loss: 0.8586, Acc: 93.81%
+2025-07-29 14:12:51 - root - INFO -   Batch 120/135 - Loss: 0.8595, Acc: 93.75%
+2025-07-29 14:12:59 - root - INFO -   Batch 130/135 - Loss: 0.8931, Acc: 93.75%
+2025-07-29 14:13:02 - root - INFO - Running validation...
+2025-07-29 14:14:16 - root - INFO - Validation completed - Loss: 1.6165, Accuracy: 58.09%
+2025-07-29 14:14:17 - root - INFO - Checkpoint saved for epoch 10 at checkpoints/checkpoint_epoch_10.pth
+2025-07-29 14:14:17 - root - INFO - Epoch 10/40 Results:
+2025-07-29 14:14:17 - root - INFO -   Train Loss: 0.9150, Train Acc: 93.59%
+2025-07-29 14:14:17 - root - INFO -   Val Loss: 1.6165, Val Acc: 58.09%
+2025-07-29 14:14:17 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:14:17 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:14:17 - root - INFO - Starting epoch 11/40
+2025-07-29 14:14:28 - root - INFO -   Batch 10/135 - Loss: 0.9307, Acc: 90.62%
+2025-07-29 14:14:36 - root - INFO -   Batch 20/135 - Loss: 0.8587, Acc: 91.56%
+2025-07-29 14:14:43 - root - INFO -   Batch 30/135 - Loss: 0.8667, Acc: 92.29%
+2025-07-29 14:14:52 - root - INFO -   Batch 40/135 - Loss: 1.0304, Acc: 91.25%
+2025-07-29 14:15:00 - root - INFO -   Batch 50/135 - Loss: 0.8915, Acc: 92.00%
+2025-07-29 14:15:08 - root - INFO -   Batch 60/135 - Loss: 0.8179, Acc: 92.08%
+2025-07-29 14:15:16 - root - INFO -   Batch 70/135 - Loss: 0.7882, Acc: 92.77%
+2025-07-29 14:15:24 - root - INFO -   Batch 80/135 - Loss: 0.8339, Acc: 92.81%
+2025-07-29 14:15:32 - root - INFO -   Batch 90/135 - Loss: 0.8095, Acc: 92.50%
+2025-07-29 14:15:40 - root - INFO -   Batch 100/135 - Loss: 1.0779, Acc: 92.62%
+2025-07-29 14:15:49 - root - INFO -   Batch 110/135 - Loss: 0.8948, Acc: 92.90%
+2025-07-29 14:15:56 - root - INFO -   Batch 120/135 - Loss: 0.8439, Acc: 92.92%
+2025-07-29 14:16:04 - root - INFO -   Batch 130/135 - Loss: 0.9188, Acc: 92.84%
+2025-07-29 14:16:07 - root - INFO - Running validation...
+2025-07-29 14:17:21 - root - INFO - Validation completed - Loss: 1.3534, Accuracy: 67.34%
+2025-07-29 14:17:21 - root - INFO - Checkpoint saved for epoch 11 at checkpoints/checkpoint_epoch_11.pth
+2025-07-29 14:17:21 - root - INFO - Epoch 11/40 Results:
+2025-07-29 14:17:21 - root - INFO -   Train Loss: 0.9088, Train Acc: 92.89%
+2025-07-29 14:17:21 - root - INFO -   Val Loss: 1.3534, Val Acc: 67.34%
+2025-07-29 14:17:21 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:17:21 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:17:22 - root - INFO - New best model saved with validation loss: 1.3534
+2025-07-29 14:17:22 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 14:17:22 - root - INFO - Starting epoch 12/40
+2025-07-29 14:17:33 - root - INFO -   Batch 10/135 - Loss: 1.0418, Acc: 95.00%
+2025-07-29 14:17:41 - root - INFO -   Batch 20/135 - Loss: 0.8981, Acc: 95.00%
+2025-07-29 14:17:49 - root - INFO -   Batch 30/135 - Loss: 1.0326, Acc: 94.38%
+2025-07-29 14:17:57 - root - INFO -   Batch 40/135 - Loss: 0.8933, Acc: 93.75%
+2025-07-29 14:18:05 - root - INFO -   Batch 50/135 - Loss: 0.8355, Acc: 93.25%
+2025-07-29 14:18:13 - root - INFO -   Batch 60/135 - Loss: 0.9644, Acc: 93.44%
+2025-07-29 14:18:21 - root - INFO -   Batch 70/135 - Loss: 0.7846, Acc: 93.21%
+2025-07-29 14:18:28 - root - INFO -   Batch 80/135 - Loss: 1.0753, Acc: 93.12%
+2025-07-29 14:18:36 - root - INFO -   Batch 90/135 - Loss: 0.8389, Acc: 93.26%
+2025-07-29 14:18:44 - root - INFO -   Batch 100/135 - Loss: 0.8218, Acc: 93.56%
+2025-07-29 14:18:52 - root - INFO -   Batch 110/135 - Loss: 0.8147, Acc: 93.24%
+2025-07-29 14:19:00 - root - INFO -   Batch 120/135 - Loss: 0.8240, Acc: 93.23%
+2025-07-29 14:19:08 - root - INFO -   Batch 130/135 - Loss: 0.9307, Acc: 93.22%
+2025-07-29 14:19:11 - root - INFO - Running validation...
+2025-07-29 14:20:24 - root - INFO - Validation completed - Loss: 1.4424, Accuracy: 65.40%
+2025-07-29 14:20:25 - root - INFO - Checkpoint saved for epoch 12 at checkpoints/checkpoint_epoch_12.pth
+2025-07-29 14:20:25 - root - INFO - Epoch 12/40 Results:
+2025-07-29 14:20:25 - root - INFO -   Train Loss: 0.8936, Train Acc: 93.31%
+2025-07-29 14:20:25 - root - INFO -   Val Loss: 1.4424, Val Acc: 65.40%
+2025-07-29 14:20:25 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:20:25 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:20:25 - root - INFO - Starting epoch 13/40
+2025-07-29 14:20:36 - root - INFO -   Batch 10/135 - Loss: 0.8007, Acc: 95.00%
+2025-07-29 14:20:43 - root - INFO -   Batch 20/135 - Loss: 0.8086, Acc: 95.94%
+2025-07-29 14:20:52 - root - INFO -   Batch 30/135 - Loss: 0.8464, Acc: 96.04%
+2025-07-29 14:20:59 - root - INFO -   Batch 40/135 - Loss: 0.9333, Acc: 95.47%
+2025-07-29 14:21:07 - root - INFO -   Batch 50/135 - Loss: 0.8176, Acc: 95.00%
+2025-07-29 14:21:15 - root - INFO -   Batch 60/135 - Loss: 0.8391, Acc: 95.10%
+2025-07-29 14:21:24 - root - INFO -   Batch 70/135 - Loss: 0.9163, Acc: 95.09%
+2025-07-29 14:21:31 - root - INFO -   Batch 80/135 - Loss: 0.9365, Acc: 95.00%
+2025-07-29 14:21:39 - root - INFO -   Batch 90/135 - Loss: 1.0225, Acc: 94.72%
+2025-07-29 14:21:47 - root - INFO -   Batch 100/135 - Loss: 0.7673, Acc: 94.88%
+2025-07-29 14:21:56 - root - INFO -   Batch 110/135 - Loss: 0.8493, Acc: 94.83%
+2025-07-29 14:22:03 - root - INFO -   Batch 120/135 - Loss: 0.8244, Acc: 94.74%
+2025-07-29 14:22:11 - root - INFO -   Batch 130/135 - Loss: 0.8052, Acc: 94.76%
+2025-07-29 14:22:14 - root - INFO - Running validation...
+2025-07-29 14:23:26 - root - INFO - Validation completed - Loss: 1.5068, Accuracy: 61.60%
+2025-07-29 14:23:26 - root - INFO - Checkpoint saved for epoch 13 at checkpoints/checkpoint_epoch_13.pth
+2025-07-29 14:23:26 - root - INFO - Epoch 13/40 Results:
+2025-07-29 14:23:26 - root - INFO -   Train Loss: 0.8902, Train Acc: 94.89%
+2025-07-29 14:23:26 - root - INFO -   Val Loss: 1.5068, Val Acc: 61.60%
+2025-07-29 14:23:26 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:23:26 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:23:26 - root - INFO - Starting epoch 14/40
+2025-07-29 14:23:36 - root - INFO -   Batch 10/135 - Loss: 0.8132, Acc: 95.62%
+2025-07-29 14:23:44 - root - INFO -   Batch 20/135 - Loss: 0.8984, Acc: 96.25%
+2025-07-29 14:23:52 - root - INFO -   Batch 30/135 - Loss: 0.7802, Acc: 95.83%
+2025-07-29 14:24:00 - root - INFO -   Batch 40/135 - Loss: 0.7961, Acc: 96.09%
+2025-07-29 14:24:08 - root - INFO -   Batch 50/135 - Loss: 0.8653, Acc: 95.75%
+2025-07-29 14:24:16 - root - INFO -   Batch 60/135 - Loss: 0.9106, Acc: 96.15%
+2025-07-29 14:24:24 - root - INFO -   Batch 70/135 - Loss: 0.9717, Acc: 96.34%
+2025-07-29 14:24:31 - root - INFO -   Batch 80/135 - Loss: 0.9432, Acc: 95.94%
+2025-07-29 14:24:40 - root - INFO -   Batch 90/135 - Loss: 0.8502, Acc: 95.90%
+2025-07-29 14:24:48 - root - INFO -   Batch 100/135 - Loss: 0.8916, Acc: 95.31%
+2025-07-29 14:24:56 - root - INFO -   Batch 110/135 - Loss: 0.7614, Acc: 95.23%
+2025-07-29 14:25:04 - root - INFO -   Batch 120/135 - Loss: 0.8347, Acc: 95.26%
+2025-07-29 14:25:12 - root - INFO -   Batch 130/135 - Loss: 0.9428, Acc: 95.29%
+2025-07-29 14:25:15 - root - INFO - Running validation...
+2025-07-29 14:26:28 - root - INFO - Validation completed - Loss: 1.3228, Accuracy: 71.07%
+2025-07-29 14:26:29 - root - INFO - Checkpoint saved for epoch 14 at checkpoints/checkpoint_epoch_14.pth
+2025-07-29 14:26:29 - root - INFO - Epoch 14/40 Results:
+2025-07-29 14:26:29 - root - INFO -   Train Loss: 0.8692, Train Acc: 95.26%
+2025-07-29 14:26:29 - root - INFO -   Val Loss: 1.3228, Val Acc: 71.07%
+2025-07-29 14:26:29 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:26:29 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:26:29 - root - INFO - New best model saved with validation loss: 1.3228
+2025-07-29 14:26:29 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 14:26:29 - root - INFO - Starting epoch 15/40
+2025-07-29 14:26:39 - root - INFO -   Batch 10/135 - Loss: 0.8512, Acc: 96.25%
+2025-07-29 14:26:47 - root - INFO -   Batch 20/135 - Loss: 0.8267, Acc: 94.69%
+2025-07-29 14:26:55 - root - INFO -   Batch 30/135 - Loss: 0.9305, Acc: 94.38%
+2025-07-29 14:27:03 - root - INFO -   Batch 40/135 - Loss: 0.7811, Acc: 94.69%
+2025-07-29 14:27:11 - root - INFO -   Batch 50/135 - Loss: 0.8119, Acc: 95.25%
+2025-07-29 14:27:19 - root - INFO -   Batch 60/135 - Loss: 0.7833, Acc: 95.42%
+2025-07-29 14:27:27 - root - INFO -   Batch 70/135 - Loss: 0.7938, Acc: 95.54%
+2025-07-29 14:27:34 - root - INFO -   Batch 80/135 - Loss: 0.8058, Acc: 95.62%
+2025-07-29 14:27:43 - root - INFO -   Batch 90/135 - Loss: 0.9774, Acc: 95.83%
+2025-07-29 14:27:51 - root - INFO -   Batch 100/135 - Loss: 0.9038, Acc: 96.00%
+2025-07-29 14:28:00 - root - INFO -   Batch 110/135 - Loss: 0.8665, Acc: 96.31%
+2025-07-29 14:28:08 - root - INFO -   Batch 120/135 - Loss: 0.7999, Acc: 96.30%
+2025-07-29 14:28:15 - root - INFO -   Batch 130/135 - Loss: 0.7508, Acc: 96.30%
+2025-07-29 14:28:18 - root - INFO - Running validation...
+2025-07-29 14:29:31 - root - INFO - Validation completed - Loss: 1.4257, Accuracy: 64.80%
+2025-07-29 14:29:32 - root - INFO - Checkpoint saved for epoch 15 at checkpoints/checkpoint_epoch_15.pth
+2025-07-29 14:29:32 - root - INFO - Epoch 15/40 Results:
+2025-07-29 14:29:32 - root - INFO -   Train Loss: 0.8417, Train Acc: 96.24%
+2025-07-29 14:29:32 - root - INFO -   Val Loss: 1.4257, Val Acc: 64.80%
+2025-07-29 14:29:32 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:29:32 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:29:32 - root - INFO - Starting epoch 16/40
+2025-07-29 14:29:42 - root - INFO -   Batch 10/135 - Loss: 0.8065, Acc: 96.88%
+2025-07-29 14:29:50 - root - INFO -   Batch 20/135 - Loss: 0.8236, Acc: 96.25%
+2025-07-29 14:29:59 - root - INFO -   Batch 30/135 - Loss: 0.7812, Acc: 95.62%
+2025-07-29 14:30:07 - root - INFO -   Batch 40/135 - Loss: 0.7589, Acc: 96.41%
+2025-07-29 14:30:15 - root - INFO -   Batch 50/135 - Loss: 0.7612, Acc: 96.50%
+2025-07-29 14:30:22 - root - INFO -   Batch 60/135 - Loss: 0.7970, Acc: 96.67%
+2025-07-29 14:30:31 - root - INFO -   Batch 70/135 - Loss: 0.8007, Acc: 96.96%
+2025-07-29 14:30:39 - root - INFO -   Batch 80/135 - Loss: 0.8353, Acc: 96.72%
+2025-07-29 14:30:47 - root - INFO -   Batch 90/135 - Loss: 0.9813, Acc: 96.11%
+2025-07-29 14:30:54 - root - INFO -   Batch 100/135 - Loss: 1.0321, Acc: 95.56%
+2025-07-29 14:31:03 - root - INFO -   Batch 110/135 - Loss: 0.9841, Acc: 95.17%
+2025-07-29 14:31:11 - root - INFO -   Batch 120/135 - Loss: 0.8034, Acc: 95.36%
+2025-07-29 14:31:19 - root - INFO -   Batch 130/135 - Loss: 0.7779, Acc: 95.34%
+2025-07-29 14:31:22 - root - INFO - Running validation...
+2025-07-29 14:32:34 - root - INFO - Validation completed - Loss: 1.4271, Accuracy: 66.89%
+2025-07-29 14:32:35 - root - INFO - Checkpoint saved for epoch 16 at checkpoints/checkpoint_epoch_16.pth
+2025-07-29 14:32:35 - root - INFO - Epoch 16/40 Results:
+2025-07-29 14:32:35 - root - INFO -   Train Loss: 0.8542, Train Acc: 95.40%
+2025-07-29 14:32:35 - root - INFO -   Val Loss: 1.4271, Val Acc: 66.89%
+2025-07-29 14:32:35 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:32:35 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:32:35 - root - INFO - Starting epoch 17/40
+2025-07-29 14:32:45 - root - INFO -   Batch 10/135 - Loss: 0.8133, Acc: 93.12%
+2025-07-29 14:32:53 - root - INFO -   Batch 20/135 - Loss: 0.7934, Acc: 93.12%
+2025-07-29 14:33:01 - root - INFO -   Batch 30/135 - Loss: 0.9348, Acc: 94.58%
+2025-07-29 14:33:09 - root - INFO -   Batch 40/135 - Loss: 0.7630, Acc: 95.31%
+2025-07-29 14:33:17 - root - INFO -   Batch 50/135 - Loss: 0.8398, Acc: 95.12%
+2025-07-29 14:33:25 - root - INFO -   Batch 60/135 - Loss: 1.0525, Acc: 94.79%
+2025-07-29 14:33:33 - root - INFO -   Batch 70/135 - Loss: 0.8007, Acc: 95.18%
+2025-07-29 14:33:41 - root - INFO -   Batch 80/135 - Loss: 0.7808, Acc: 95.23%
+2025-07-29 14:33:49 - root - INFO -   Batch 90/135 - Loss: 0.8187, Acc: 95.42%
+2025-07-29 14:33:57 - root - INFO -   Batch 100/135 - Loss: 0.8431, Acc: 95.25%
+2025-07-29 14:34:05 - root - INFO -   Batch 110/135 - Loss: 0.8512, Acc: 95.40%
+2025-07-29 14:34:13 - root - INFO -   Batch 120/135 - Loss: 0.9134, Acc: 95.16%
+2025-07-29 14:34:21 - root - INFO -   Batch 130/135 - Loss: 0.8445, Acc: 94.71%
+2025-07-29 14:34:24 - root - INFO - Running validation...
+2025-07-29 14:35:38 - root - INFO - Validation completed - Loss: 1.7025, Accuracy: 54.51%
+2025-07-29 14:35:39 - root - INFO - Checkpoint saved for epoch 17 at checkpoints/checkpoint_epoch_17.pth
+2025-07-29 14:35:39 - root - INFO - Epoch 17/40 Results:
+2025-07-29 14:35:39 - root - INFO -   Train Loss: 0.8667, Train Acc: 94.56%
+2025-07-29 14:35:39 - root - INFO -   Val Loss: 1.7025, Val Acc: 54.51%
+2025-07-29 14:35:39 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:35:39 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:35:39 - root - INFO - Starting epoch 18/40
+2025-07-29 14:35:51 - root - INFO -   Batch 10/135 - Loss: 0.8081, Acc: 93.12%
+2025-07-29 14:35:58 - root - INFO -   Batch 20/135 - Loss: 0.8714, Acc: 95.00%
+2025-07-29 14:36:06 - root - INFO -   Batch 30/135 - Loss: 0.7547, Acc: 95.42%
+2025-07-29 14:36:14 - root - INFO -   Batch 40/135 - Loss: 0.8669, Acc: 95.47%
+2025-07-29 14:36:23 - root - INFO -   Batch 50/135 - Loss: 0.8390, Acc: 95.50%
+2025-07-29 14:36:31 - root - INFO -   Batch 60/135 - Loss: 0.8062, Acc: 95.94%
+2025-07-29 14:36:40 - root - INFO -   Batch 70/135 - Loss: 0.8423, Acc: 95.71%
+2025-07-29 14:36:47 - root - INFO -   Batch 80/135 - Loss: 0.7911, Acc: 95.39%
+2025-07-29 14:36:56 - root - INFO -   Batch 90/135 - Loss: 0.9363, Acc: 95.42%
+2025-07-29 14:37:03 - root - INFO -   Batch 100/135 - Loss: 0.8716, Acc: 95.25%
+2025-07-29 14:37:11 - root - INFO -   Batch 110/135 - Loss: 0.7751, Acc: 95.57%
+2025-07-29 14:37:19 - root - INFO -   Batch 120/135 - Loss: 0.7652, Acc: 95.78%
+2025-07-29 14:37:28 - root - INFO -   Batch 130/135 - Loss: 0.7971, Acc: 95.62%
+2025-07-29 14:37:31 - root - INFO - Running validation...
+2025-07-29 14:38:44 - root - INFO - Validation completed - Loss: 1.4633, Accuracy: 65.85%
+2025-07-29 14:38:45 - root - INFO - Checkpoint saved for epoch 18 at checkpoints/checkpoint_epoch_18.pth
+2025-07-29 14:38:45 - root - INFO - Epoch 18/40 Results:
+2025-07-29 14:38:45 - root - INFO -   Train Loss: 0.8612, Train Acc: 95.68%
+2025-07-29 14:38:45 - root - INFO -   Val Loss: 1.4633, Val Acc: 65.85%
+2025-07-29 14:38:45 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:38:45 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:38:45 - root - INFO - Starting epoch 19/40
+2025-07-29 14:38:55 - root - INFO -   Batch 10/135 - Loss: 1.0774, Acc: 95.62%
+2025-07-29 14:39:03 - root - INFO -   Batch 20/135 - Loss: 0.9096, Acc: 96.25%
+2025-07-29 14:39:12 - root - INFO -   Batch 30/135 - Loss: 0.9370, Acc: 96.88%
+2025-07-29 14:39:19 - root - INFO -   Batch 40/135 - Loss: 0.8337, Acc: 96.41%
+2025-07-29 14:39:27 - root - INFO -   Batch 50/135 - Loss: 0.8530, Acc: 95.38%
+2025-07-29 14:39:35 - root - INFO -   Batch 60/135 - Loss: 0.8994, Acc: 95.52%
+2025-07-29 14:39:44 - root - INFO -   Batch 70/135 - Loss: 0.9546, Acc: 95.45%
+2025-07-29 14:39:51 - root - INFO -   Batch 80/135 - Loss: 0.8360, Acc: 95.16%
+2025-07-29 14:40:00 - root - INFO -   Batch 90/135 - Loss: 0.8393, Acc: 95.07%
+2025-07-29 14:40:08 - root - INFO -   Batch 100/135 - Loss: 0.8178, Acc: 94.88%
+2025-07-29 14:40:17 - root - INFO -   Batch 110/135 - Loss: 0.8742, Acc: 94.38%
+2025-07-29 14:40:24 - root - INFO -   Batch 120/135 - Loss: 0.8283, Acc: 94.17%
+2025-07-29 14:40:33 - root - INFO -   Batch 130/135 - Loss: 0.8514, Acc: 94.23%
+2025-07-29 14:40:35 - root - INFO - Running validation...
+2025-07-29 14:41:52 - root - INFO - Validation completed - Loss: 1.3663, Accuracy: 70.02%
+2025-07-29 14:41:53 - root - INFO - Checkpoint saved for epoch 19 at checkpoints/checkpoint_epoch_19.pth
+2025-07-29 14:41:53 - root - INFO - Epoch 19/40 Results:
+2025-07-29 14:41:53 - root - INFO -   Train Loss: 0.8774, Train Acc: 94.10%
+2025-07-29 14:41:53 - root - INFO -   Val Loss: 1.3663, Val Acc: 70.02%
+2025-07-29 14:41:53 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:41:53 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:41:53 - root - INFO - Starting epoch 20/40
+2025-07-29 14:42:04 - root - INFO -   Batch 10/135 - Loss: 0.7709, Acc: 97.50%
+2025-07-29 14:42:12 - root - INFO -   Batch 20/135 - Loss: 0.7852, Acc: 97.81%
+2025-07-29 14:42:21 - root - INFO -   Batch 30/135 - Loss: 0.7649, Acc: 97.50%
+2025-07-29 14:42:28 - root - INFO -   Batch 40/135 - Loss: 0.7973, Acc: 96.56%
+2025-07-29 14:42:38 - root - INFO -   Batch 50/135 - Loss: 0.7824, Acc: 96.25%
+2025-07-29 14:42:45 - root - INFO -   Batch 60/135 - Loss: 0.7720, Acc: 96.56%
+2025-07-29 14:42:53 - root - INFO -   Batch 70/135 - Loss: 0.8585, Acc: 96.16%
+2025-07-29 14:43:01 - root - INFO -   Batch 80/135 - Loss: 1.1141, Acc: 95.78%
+2025-07-29 14:43:09 - root - INFO -   Batch 90/135 - Loss: 0.7693, Acc: 95.62%
+2025-07-29 14:43:17 - root - INFO -   Batch 100/135 - Loss: 0.7872, Acc: 95.62%
+2025-07-29 14:43:26 - root - INFO -   Batch 110/135 - Loss: 0.8058, Acc: 95.80%
+2025-07-29 14:43:33 - root - INFO -   Batch 120/135 - Loss: 0.8049, Acc: 95.83%
+2025-07-29 14:43:42 - root - INFO -   Batch 130/135 - Loss: 0.7716, Acc: 95.96%
+2025-07-29 14:43:44 - root - INFO - Running validation...
+2025-07-29 14:44:59 - root - INFO - Validation completed - Loss: 1.2988, Accuracy: 72.26%
+2025-07-29 14:44:59 - root - INFO - Checkpoint saved for epoch 20 at checkpoints/checkpoint_epoch_20.pth
+2025-07-29 14:44:59 - root - INFO - Epoch 20/40 Results:
+2025-07-29 14:44:59 - root - INFO -   Train Loss: 0.8452, Train Acc: 95.96%
+2025-07-29 14:44:59 - root - INFO -   Val Loss: 1.2988, Val Acc: 72.26%
+2025-07-29 14:44:59 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:44:59 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:44:59 - root - INFO - New best model saved with validation loss: 1.2988
+2025-07-29 14:44:59 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 14:44:59 - root - INFO - Starting epoch 21/40
+2025-07-29 14:45:10 - root - INFO -   Batch 10/135 - Loss: 0.8218, Acc: 98.12%
+2025-07-29 14:45:18 - root - INFO -   Batch 20/135 - Loss: 0.7742, Acc: 97.81%
+2025-07-29 14:45:27 - root - INFO -   Batch 30/135 - Loss: 0.8062, Acc: 98.12%
+2025-07-29 14:45:35 - root - INFO -   Batch 40/135 - Loss: 0.7866, Acc: 98.12%
+2025-07-29 14:45:43 - root - INFO -   Batch 50/135 - Loss: 0.7823, Acc: 98.38%
+2025-07-29 14:45:51 - root - INFO -   Batch 60/135 - Loss: 0.7763, Acc: 98.33%
+2025-07-29 14:45:59 - root - INFO -   Batch 70/135 - Loss: 0.7969, Acc: 98.12%
+2025-07-29 14:46:06 - root - INFO -   Batch 80/135 - Loss: 0.7504, Acc: 98.20%
+2025-07-29 14:46:15 - root - INFO -   Batch 90/135 - Loss: 0.7733, Acc: 98.19%
+2025-07-29 14:46:22 - root - INFO -   Batch 100/135 - Loss: 0.7561, Acc: 98.25%
+2025-07-29 14:46:31 - root - INFO -   Batch 110/135 - Loss: 0.8033, Acc: 98.35%
+2025-07-29 14:46:39 - root - INFO -   Batch 120/135 - Loss: 0.8192, Acc: 98.33%
+2025-07-29 14:46:47 - root - INFO -   Batch 130/135 - Loss: 0.7892, Acc: 98.27%
+2025-07-29 14:46:50 - root - INFO - Running validation...
+2025-07-29 14:48:05 - root - INFO - Validation completed - Loss: 1.4383, Accuracy: 66.52%
+2025-07-29 14:48:06 - root - INFO - Checkpoint saved for epoch 21 at checkpoints/checkpoint_epoch_21.pth
+2025-07-29 14:48:06 - root - INFO - Epoch 21/40 Results:
+2025-07-29 14:48:06 - root - INFO -   Train Loss: 0.8052, Train Acc: 98.28%
+2025-07-29 14:48:06 - root - INFO -   Val Loss: 1.4383, Val Acc: 66.52%
+2025-07-29 14:48:06 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:48:06 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:48:06 - root - INFO - Starting epoch 22/40
+2025-07-29 14:48:17 - root - INFO -   Batch 10/135 - Loss: 0.8675, Acc: 98.75%
+2025-07-29 14:48:25 - root - INFO -   Batch 20/135 - Loss: 0.7787, Acc: 97.50%
+2025-07-29 14:48:33 - root - INFO -   Batch 30/135 - Loss: 0.7491, Acc: 97.08%
+2025-07-29 14:48:41 - root - INFO -   Batch 40/135 - Loss: 0.7660, Acc: 96.09%
+2025-07-29 14:48:50 - root - INFO -   Batch 50/135 - Loss: 0.8129, Acc: 96.25%
+2025-07-29 14:48:58 - root - INFO -   Batch 60/135 - Loss: 0.9503, Acc: 96.25%
+2025-07-29 14:49:06 - root - INFO -   Batch 70/135 - Loss: 0.9411, Acc: 95.89%
+2025-07-29 14:49:14 - root - INFO -   Batch 80/135 - Loss: 0.8018, Acc: 95.94%
+2025-07-29 14:49:23 - root - INFO -   Batch 90/135 - Loss: 0.7721, Acc: 95.90%
+2025-07-29 14:49:30 - root - INFO -   Batch 100/135 - Loss: 0.8727, Acc: 95.69%
+2025-07-29 14:49:39 - root - INFO -   Batch 110/135 - Loss: 0.8068, Acc: 95.91%
+2025-07-29 14:49:46 - root - INFO -   Batch 120/135 - Loss: 0.7871, Acc: 96.09%
+2025-07-29 14:49:55 - root - INFO -   Batch 130/135 - Loss: 0.7833, Acc: 96.25%
+2025-07-29 14:49:58 - root - INFO - Running validation...
+2025-07-29 14:51:12 - root - INFO - Validation completed - Loss: 1.3948, Accuracy: 68.98%
+2025-07-29 14:51:13 - root - INFO - Checkpoint saved for epoch 22 at checkpoints/checkpoint_epoch_22.pth
+2025-07-29 14:51:13 - root - INFO - Epoch 22/40 Results:
+2025-07-29 14:51:13 - root - INFO -   Train Loss: 0.8349, Train Acc: 96.33%
+2025-07-29 14:51:13 - root - INFO -   Val Loss: 1.3948, Val Acc: 68.98%
+2025-07-29 14:51:13 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:51:13 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:51:13 - root - INFO - Starting epoch 23/40
+2025-07-29 14:51:23 - root - INFO -   Batch 10/135 - Loss: 0.9336, Acc: 98.75%
+2025-07-29 14:51:31 - root - INFO -   Batch 20/135 - Loss: 0.8314, Acc: 97.81%
+2025-07-29 14:51:40 - root - INFO -   Batch 30/135 - Loss: 0.7814, Acc: 98.12%
+2025-07-29 14:51:48 - root - INFO -   Batch 40/135 - Loss: 1.1131, Acc: 97.97%
+2025-07-29 14:51:56 - root - INFO -   Batch 50/135 - Loss: 0.7606, Acc: 98.00%
+2025-07-29 14:52:03 - root - INFO -   Batch 60/135 - Loss: 0.7683, Acc: 97.92%
+2025-07-29 14:52:11 - root - INFO -   Batch 70/135 - Loss: 1.3097, Acc: 97.95%
+2025-07-29 14:52:19 - root - INFO -   Batch 80/135 - Loss: 0.7606, Acc: 98.05%
+2025-07-29 14:52:27 - root - INFO -   Batch 90/135 - Loss: 0.7657, Acc: 97.64%
+2025-07-29 14:52:35 - root - INFO -   Batch 100/135 - Loss: 0.8437, Acc: 97.62%
+2025-07-29 14:52:44 - root - INFO -   Batch 110/135 - Loss: 0.8867, Acc: 97.56%
+2025-07-29 14:52:51 - root - INFO -   Batch 120/135 - Loss: 0.7957, Acc: 97.45%
+2025-07-29 14:53:00 - root - INFO -   Batch 130/135 - Loss: 0.7993, Acc: 97.45%
+2025-07-29 14:53:03 - root - INFO - Running validation...
+2025-07-29 14:54:20 - root - INFO - Validation completed - Loss: 1.3915, Accuracy: 69.87%
+2025-07-29 14:54:20 - root - INFO - Checkpoint saved for epoch 23 at checkpoints/checkpoint_epoch_23.pth
+2025-07-29 14:54:20 - root - INFO - Epoch 23/40 Results:
+2025-07-29 14:54:20 - root - INFO -   Train Loss: 0.8297, Train Acc: 97.35%
+2025-07-29 14:54:20 - root - INFO -   Val Loss: 1.3915, Val Acc: 69.87%
+2025-07-29 14:54:20 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:54:20 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:54:20 - root - INFO - Starting epoch 24/40
+2025-07-29 14:54:31 - root - INFO -   Batch 10/135 - Loss: 0.8307, Acc: 98.12%
+2025-07-29 14:54:38 - root - INFO -   Batch 20/135 - Loss: 0.8825, Acc: 96.88%
+2025-07-29 14:54:48 - root - INFO -   Batch 30/135 - Loss: 0.8813, Acc: 97.29%
+2025-07-29 14:54:56 - root - INFO -   Batch 40/135 - Loss: 1.0480, Acc: 97.03%
+2025-07-29 14:55:05 - root - INFO -   Batch 50/135 - Loss: 0.7987, Acc: 97.38%
+2025-07-29 14:55:13 - root - INFO -   Batch 60/135 - Loss: 0.7612, Acc: 97.29%
+2025-07-29 14:55:21 - root - INFO -   Batch 70/135 - Loss: 0.9673, Acc: 97.05%
+2025-07-29 14:55:28 - root - INFO -   Batch 80/135 - Loss: 0.7489, Acc: 97.11%
+2025-07-29 14:55:37 - root - INFO -   Batch 90/135 - Loss: 0.7848, Acc: 96.74%
+2025-07-29 14:55:45 - root - INFO -   Batch 100/135 - Loss: 0.8390, Acc: 96.31%
+2025-07-29 14:55:53 - root - INFO -   Batch 110/135 - Loss: 0.7619, Acc: 96.36%
+2025-07-29 14:56:01 - root - INFO -   Batch 120/135 - Loss: 0.9789, Acc: 95.94%
+2025-07-29 14:56:09 - root - INFO -   Batch 130/135 - Loss: 0.8706, Acc: 95.91%
+2025-07-29 14:56:12 - root - INFO - Running validation...
+2025-07-29 14:57:26 - root - INFO - Validation completed - Loss: 1.6642, Accuracy: 59.21%
+2025-07-29 14:57:26 - root - INFO - Checkpoint saved for epoch 24 at checkpoints/checkpoint_epoch_24.pth
+2025-07-29 14:57:26 - root - INFO - Epoch 24/40 Results:
+2025-07-29 14:57:26 - root - INFO -   Train Loss: 0.8556, Train Acc: 95.77%
+2025-07-29 14:57:26 - root - INFO -   Val Loss: 1.6642, Val Acc: 59.21%
+2025-07-29 14:57:26 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 14:57:26 - root - INFO - ------------------------------------------------------------
+2025-07-29 14:57:26 - root - INFO - Starting epoch 25/40
+2025-07-29 14:57:37 - root - INFO -   Batch 10/135 - Loss: 0.8842, Acc: 92.50%
+2025-07-29 14:57:45 - root - INFO -   Batch 20/135 - Loss: 0.8442, Acc: 93.44%
+2025-07-29 14:57:54 - root - INFO -   Batch 30/135 - Loss: 0.8411, Acc: 93.96%
+2025-07-29 14:58:02 - root - INFO -   Batch 40/135 - Loss: 0.8424, Acc: 93.91%
+2025-07-29 14:58:10 - root - INFO -   Batch 50/135 - Loss: 0.7461, Acc: 95.00%
+2025-07-29 14:58:17 - root - INFO -   Batch 60/135 - Loss: 1.0313, Acc: 95.10%
+2025-07-29 14:58:26 - root - INFO -   Batch 70/135 - Loss: 0.7640, Acc: 95.54%
+2025-07-29 14:58:34 - root - INFO -   Batch 80/135 - Loss: 0.7838, Acc: 95.70%
+2025-07-29 14:58:42 - root - INFO -   Batch 90/135 - Loss: 0.8696, Acc: 95.83%
+2025-07-29 14:58:50 - root - INFO -   Batch 100/135 - Loss: 0.8030, Acc: 96.06%
+2025-07-29 14:58:58 - root - INFO -   Batch 110/135 - Loss: 0.7626, Acc: 96.19%
+2025-07-29 14:59:06 - root - INFO -   Batch 120/135 - Loss: 0.8205, Acc: 96.20%
+2025-07-29 14:59:15 - root - INFO -   Batch 130/135 - Loss: 0.8073, Acc: 96.30%
+2025-07-29 14:59:17 - root - INFO - Running validation...
+2025-07-29 15:00:34 - root - INFO - Validation completed - Loss: 1.3500, Accuracy: 69.87%
+2025-07-29 15:00:35 - root - INFO - Checkpoint saved for epoch 25 at checkpoints/checkpoint_epoch_25.pth
+2025-07-29 15:00:35 - root - INFO - Epoch 25/40 Results:
+2025-07-29 15:00:35 - root - INFO -   Train Loss: 0.8437, Train Acc: 96.28%
+2025-07-29 15:00:35 - root - INFO -   Val Loss: 1.3500, Val Acc: 69.87%
+2025-07-29 15:00:35 - root - INFO -   Learning Rate: 0.000100
+2025-07-29 15:00:35 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:00:35 - root - INFO - Starting epoch 26/40
+2025-07-29 15:00:45 - root - INFO -   Batch 10/135 - Loss: 0.7883, Acc: 98.12%
+2025-07-29 15:00:53 - root - INFO -   Batch 20/135 - Loss: 0.7905, Acc: 98.12%
+2025-07-29 15:01:02 - root - INFO -   Batch 30/135 - Loss: 0.8407, Acc: 98.12%
+2025-07-29 15:01:10 - root - INFO -   Batch 40/135 - Loss: 0.7363, Acc: 97.50%
+2025-07-29 15:01:19 - root - INFO -   Batch 50/135 - Loss: 0.7551, Acc: 97.38%
+2025-07-29 15:01:26 - root - INFO -   Batch 60/135 - Loss: 0.7498, Acc: 97.08%
+2025-07-29 15:01:34 - root - INFO -   Batch 70/135 - Loss: 0.8205, Acc: 96.96%
+2025-07-29 15:01:42 - root - INFO -   Batch 80/135 - Loss: 0.7607, Acc: 96.88%
+2025-07-29 15:01:50 - root - INFO -   Batch 90/135 - Loss: 0.7999, Acc: 97.22%
+2025-07-29 15:01:58 - root - INFO -   Batch 100/135 - Loss: 0.7581, Acc: 97.19%
+2025-07-29 15:02:07 - root - INFO -   Batch 110/135 - Loss: 0.7947, Acc: 97.16%
+2025-07-29 15:02:15 - root - INFO -   Batch 120/135 - Loss: 0.7460, Acc: 97.34%
+2025-07-29 15:02:23 - root - INFO -   Batch 130/135 - Loss: 0.7717, Acc: 97.21%
+2025-07-29 15:02:26 - root - INFO - Running validation...
+2025-07-29 15:03:41 - root - INFO - Validation completed - Loss: 1.4509, Accuracy: 68.01%
+2025-07-29 15:03:41 - root - INFO - Learning rate reduced from 0.000100 to 0.000010
+2025-07-29 15:03:42 - root - INFO - Checkpoint saved for epoch 26 at checkpoints/checkpoint_epoch_26.pth
+2025-07-29 15:03:42 - root - INFO - Epoch 26/40 Results:
+2025-07-29 15:03:42 - root - INFO -   Train Loss: 0.8192, Train Acc: 97.30%
+2025-07-29 15:03:42 - root - INFO -   Val Loss: 1.4509, Val Acc: 68.01%
+2025-07-29 15:03:42 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:03:42 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:03:42 - root - INFO - Starting epoch 27/40
+2025-07-29 15:03:53 - root - INFO -   Batch 10/135 - Loss: 0.8186, Acc: 98.12%
+2025-07-29 15:04:00 - root - INFO -   Batch 20/135 - Loss: 0.9683, Acc: 96.88%
+2025-07-29 15:04:08 - root - INFO -   Batch 30/135 - Loss: 0.7715, Acc: 97.08%
+2025-07-29 15:04:16 - root - INFO -   Batch 40/135 - Loss: 0.7367, Acc: 97.81%
+2025-07-29 15:04:25 - root - INFO -   Batch 50/135 - Loss: 0.7626, Acc: 97.75%
+2025-07-29 15:04:33 - root - INFO -   Batch 60/135 - Loss: 0.7690, Acc: 98.12%
+2025-07-29 15:04:41 - root - INFO -   Batch 70/135 - Loss: 0.7732, Acc: 97.95%
+2025-07-29 15:04:49 - root - INFO -   Batch 80/135 - Loss: 0.7742, Acc: 98.20%
+2025-07-29 15:04:58 - root - INFO -   Batch 90/135 - Loss: 0.7445, Acc: 98.26%
+2025-07-29 15:05:05 - root - INFO -   Batch 100/135 - Loss: 0.7533, Acc: 98.31%
+2025-07-29 15:05:13 - root - INFO -   Batch 110/135 - Loss: 0.8127, Acc: 98.41%
+2025-07-29 15:05:21 - root - INFO -   Batch 120/135 - Loss: 0.7372, Acc: 98.49%
+2025-07-29 15:05:30 - root - INFO -   Batch 130/135 - Loss: 0.7539, Acc: 98.51%
+2025-07-29 15:05:33 - root - INFO - Running validation...
+2025-07-29 15:06:48 - root - INFO - Validation completed - Loss: 1.3270, Accuracy: 72.41%
+2025-07-29 15:06:48 - root - INFO - Checkpoint saved for epoch 27 at checkpoints/checkpoint_epoch_27.pth
+2025-07-29 15:06:48 - root - INFO - Epoch 27/40 Results:
+2025-07-29 15:06:48 - root - INFO -   Train Loss: 0.7897, Train Acc: 98.51%
+2025-07-29 15:06:48 - root - INFO -   Val Loss: 1.3270, Val Acc: 72.41%
+2025-07-29 15:06:48 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:06:48 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:06:48 - root - INFO - Starting epoch 28/40
+2025-07-29 15:06:58 - root - INFO -   Batch 10/135 - Loss: 0.7578, Acc: 100.00%
+2025-07-29 15:07:06 - root - INFO -   Batch 20/135 - Loss: 0.7572, Acc: 99.38%
+2025-07-29 15:07:15 - root - INFO -   Batch 30/135 - Loss: 0.7604, Acc: 99.58%
+2025-07-29 15:07:22 - root - INFO -   Batch 40/135 - Loss: 0.7826, Acc: 99.69%
+2025-07-29 15:07:31 - root - INFO -   Batch 50/135 - Loss: 0.7525, Acc: 99.75%
+2025-07-29 15:07:38 - root - INFO -   Batch 60/135 - Loss: 0.8016, Acc: 99.79%
+2025-07-29 15:07:46 - root - INFO -   Batch 70/135 - Loss: 0.7575, Acc: 99.82%
+2025-07-29 15:07:54 - root - INFO -   Batch 80/135 - Loss: 0.7537, Acc: 99.84%
+2025-07-29 15:08:03 - root - INFO -   Batch 90/135 - Loss: 0.7408, Acc: 99.79%
+2025-07-29 15:08:11 - root - INFO -   Batch 100/135 - Loss: 0.7642, Acc: 99.81%
+2025-07-29 15:08:19 - root - INFO -   Batch 110/135 - Loss: 0.7609, Acc: 99.77%
+2025-07-29 15:08:26 - root - INFO -   Batch 120/135 - Loss: 0.7483, Acc: 99.79%
+2025-07-29 15:08:35 - root - INFO -   Batch 130/135 - Loss: 0.8316, Acc: 99.71%
+2025-07-29 15:08:37 - root - INFO - Running validation...
+2025-07-29 15:09:51 - root - INFO - Validation completed - Loss: 1.3126, Accuracy: 73.30%
+2025-07-29 15:09:51 - root - INFO - Checkpoint saved for epoch 28 at checkpoints/checkpoint_epoch_28.pth
+2025-07-29 15:09:51 - root - INFO - Epoch 28/40 Results:
+2025-07-29 15:09:51 - root - INFO -   Train Loss: 0.7730, Train Acc: 99.72%
+2025-07-29 15:09:51 - root - INFO -   Val Loss: 1.3126, Val Acc: 73.30%
+2025-07-29 15:09:51 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:09:51 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:09:51 - root - INFO - Starting epoch 29/40
+2025-07-29 15:10:02 - root - INFO -   Batch 10/135 - Loss: 0.7571, Acc: 99.38%
+2025-07-29 15:10:09 - root - INFO -   Batch 20/135 - Loss: 0.7443, Acc: 99.38%
+2025-07-29 15:10:18 - root - INFO -   Batch 30/135 - Loss: 0.7923, Acc: 99.58%
+2025-07-29 15:10:26 - root - INFO -   Batch 40/135 - Loss: 0.7528, Acc: 99.22%
+2025-07-29 15:10:34 - root - INFO -   Batch 50/135 - Loss: 0.7684, Acc: 99.25%
+2025-07-29 15:10:42 - root - INFO -   Batch 60/135 - Loss: 0.7587, Acc: 99.38%
+2025-07-29 15:10:51 - root - INFO -   Batch 70/135 - Loss: 0.7519, Acc: 99.38%
+2025-07-29 15:10:58 - root - INFO -   Batch 80/135 - Loss: 0.8206, Acc: 99.45%
+2025-07-29 15:11:06 - root - INFO -   Batch 90/135 - Loss: 0.7688, Acc: 99.51%
+2025-07-29 15:11:14 - root - INFO -   Batch 100/135 - Loss: 0.7671, Acc: 99.56%
+2025-07-29 15:11:23 - root - INFO -   Batch 110/135 - Loss: 0.7377, Acc: 99.60%
+2025-07-29 15:11:30 - root - INFO -   Batch 120/135 - Loss: 0.7660, Acc: 99.64%
+2025-07-29 15:11:38 - root - INFO -   Batch 130/135 - Loss: 0.7713, Acc: 99.66%
+2025-07-29 15:11:41 - root - INFO - Running validation...
+2025-07-29 15:12:56 - root - INFO - Validation completed - Loss: 1.3012, Accuracy: 73.45%
+2025-07-29 15:12:56 - root - INFO - Checkpoint saved for epoch 29 at checkpoints/checkpoint_epoch_29.pth
+2025-07-29 15:12:56 - root - INFO - Epoch 29/40 Results:
+2025-07-29 15:12:56 - root - INFO -   Train Loss: 0.7755, Train Acc: 99.67%
+2025-07-29 15:12:56 - root - INFO -   Val Loss: 1.3012, Val Acc: 73.45%
+2025-07-29 15:12:56 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:12:56 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:12:56 - root - INFO - Starting epoch 30/40
+2025-07-29 15:13:07 - root - INFO -   Batch 10/135 - Loss: 0.7762, Acc: 100.00%
+2025-07-29 15:13:15 - root - INFO -   Batch 20/135 - Loss: 0.7634, Acc: 100.00%
+2025-07-29 15:13:23 - root - INFO -   Batch 30/135 - Loss: 0.7706, Acc: 100.00%
+2025-07-29 15:13:31 - root - INFO -   Batch 40/135 - Loss: 0.7587, Acc: 100.00%
+2025-07-29 15:13:39 - root - INFO -   Batch 50/135 - Loss: 0.7707, Acc: 99.88%
+2025-07-29 15:13:47 - root - INFO -   Batch 60/135 - Loss: 0.7622, Acc: 99.90%
+2025-07-29 15:13:55 - root - INFO -   Batch 70/135 - Loss: 0.7656, Acc: 99.91%
+2025-07-29 15:14:03 - root - INFO -   Batch 80/135 - Loss: 0.7624, Acc: 99.84%
+2025-07-29 15:14:11 - root - INFO -   Batch 90/135 - Loss: 0.7903, Acc: 99.86%
+2025-07-29 15:14:20 - root - INFO -   Batch 100/135 - Loss: 0.7669, Acc: 99.88%
+2025-07-29 15:14:28 - root - INFO -   Batch 110/135 - Loss: 0.7568, Acc: 99.83%
+2025-07-29 15:14:37 - root - INFO -   Batch 120/135 - Loss: 0.7496, Acc: 99.74%
+2025-07-29 15:14:44 - root - INFO -   Batch 130/135 - Loss: 0.7600, Acc: 99.76%
+2025-07-29 15:14:47 - root - INFO - Running validation...
+2025-07-29 15:16:02 - root - INFO - Validation completed - Loss: 1.3143, Accuracy: 73.83%
+2025-07-29 15:16:03 - root - INFO - Checkpoint saved for epoch 30 at checkpoints/checkpoint_epoch_30.pth
+2025-07-29 15:16:03 - root - INFO - Epoch 30/40 Results:
+2025-07-29 15:16:03 - root - INFO -   Train Loss: 0.7700, Train Acc: 99.77%
+2025-07-29 15:16:03 - root - INFO -   Val Loss: 1.3143, Val Acc: 73.83%
+2025-07-29 15:16:03 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:16:03 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:16:03 - root - INFO - Starting epoch 31/40
+2025-07-29 15:16:13 - root - INFO -   Batch 10/135 - Loss: 0.7403, Acc: 100.00%
+2025-07-29 15:16:21 - root - INFO -   Batch 20/135 - Loss: 0.7752, Acc: 100.00%
+2025-07-29 15:16:30 - root - INFO -   Batch 30/135 - Loss: 0.7633, Acc: 100.00%
+2025-07-29 15:16:38 - root - INFO -   Batch 40/135 - Loss: 0.7695, Acc: 100.00%
+2025-07-29 15:16:47 - root - INFO -   Batch 50/135 - Loss: 0.7718, Acc: 99.88%
+2025-07-29 15:16:54 - root - INFO -   Batch 60/135 - Loss: 0.7625, Acc: 99.90%
+2025-07-29 15:17:02 - root - INFO -   Batch 70/135 - Loss: 0.7539, Acc: 99.91%
+2025-07-29 15:17:10 - root - INFO -   Batch 80/135 - Loss: 0.7401, Acc: 99.92%
+2025-07-29 15:17:18 - root - INFO -   Batch 90/135 - Loss: 0.7471, Acc: 99.93%
+2025-07-29 15:17:26 - root - INFO -   Batch 100/135 - Loss: 0.7413, Acc: 99.94%
+2025-07-29 15:17:34 - root - INFO -   Batch 110/135 - Loss: 0.7529, Acc: 99.94%
+2025-07-29 15:17:42 - root - INFO -   Batch 120/135 - Loss: 0.7590, Acc: 99.90%
+2025-07-29 15:17:50 - root - INFO -   Batch 130/135 - Loss: 0.7434, Acc: 99.81%
+2025-07-29 15:17:53 - root - INFO - Running validation...
+2025-07-29 15:19:05 - root - INFO - Validation completed - Loss: 1.2977, Accuracy: 74.12%
+2025-07-29 15:19:06 - root - INFO - Checkpoint saved for epoch 31 at checkpoints/checkpoint_epoch_31.pth
+2025-07-29 15:19:06 - root - INFO - Epoch 31/40 Results:
+2025-07-29 15:19:06 - root - INFO -   Train Loss: 0.7701, Train Acc: 99.81%
+2025-07-29 15:19:06 - root - INFO -   Val Loss: 1.2977, Val Acc: 74.12%
+2025-07-29 15:19:06 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:19:06 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:19:06 - root - INFO - New best model saved with validation loss: 1.2977
+2025-07-29 15:19:06 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 15:19:06 - root - INFO - Starting epoch 32/40
+2025-07-29 15:19:17 - root - INFO -   Batch 10/135 - Loss: 0.7809, Acc: 100.00%
+2025-07-29 15:19:24 - root - INFO -   Batch 20/135 - Loss: 0.7450, Acc: 100.00%
+2025-07-29 15:19:32 - root - INFO -   Batch 30/135 - Loss: 0.7535, Acc: 100.00%
+2025-07-29 15:19:39 - root - INFO -   Batch 40/135 - Loss: 0.7817, Acc: 100.00%
+2025-07-29 15:19:48 - root - INFO -   Batch 50/135 - Loss: 0.7943, Acc: 100.00%
+2025-07-29 15:19:55 - root - INFO -   Batch 60/135 - Loss: 0.7679, Acc: 100.00%
+2025-07-29 15:20:04 - root - INFO -   Batch 70/135 - Loss: 0.7433, Acc: 100.00%
+2025-07-29 15:20:12 - root - INFO -   Batch 80/135 - Loss: 0.7656, Acc: 100.00%
+2025-07-29 15:20:19 - root - INFO -   Batch 90/135 - Loss: 0.7367, Acc: 100.00%
+2025-07-29 15:20:28 - root - INFO -   Batch 100/135 - Loss: 0.7596, Acc: 99.94%
+2025-07-29 15:20:35 - root - INFO -   Batch 110/135 - Loss: 0.7816, Acc: 99.94%
+2025-07-29 15:20:44 - root - INFO -   Batch 120/135 - Loss: 0.7638, Acc: 99.95%
+2025-07-29 15:20:51 - root - INFO -   Batch 130/135 - Loss: 0.7631, Acc: 99.90%
+2025-07-29 15:20:55 - root - INFO - Running validation...
+2025-07-29 15:22:10 - root - INFO - Validation completed - Loss: 1.3105, Accuracy: 74.20%
+2025-07-29 15:22:10 - root - INFO - Checkpoint saved for epoch 32 at checkpoints/checkpoint_epoch_32.pth
+2025-07-29 15:22:10 - root - INFO - Epoch 32/40 Results:
+2025-07-29 15:22:10 - root - INFO -   Train Loss: 0.7697, Train Acc: 99.91%
+2025-07-29 15:22:10 - root - INFO -   Val Loss: 1.3105, Val Acc: 74.20%
+2025-07-29 15:22:10 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:22:10 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:22:10 - root - INFO - Starting epoch 33/40
+2025-07-29 15:22:21 - root - INFO -   Batch 10/135 - Loss: 0.7999, Acc: 100.00%
+2025-07-29 15:22:28 - root - INFO -   Batch 20/135 - Loss: 0.7439, Acc: 100.00%
+2025-07-29 15:22:37 - root - INFO -   Batch 30/135 - Loss: 0.7562, Acc: 99.79%
+2025-07-29 15:22:44 - root - INFO -   Batch 40/135 - Loss: 0.7696, Acc: 99.84%
+2025-07-29 15:22:53 - root - INFO -   Batch 50/135 - Loss: 0.7796, Acc: 99.75%
+2025-07-29 15:23:00 - root - INFO -   Batch 60/135 - Loss: 0.7534, Acc: 99.79%
+2025-07-29 15:23:09 - root - INFO -   Batch 70/135 - Loss: 0.7547, Acc: 99.82%
+2025-07-29 15:23:17 - root - INFO -   Batch 80/135 - Loss: 0.7728, Acc: 99.84%
+2025-07-29 15:23:25 - root - INFO -   Batch 90/135 - Loss: 0.7401, Acc: 99.86%
+2025-07-29 15:23:33 - root - INFO -   Batch 100/135 - Loss: 0.7450, Acc: 99.88%
+2025-07-29 15:23:41 - root - INFO -   Batch 110/135 - Loss: 0.7737, Acc: 99.89%
+2025-07-29 15:23:49 - root - INFO -   Batch 120/135 - Loss: 0.7764, Acc: 99.90%
+2025-07-29 15:23:57 - root - INFO -   Batch 130/135 - Loss: 0.7402, Acc: 99.90%
+2025-07-29 15:24:00 - root - INFO - Running validation...
+2025-07-29 15:25:13 - root - INFO - Validation completed - Loss: 1.2876, Accuracy: 74.42%
+2025-07-29 15:25:14 - root - INFO - Checkpoint saved for epoch 33 at checkpoints/checkpoint_epoch_33.pth
+2025-07-29 15:25:14 - root - INFO - Epoch 33/40 Results:
+2025-07-29 15:25:14 - root - INFO -   Train Loss: 0.7653, Train Acc: 99.91%
+2025-07-29 15:25:14 - root - INFO -   Val Loss: 1.2876, Val Acc: 74.42%
+2025-07-29 15:25:14 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:25:14 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:25:14 - root - INFO - New best model saved with validation loss: 1.2876
+2025-07-29 15:25:14 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 15:25:14 - root - INFO - Starting epoch 34/40
+2025-07-29 15:25:25 - root - INFO -   Batch 10/135 - Loss: 0.7608, Acc: 100.00%
+2025-07-29 15:25:33 - root - INFO -   Batch 20/135 - Loss: 0.7625, Acc: 99.69%
+2025-07-29 15:25:41 - root - INFO -   Batch 30/135 - Loss: 0.7452, Acc: 99.79%
+2025-07-29 15:25:50 - root - INFO -   Batch 40/135 - Loss: 0.7483, Acc: 99.84%
+2025-07-29 15:25:58 - root - INFO -   Batch 50/135 - Loss: 0.7656, Acc: 99.88%
+2025-07-29 15:26:06 - root - INFO -   Batch 60/135 - Loss: 0.7423, Acc: 99.90%
+2025-07-29 15:26:14 - root - INFO -   Batch 70/135 - Loss: 0.7429, Acc: 99.91%
+2025-07-29 15:26:22 - root - INFO -   Batch 80/135 - Loss: 0.7729, Acc: 99.92%
+2025-07-29 15:26:31 - root - INFO -   Batch 90/135 - Loss: 0.7483, Acc: 99.86%
+2025-07-29 15:26:38 - root - INFO -   Batch 100/135 - Loss: 0.7659, Acc: 99.88%
+2025-07-29 15:26:47 - root - INFO -   Batch 110/135 - Loss: 0.7756, Acc: 99.89%
+2025-07-29 15:26:55 - root - INFO -   Batch 120/135 - Loss: 0.7588, Acc: 99.90%
+2025-07-29 15:27:03 - root - INFO -   Batch 130/135 - Loss: 0.7581, Acc: 99.90%
+2025-07-29 15:27:06 - root - INFO - Running validation...
+2025-07-29 15:28:19 - root - INFO - Validation completed - Loss: 1.2863, Accuracy: 74.94%
+2025-07-29 15:28:19 - root - INFO - Checkpoint saved for epoch 34 at checkpoints/checkpoint_epoch_34.pth
+2025-07-29 15:28:19 - root - INFO - Epoch 34/40 Results:
+2025-07-29 15:28:19 - root - INFO -   Train Loss: 0.7659, Train Acc: 99.91%
+2025-07-29 15:28:19 - root - INFO -   Val Loss: 1.2863, Val Acc: 74.94%
+2025-07-29 15:28:19 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:28:19 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:28:20 - root - INFO - New best model saved with validation loss: 1.2863
+2025-07-29 15:28:20 - root - INFO - Best model saved to: best_Baseline_B4_model.pth
+2025-07-29 15:28:20 - root - INFO - Starting epoch 35/40
+2025-07-29 15:28:30 - root - INFO -   Batch 10/135 - Loss: 0.7901, Acc: 100.00%
+2025-07-29 15:28:37 - root - INFO -   Batch 20/135 - Loss: 0.7637, Acc: 100.00%
+2025-07-29 15:28:45 - root - INFO -   Batch 30/135 - Loss: 0.7912, Acc: 100.00%
+2025-07-29 15:28:53 - root - INFO -   Batch 40/135 - Loss: 0.7695, Acc: 99.84%
+2025-07-29 15:29:01 - root - INFO -   Batch 50/135 - Loss: 0.7539, Acc: 99.88%
+2025-07-29 15:29:08 - root - INFO -   Batch 60/135 - Loss: 0.7616, Acc: 99.79%
+2025-07-29 15:29:16 - root - INFO -   Batch 70/135 - Loss: 0.7732, Acc: 99.82%
+2025-07-29 15:29:24 - root - INFO -   Batch 80/135 - Loss: 0.7709, Acc: 99.84%
+2025-07-29 15:29:33 - root - INFO -   Batch 90/135 - Loss: 0.7391, Acc: 99.86%
+2025-07-29 15:29:40 - root - INFO -   Batch 100/135 - Loss: 0.7535, Acc: 99.88%
+2025-07-29 15:29:48 - root - INFO -   Batch 110/135 - Loss: 0.7715, Acc: 99.89%
+2025-07-29 15:29:55 - root - INFO -   Batch 120/135 - Loss: 0.7808, Acc: 99.90%
+2025-07-29 15:30:04 - root - INFO -   Batch 130/135 - Loss: 0.7570, Acc: 99.90%
+2025-07-29 15:30:07 - root - INFO - Running validation...
+2025-07-29 15:31:20 - root - INFO - Validation completed - Loss: 1.2999, Accuracy: 74.65%
+2025-07-29 15:31:21 - root - INFO - Checkpoint saved for epoch 35 at checkpoints/checkpoint_epoch_35.pth
+2025-07-29 15:31:21 - root - INFO - Epoch 35/40 Results:
+2025-07-29 15:31:21 - root - INFO -   Train Loss: 0.7694, Train Acc: 99.91%
+2025-07-29 15:31:21 - root - INFO -   Val Loss: 1.2999, Val Acc: 74.65%
+2025-07-29 15:31:21 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:31:21 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:31:21 - root - INFO - Starting epoch 36/40
+2025-07-29 15:31:31 - root - INFO -   Batch 10/135 - Loss: 0.7643, Acc: 100.00%
+2025-07-29 15:31:38 - root - INFO -   Batch 20/135 - Loss: 0.7571, Acc: 99.69%
+2025-07-29 15:31:47 - root - INFO -   Batch 30/135 - Loss: 0.7403, Acc: 99.79%
+2025-07-29 15:31:55 - root - INFO -   Batch 40/135 - Loss: 0.7513, Acc: 99.69%
+2025-07-29 15:32:03 - root - INFO -   Batch 50/135 - Loss: 0.8405, Acc: 99.75%
+2025-07-29 15:32:10 - root - INFO -   Batch 60/135 - Loss: 0.7607, Acc: 99.79%
+2025-07-29 15:32:19 - root - INFO -   Batch 70/135 - Loss: 0.8174, Acc: 99.64%
+2025-07-29 15:32:26 - root - INFO -   Batch 80/135 - Loss: 0.8140, Acc: 99.69%
+2025-07-29 15:32:35 - root - INFO -   Batch 90/135 - Loss: 0.7838, Acc: 99.72%
+2025-07-29 15:32:42 - root - INFO -   Batch 100/135 - Loss: 0.7408, Acc: 99.75%
+2025-07-29 15:32:51 - root - INFO -   Batch 110/135 - Loss: 0.7407, Acc: 99.72%
+2025-07-29 15:32:58 - root - INFO -   Batch 120/135 - Loss: 0.7748, Acc: 99.69%
+2025-07-29 15:33:06 - root - INFO -   Batch 130/135 - Loss: 0.7804, Acc: 99.66%
+2025-07-29 15:33:09 - root - INFO - Running validation...
+2025-07-29 15:34:22 - root - INFO - Validation completed - Loss: 1.3057, Accuracy: 73.90%
+2025-07-29 15:34:22 - root - INFO - Checkpoint saved for epoch 36 at checkpoints/checkpoint_epoch_36.pth
+2025-07-29 15:34:22 - root - INFO - Epoch 36/40 Results:
+2025-07-29 15:34:22 - root - INFO -   Train Loss: 0.7711, Train Acc: 99.67%
+2025-07-29 15:34:22 - root - INFO -   Val Loss: 1.3057, Val Acc: 73.90%
+2025-07-29 15:34:22 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:34:22 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:34:22 - root - INFO - Starting epoch 37/40
+2025-07-29 15:34:33 - root - INFO -   Batch 10/135 - Loss: 0.7560, Acc: 100.00%
+2025-07-29 15:34:40 - root - INFO -   Batch 20/135 - Loss: 0.7396, Acc: 100.00%
+2025-07-29 15:34:48 - root - INFO -   Batch 30/135 - Loss: 0.7510, Acc: 99.79%
+2025-07-29 15:34:56 - root - INFO -   Batch 40/135 - Loss: 0.7274, Acc: 99.84%
+2025-07-29 15:35:04 - root - INFO -   Batch 50/135 - Loss: 0.7524, Acc: 99.88%
+2025-07-29 15:35:11 - root - INFO -   Batch 60/135 - Loss: 0.7629, Acc: 99.90%
+2025-07-29 15:35:20 - root - INFO -   Batch 70/135 - Loss: 0.7577, Acc: 99.91%
+2025-07-29 15:35:28 - root - INFO -   Batch 80/135 - Loss: 0.7518, Acc: 99.92%
+2025-07-29 15:35:36 - root - INFO -   Batch 90/135 - Loss: 0.7458, Acc: 99.93%
+2025-07-29 15:35:44 - root - INFO -   Batch 100/135 - Loss: 0.7529, Acc: 99.94%
+2025-07-29 15:35:52 - root - INFO -   Batch 110/135 - Loss: 0.7523, Acc: 99.94%
+2025-07-29 15:36:00 - root - INFO -   Batch 120/135 - Loss: 0.7372, Acc: 99.95%
+2025-07-29 15:36:08 - root - INFO -   Batch 130/135 - Loss: 0.7634, Acc: 99.95%
+2025-07-29 15:36:11 - root - INFO - Running validation...
+2025-07-29 15:37:23 - root - INFO - Validation completed - Loss: 1.3001, Accuracy: 74.35%
+2025-07-29 15:37:24 - root - INFO - Checkpoint saved for epoch 37 at checkpoints/checkpoint_epoch_37.pth
+2025-07-29 15:37:24 - root - INFO - Epoch 37/40 Results:
+2025-07-29 15:37:24 - root - INFO -   Train Loss: 0.7640, Train Acc: 99.95%
+2025-07-29 15:37:24 - root - INFO -   Val Loss: 1.3001, Val Acc: 74.35%
+2025-07-29 15:37:24 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:37:24 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:37:24 - root - INFO - Starting epoch 38/40
+2025-07-29 15:37:34 - root - INFO -   Batch 10/135 - Loss: 0.7540, Acc: 100.00%
+2025-07-29 15:37:42 - root - INFO -   Batch 20/135 - Loss: 0.7935, Acc: 99.69%
+2025-07-29 15:37:50 - root - INFO -   Batch 30/135 - Loss: 0.8105, Acc: 99.79%
+2025-07-29 15:37:58 - root - INFO -   Batch 40/135 - Loss: 0.7730, Acc: 99.84%
+2025-07-29 15:38:07 - root - INFO -   Batch 50/135 - Loss: 0.7458, Acc: 99.88%
+2025-07-29 15:38:15 - root - INFO -   Batch 60/135 - Loss: 0.7893, Acc: 99.90%
+2025-07-29 15:38:23 - root - INFO -   Batch 70/135 - Loss: 0.7678, Acc: 99.91%
+2025-07-29 15:38:31 - root - INFO -   Batch 80/135 - Loss: 0.7729, Acc: 99.92%
+2025-07-29 15:38:40 - root - INFO -   Batch 90/135 - Loss: 0.7395, Acc: 99.93%
+2025-07-29 15:38:47 - root - INFO -   Batch 100/135 - Loss: 0.7754, Acc: 99.94%
+2025-07-29 15:38:55 - root - INFO -   Batch 110/135 - Loss: 0.7817, Acc: 99.94%
+2025-07-29 15:39:02 - root - INFO -   Batch 120/135 - Loss: 0.7755, Acc: 99.90%
+2025-07-29 15:39:11 - root - INFO -   Batch 130/135 - Loss: 0.7720, Acc: 99.90%
+2025-07-29 15:39:14 - root - INFO - Running validation...
+2025-07-29 15:40:27 - root - INFO - Validation completed - Loss: 1.3029, Accuracy: 73.97%
+2025-07-29 15:40:28 - root - INFO - Checkpoint saved for epoch 38 at checkpoints/checkpoint_epoch_38.pth
+2025-07-29 15:40:28 - root - INFO - Epoch 38/40 Results:
+2025-07-29 15:40:28 - root - INFO -   Train Loss: 0.7667, Train Acc: 99.91%
+2025-07-29 15:40:28 - root - INFO -   Val Loss: 1.3029, Val Acc: 73.97%
+2025-07-29 15:40:28 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:40:28 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:40:28 - root - INFO - Starting epoch 39/40
+2025-07-29 15:40:38 - root - INFO -   Batch 10/135 - Loss: 0.7694, Acc: 100.00%
+2025-07-29 15:40:47 - root - INFO -   Batch 20/135 - Loss: 0.8569, Acc: 99.69%
+2025-07-29 15:40:55 - root - INFO -   Batch 30/135 - Loss: 0.7576, Acc: 99.79%
+2025-07-29 15:41:03 - root - INFO -   Batch 40/135 - Loss: 0.7596, Acc: 99.84%
+2025-07-29 15:41:11 - root - INFO -   Batch 50/135 - Loss: 0.7570, Acc: 99.88%
+2025-07-29 15:41:20 - root - INFO -   Batch 60/135 - Loss: 0.7758, Acc: 99.90%
+2025-07-29 15:41:28 - root - INFO -   Batch 70/135 - Loss: 0.7503, Acc: 99.91%
+2025-07-29 15:41:36 - root - INFO -   Batch 80/135 - Loss: 0.7599, Acc: 99.92%
+2025-07-29 15:41:44 - root - INFO -   Batch 90/135 - Loss: 0.7652, Acc: 99.93%
+2025-07-29 15:41:52 - root - INFO -   Batch 100/135 - Loss: 0.7419, Acc: 99.94%
+2025-07-29 15:42:00 - root - INFO -   Batch 110/135 - Loss: 0.7552, Acc: 99.94%
+2025-07-29 15:42:07 - root - INFO -   Batch 120/135 - Loss: 0.7511, Acc: 99.90%
+2025-07-29 15:42:16 - root - INFO -   Batch 130/135 - Loss: 0.8021, Acc: 99.90%
+2025-07-29 15:42:18 - root - INFO - Running validation...
+2025-07-29 15:43:32 - root - INFO - Validation completed - Loss: 1.3129, Accuracy: 74.05%
+2025-07-29 15:43:33 - root - INFO - Checkpoint saved for epoch 39 at checkpoints/checkpoint_epoch_39.pth
+2025-07-29 15:43:33 - root - INFO - Epoch 39/40 Results:
+2025-07-29 15:43:33 - root - INFO -   Train Loss: 0.7667, Train Acc: 99.91%
+2025-07-29 15:43:33 - root - INFO -   Val Loss: 1.3129, Val Acc: 74.05%
+2025-07-29 15:43:33 - root - INFO -   Learning Rate: 0.000010
+2025-07-29 15:43:33 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:43:33 - root - INFO - Starting epoch 40/40
+2025-07-29 15:43:43 - root - INFO -   Batch 10/135 - Loss: 0.7621, Acc: 99.38%
+2025-07-29 15:43:51 - root - INFO -   Batch 20/135 - Loss: 0.7560, Acc: 99.69%
+2025-07-29 15:44:00 - root - INFO -   Batch 30/135 - Loss: 0.7415, Acc: 99.79%
+2025-07-29 15:44:08 - root - INFO -   Batch 40/135 - Loss: 0.7494, Acc: 99.84%
+2025-07-29 15:44:16 - root - INFO -   Batch 50/135 - Loss: 0.7749, Acc: 99.88%
+2025-07-29 15:44:24 - root - INFO -   Batch 60/135 - Loss: 0.7745, Acc: 99.79%
+2025-07-29 15:44:34 - root - INFO -   Batch 70/135 - Loss: 0.7697, Acc: 99.82%
+2025-07-29 15:44:41 - root - INFO -   Batch 80/135 - Loss: 0.7640, Acc: 99.84%
+2025-07-29 15:44:49 - root - INFO -   Batch 90/135 - Loss: 0.7612, Acc: 99.86%
+2025-07-29 15:44:57 - root - INFO -   Batch 100/135 - Loss: 0.7594, Acc: 99.88%
+2025-07-29 15:45:06 - root - INFO -   Batch 110/135 - Loss: 0.7599, Acc: 99.89%
+2025-07-29 15:45:13 - root - INFO -   Batch 120/135 - Loss: 0.7467, Acc: 99.90%
+2025-07-29 15:45:21 - root - INFO -   Batch 130/135 - Loss: 0.7610, Acc: 99.86%
+2025-07-29 15:45:24 - root - INFO - Running validation...
+2025-07-29 15:46:40 - root - INFO - Validation completed - Loss: 1.3166, Accuracy: 74.20%
+2025-07-29 15:46:40 - root - INFO - Learning rate reduced from 0.000010 to 0.000001
+2025-07-29 15:46:40 - root - INFO - Checkpoint saved for epoch 40 at checkpoints/checkpoint_epoch_40.pth
+2025-07-29 15:46:40 - root - INFO - Epoch 40/40 Results:
+2025-07-29 15:46:40 - root - INFO -   Train Loss: 0.7684, Train Acc: 99.86%
+2025-07-29 15:46:40 - root - INFO -   Val Loss: 1.3166, Val Acc: 74.20%
+2025-07-29 15:46:40 - root - INFO -   Learning Rate: 0.000001
+2025-07-29 15:46:40 - root - INFO - ------------------------------------------------------------
+2025-07-29 15:46:40 - root - INFO - Training completed!
+2025-07-29 15:46:40 - root - INFO - Best validation loss achieved: 1.2863
+2025-07-29 15:46:40 - root - INFO - Loading best model for final evaluation...
+2025-07-29 15:47:52 - root - INFO - Validation completed - Loss: 1.2863, Accuracy: 74.94%
+2025-07-29 15:47:52 - root - INFO - Final validation accuracy: 74.94%
+2025-07-29 15:47:52 - root - INFO - Loading best model for final evaluation...
+2025-07-29 15:49:04 - root - INFO - Validation completed - Loss: 1.2863, Accuracy: 74.94%
+2025-07-29 15:49:04 - root - INFO - Loading best model for final evaluation...
+2025-07-29 15:50:18 - root - INFO - Validation completed - Loss: 1.2863, Accuracy: 74.94%
+2025-07-29 15:50:18 - root - INFO - Final validation accuracy: 74.94%
+2025-07-29 15:50:18 - root - INFO - training completed successfully
