@@ -1,37 +1,21 @@
 import os
 import sys
 from PIL import __version__ as PILLOW_VERSION
-from PIL import Image
-import cv2
-import numpy as np
-import logging
-from datetime import datetime
 import torch
 import torch.nn as nn
-import albumentations as A
+import albumentations as albu
 from albumentations.pytorch import ToTensorV2
 from torch.cuda.amp import autocast, GradScaler
-import torchvision.models as models
-from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-import torchvision.transforms as transforms
-from pathlib import Path
-import pickle
-from typing import List,Tuple
 
-sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/warmup-code')
+sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/Group-Activity-Recognition')
 from data.data_loader import get_B3_B_loaders
 from data.boxinfo import BoxInfo
-from helper import check, setup_logger
+from helper import check, setup_logger ,load_yaml_config
 from model import Person_Classifer, Group_Classifer
 
 root_dataset = 'D:/volleyball-datasets'
-
-# from data_loader import *
-# from Baseline_B3 import ResNetSequenceClassifier
-
-
-
+CONFIG_PATH="configs/b3_config.yaml"
 
 def validate_model(model, val_loader, criterion, device):
     """Function to validate the model and return validation loss and accuracy"""
@@ -67,101 +51,158 @@ def validate_model(model, val_loader, criterion, device):
 
 
 if __name__ == '__main__':
-    videos_root = f'{root_dataset}/videos'
+    check()
 
-    #setup_logger()
+    # Load B7 Configuration
+    print("Loading Baseline 3 Training Configuration...")
+    config = load_yaml_config(CONFIG_PATH)
+
+    # Extract configuration parameters
+    root_dataset = config.data['dataset_root']
+    videos_root = config.data['videos_path']
+    train_split = config.data['train_split']
+    val_split = config.data['val_split']
+
     logger= setup_logger()
     logger.info("Starting Baseline_B3_B Training")
 
-    train=[1,3,6,7,10,13,15,16,18,22,23,31,32,36,38,39,40,41,42,48,50,52,53,54]
-    val=[0,2,8,12,17,19,24,26,27,28,30,33,46,49,51]
-    # train = [7]
-    # val = [10]
-
-    logger.info(f"Training videos: {len(train)} videos")
-    logger.info(f"Validation videos: {len(val)} videos")
-    logger.info(f"Training video IDs: {train}")
-    logger.info(f"Validation video IDs: {val}")
+    logger.info(f"Training videos: {len(train_split)} videos")
+    logger.info(f"Validation videos: {len(val_split)} videos")
+    logger.info(f"Training video IDs: {train_split}")
+    logger.info(f"Validation video IDs: {val_split}")
 
 
-
-    train_transforms = transforms.Compose([
-        transforms.Resize((256, 256)),
-        transforms.RandomResizedCrop(224, scale=(0.7, 1.0), ratio=(0.8, 1.2)),
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.RandomRotation(degrees=15),
-        transforms.ColorJitter(
-            brightness=0.3, 
-            contrast=0.3, 
-            saturation=0.2, 
-            hue=0.05
-        ),
-        transforms.RandomApply([
-            transforms.GaussianBlur(kernel_size=3, sigma=(0.1, 1.0))
-        ], p=0.2),
-        transforms.RandomApply([
-            transforms.RandomAdjustSharpness(sharpness_factor=1.5)
-        ], p=0.2),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        transforms.RandomErasing(p=0.1, scale=(0.02, 0.1), ratio=(0.3, 3.3))
+    # Create data transforms using config parameters
+    train_preprocess = albu.Compose([
+        albu.Resize(224, 224),
+        
+        albu.OneOf([ albu.GaussianBlur(blur_limit=(3, 7)), albu.ColorJitter(brightness=0.2),
+            albu.RandomBrightnessContrast(),albu.GaussNoise()], p=0.5),
+        
+        albu.OneOf([albu.HorizontalFlip(),albu.VerticalFlip(),], p=0.05),
+        albu.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]),
+        
+        ToTensorV2()
     ])
-
-    val_transforms = transforms.Compose([
-        transforms.Resize((256, 256)),
-        transforms.CenterCrop((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    
+    val_preprocess = albu.Compose([
+        albu.Resize(224, 224),
+        albu.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]
+        ),
+        ToTensorV2()
     ])
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f"Using device: {device}")
-    person_act_cls = Person_Classifer(num_classes=9)
-    person_act_cls.load_state_dict(torch.load('Baseline_B3/B3_A/resulates/best_volleyball_b3_model.pth'))
 
-    model = Group_Classifer(person_feature_extractions=person_act_cls,num_classes=8)
+
+    Person=Person_Classifer(num_classes=config.model['person_activity']['num_classes'])
+    Person.load_state_dict(torch.load('Baseline_B3/B3_A/resulates/best_volleyball_b3_model.pth'))
+
+    # Initialize model with config parameters
+    model = Group_Classifer(Person_Classifer=Person,num_classes=config.model['group_activity']['num_classes'])
     model = model.to(device)
+    print(f"Model initialized with {config.model['group_activity']['num_classes']} classes")
 
-    # Initialize optimizer
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.0001,weight_decay=1)
-    criterion = nn.CrossEntropyLoss()
+    # Initialize optimizer with config parameters
+    if config.training['group_activity']['optimizer'].lower() == 'adamw':
+        optimizer = torch.optim.AdamW(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay']
+        )
+    elif config.training['group_activity']['optimizer'].lower() == 'adam':
+        optimizer = torch.optim.Adam(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay']
+        )
+    else:
+        optimizer = torch.optim.SGD(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay'],
+            momentum=config.training['group_activity']['momentum']
+        )
 
-    # Initialize scheduler
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer,
-        mode='min',
-        patience=5,
-        factor=0.1,
-    )
+    print(f"Optimizer: {config.training['group_activity']['optimizer'].upper()}, LR: {config.training['group_activity']['learning_rate']}")
 
+    # Initialize scheduler with config parameters
+    if config.training['group_activity']['use_scheduler']:
+        if config.training['group_activity']['scheduler_type'] == 'reduce_on_plateau':
+            scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+                optimizer,
+                mode='min',
+                patience=config.training['group_activity']['scheduler_patience'],
+                factor=config.training['group_activity']['scheduler_factor'],
+                verbose=True,
+            )
+        elif config.training['group_activity']['scheduler_type'] == 'cosine':
+            scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+                optimizer,
+                T_max=config.training['group_activity']['num_epochs']
+            )
+        else:
+            scheduler = torch.optim.lr_scheduler.StepLR(
+                optimizer,
+                step_size=config.training['group_activity']['scheduler_patience'],
+                gamma=config.training['group_activity']['scheduler_factor']
+            )
+        print(f"Scheduler: {config.training['group_activity']['scheduler_type']}")
+    else:
+        scheduler = None
+
+
+    # Create datasets using config parameters
     train_dataset = get_B3_B_loaders(
-        videos_path=f"{root_dataset}/videos",
-        annot_path=f"{root_dataset}/annot_all.pkl",
-        split=train,
-        transform=train_transforms)
-    logger.info(f"Training dataset size: {len(train_dataset)}")
+        videos_path=config.data['videos_path'],
+        annot_path=config.data['annot_path'],
+        split=train_split,
+        transform=train_preprocess)
 
     val_dataset = get_B3_B_loaders(
-        videos_path=f"{root_dataset}/videos",
-        annot_path=f"{root_dataset}/annot_all.pkl",
-        split=val,
-        transform=val_transforms)
-    print(f"Training dataset size: {len(train_dataset)}")
-    print(f"Validation dataset size: {len(val_dataset)}")
+        videos_path=config.data['videos_path'],
+        annot_path=config.data['annot_path'],
+        split=val_split,
+        transform=val_preprocess)
+    
     logger.info(f"Training dataset size: {len(train_dataset)}")
     logger.info(f"Validation dataset size: {len(val_dataset)}")
+    print(f"Training dataset size: {len(train_dataset)}")
+    print(f"Validation dataset size: {len(val_dataset)}")
 
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True,pin_memory=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False,pin_memory=True, num_workers=2)
+    # Create data loaders using config parameters
+    train_loader = DataLoader(
+        train_dataset, 
+        batch_size=config.model['group_activity']['batch_size'],
+        shuffle=config.model['group_activity']['shuffle_train'],
+        num_workers=config.model['group_activity']['num_workers'],
+        pin_memory=config.model['group_activity']['pin_memory']
+    )
+    val_loader = DataLoader(
+        val_dataset, 
+        batch_size=config.model['group_activity']['batch_size'], 
+        shuffle=False,
+        num_workers=config.model['group_activity']['num_workers'],
+        pin_memory=config.model['group_activity']['pin_memory']
+    )
 
-    logger.info("Data loaders created with batch_size=32, pin_memory=True")
-    logger.info("Training loader: 4 workers, Validation loader: 2 workers")
-
-    # Training loop with validation and scheduler
-    num_epochs = 11
+    num_epochs = config.training['group_activity']['num_epochs']
     best_val_loss = float('inf')
-    scaler = GradScaler()
-    checkpoint_dir = "checkpoints"
+        
+    criterion = nn.CrossEntropyLoss(
+        label_smoothing=config.training['group_activity']['label_smoothing'],
+    )
+    # Initialize mixed precision scaler if enabled
+    scaler = GradScaler() if config.training['group_activity']['use_amp'] else None
+    
+    print(f"Starting training for {num_epochs} epochs...")
+    print(f"Mixed Precision: {'Enabled' if config.training['group_activity']['use_amp'] else 'Disabled'}")
+
+    model_name=config.training['group_activity']['model_name']
+
+
+    checkpoint_dir = config.training['group_activity']['checkpoint_dir']
     os.makedirs(checkpoint_dir, exist_ok=True)
 
     logger.info(f"Checkpoint directory created: {checkpoint_dir}")
@@ -179,24 +220,29 @@ if __name__ == '__main__':
         for batch_idx, (data, target) in enumerate(train_loader):
             data = data.to(device)
             target = target.to(device)
+            
 
             optimizer.zero_grad()
-            with autocast(dtype=torch.float16):
+            # Use mixed precision if enabled
+            if config.training['group_activity']['use_amp'] and scaler is not None:
+                with autocast(dtype=torch.float16):
+                    output = model(data)
+                    loss = criterion(output, target)
+                scaler.scale(loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
+            else:
                 output = model(data)
                 loss = criterion(output, target)
-
-            scaler.scale(loss).backward()
-            scaler.step(optimizer)
-            scaler.update()
+                loss.backward()
+                optimizer.step()
 
             train_loss += loss.item()
 
             # Calculate training accuracy
             target_class = target.argmax(1)
-            # _, predicted = torch.max(output, 1)
             predictedd = output.argmax(1)
             train_total += target.size(0)
-            # train_correct += (target == predicted).sum().item()
             correct += predictedd.eq(target_class).sum().item()
 
             # Log progress every 100 batches
@@ -221,18 +267,20 @@ if __name__ == '__main__':
         if old_lr != new_lr:
             logger.info(f"Learning rate reduced from {old_lr:.6f} to {new_lr:.6f}")
 
-        # Save checkpoint
-        checkpoint = {
-            'epoch': epoch,
-            'model_state_dict': model.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
-            'val_loss': val_loss,
-            'val_accuracy': val_accuracy
-        }
-    
-        checkpoint_path = f"{checkpoint_dir}/checkpoint_epoch_{epoch + 1}.pth"
-        torch.save(checkpoint, checkpoint_path)
-        logger.info(f"Checkpoint saved for epoch {epoch + 1} at {checkpoint_path}")
+        
+        if (epoch+1) % 2 == 0 or epoch < num_epochs:
+            # Save checkpoint
+            checkpoint = {
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'val_loss': val_loss,
+                'val_accuracy': val_accuracy
+            }
+        
+            checkpoint_path = f"{checkpoint_dir}/checkpoint_epoch_{epoch + 1}.pth"
+            torch.save(checkpoint, checkpoint_path)
+            logger.info(f"Checkpoint saved for epoch {epoch + 1} at {checkpoint_path}")
 
         # Get current learning rate
         current_lr = optimizer.param_groups[0]['lr']
@@ -247,9 +295,10 @@ if __name__ == '__main__':
         # Save best model
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), 'best_volleyball_model.pth')
+            model_save_path = os.path.join(checkpoint_dir, f'best_{model_name}.pth')
+            torch.save(model.state_dict(), model_save_path)
             logger.info(f"New best model saved with validation loss: {val_loss:.4f}")
-            logger.info(f"Best model saved to: best_volleyball_model.pth")
+            logger.info(f"Best model saved to: best_volleyball_model (2).pth")
 
     # Final evaluation
     logger.info("Training completed!")
@@ -257,7 +306,7 @@ if __name__ == '__main__':
 
     # Load best model for final evaluation
     logger.info("Loading best model for final evaluation...")
-    model.load_state_dict(torch.load('best_volleyball_model.pth'))
+    model.load_state_dict(torch.load('best_volleyball_model (2).pth'))
     final_val_loss, final_val_accuracy = validate_model(model, val_loader, criterion, device)
     logger.info(f"Final validation accuracy: {final_val_accuracy:.2f}%")
     logger.info("training completed successfully")
