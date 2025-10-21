@@ -1,88 +1,22 @@
 import os
 import sys
-from PIL import __version__ as PILLOW_VERSION
-from PIL import Image
-import cv2
-import numpy as np
 import torch
 import torch.nn as nn
 import albumentations as albu
 from albumentations.pytorch import ToTensorV2
 from torch.cuda.amp import autocast, GradScaler
-import torchvision.models as models
-from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-import logging
-from datetime import datetime
-import torchvision.transforms as transforms
-from pathlib import Path
-import pickle
-from typing import List,Tuple
 
-sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/warmup-code')
+sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/Group-Activity-Recognition')
 
 from data.data_loader import get_B4_loaders
 from data.boxinfo import BoxInfo
-
-from helper import check, setup_logger
+from model import Temporal_Sequence_Model
+from helper import check, setup_logger,load_yaml_config
 
 
 root_dataset = 'D:/volleyball-datasets'
-
-
-
-
-class ResNetSequenceClassifier(nn.Module):
-    def __init__(self, num_classes=8):
-        super(ResNetSequenceClassifier,self).__init__()
-        self.base_model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
-
-        layers = list(self.base_model.children())[:-1]
-
-        # Create truncated model
-        self.truncated_model = nn.Sequential(*layers)
-
-        # for param in self.truncated_model.parameters():
-        #     param.requires_grad=False
-
-        self.hidden_size=512
-        self.num_layers=1
-
-        self.lstm=nn.LSTM(2048,self.hidden_size,num_layers=self.num_layers,batch_first=True)
-
-        self.fc = nn.Sequential(
-            nn.Linear(2048 + self.hidden_size, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-            nn.Dropout(0.5),  
-            nn.Linear(512, 128),
-            nn.ReLU(),
-            nn.Dropout(0.5),  
-            nn.Linear(128, num_classes)
-        )
-
-    def forward(self, x):  # x: (B, 9, 3, H, W)
-        B, seq, C, H, W = x.shape
-        x = x.view(B * seq, C, H, W)
-        #print(x.shape)
-
-        x = self.truncated_model(x)  # (B*seq, 2048, 1, 1)
-        #print(feats.shape)
-
-        x = x.view(B, seq, -1)  # (B*seq,2048)
-        #print(feats.shape)
-
-        lstm_out, _ = self.lstm(x)  # (B*seq, 500)
-
-        x = torch.cat([x, lstm_out], dim=2)
-        #print(lstm_out.shape)
-
-        out=self.fc(x[:, -1 , :]) # B *1
-        #print(out.shape)
-
-        return out
-
-
+CONFIG_PATH = "configs/b4_config.yaml"
 
 def validate_model(model, val_loader, criterion, device):
     """Function to validate the model and return validation loss and accuracy"""
@@ -124,14 +58,24 @@ if __name__ == '__main__':
     logger= setup_logger()
     logger.info("Starting Baseline_B4 Training")
 
+    # Load B4 Configuration
+    print("Loading Baseline 4 Training Configuration...")
+    config = load_yaml_config(CONFIG_PATH)
 
-    train=[1,3,6,7,10,13,15,16,18,22,23,31,32,36,38,39,40,41,42,48,50,52,53,54]
-    val=[0,2,8,12,17,19,24,26,27,28,30,33,46,49,51]
 
-    logger.info(f"Training videos: {len(train)} videos")
-    logger.info(f"Validation videos: {len(val)} videos")
-    logger.info(f"Training video IDs: {train}")
-    logger.info(f"Validation video IDs: {val}")
+    # Extract configuration parameters
+    root_dataset = config.data['dataset_root']
+    videos_root = config.data['videos_path']
+    train_split = config.data['train_split']
+    val_split = config.data['val_split']
+
+    logger= setup_logger()
+    logger.info("Starting Baseline_B4 Training")
+
+    logger.info(f"Training videos: {len(train_split)} videos")
+    logger.info(f"Validation videos: {len(val_split)} videos")
+    logger.info(f"Training video IDs: {train_split}")
+    logger.info(f"Validation video IDs: {val_split}")
 
 
     train_transforms =albu.Compose([
@@ -154,30 +98,68 @@ if __name__ == '__main__':
     ])
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = ResNetSequenceClassifier(8)
+    model = Temporal_Sequence_Model(num_classes=config.model['group_activity']['num_classes'])
     model = model.to(device)
+    print(f"Model initialized with {config.model['group_activity']['num_classes']} classes")
 
-    # Initialize optimizer
-    optimizer = torch.optim.AdamW(model.parameters(), lr=0.0001,weight_decay=0.1)
+    # Initialize optimizer with config parameters
+    if config.training['group_activity']['optimizer'].lower() == 'adamw':
+        optimizer = torch.optim.AdamW(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay']
+        )
+    elif config.training['group_activity']['optimizer'].lower() == 'adam':
+        optimizer = torch.optim.Adam(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay']
+        )
+    else:
+        optimizer = torch.optim.SGD(
+            model.parameters(), 
+            lr=config.training['group_activity']['learning_rate'],
+            weight_decay=config.training['group_activity']['weight_decay'],
+            momentum=config.training['group_activity']['momentum']
+        )
 
-    # Initialize scheduler
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer,
-        mode='min',
-        patience=5,
-        factor=0.1,
-    )
+    print(f"Optimizer: {config.training['group_activity']['optimizer'].upper()}, LR: {config.training['group_activity']['learning_rate']}")
+
+    # Initialize scheduler with config parameters
+    if config.training['group_activity']['use_scheduler']:
+        if config.training['group_activity']['scheduler_type'] == 'reduce_on_plateau':
+            scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+                optimizer,
+                mode='min',
+                patience=config.training['group_activity']['scheduler_patience'],
+                factor=config.training['group_activity']['scheduler_factor'],
+                verbose=True,
+            )
+        elif config.training['group_activity']['scheduler_type'] == 'cosine':
+            scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+                optimizer,
+                T_max=config.training['group_activity']['num_epochs']
+            )
+        else:
+            scheduler = torch.optim.lr_scheduler.StepLR(
+                optimizer,
+                step_size=config.training['group_activity']['scheduler_patience'],
+                gamma=config.training['group_activity']['scheduler_factor']
+            )
+        print(f"Scheduler: {config.training['group_activity']['scheduler_type']}")
+    else:
+        scheduler = None
 
     train_dataset = get_B4_loaders(
-        videos_path=f"{root_dataset}/videos",
-        annot_path=f"{root_dataset}/annot_all.pkl",
-        split=train,
+        videos_path=config.data['videos_path'],
+        annot_path=config.data['annot_path'],
+        split=train_split,
         transform=train_transforms)
 
     val_dataset = get_B4_loaders(
-        videos_path=f"{root_dataset}/videos",
-        annot_path=f"{root_dataset}/annot_all.pkl",
-        split=val,
+        videos_path=config.data['videos_path'],
+        annot_path=config.data['annot_path'],
+        split=val_split,
         transform=val_transforms)
     
     logger.info(f"Training dataset size: {len(train_dataset)}")
@@ -187,8 +169,20 @@ if __name__ == '__main__':
     print(f"Validation dataset size: {len(val_dataset)}")
 
 
-    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=4,pin_memory=True)
-    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=2,pin_memory=True)
+    train_loader = DataLoader(
+        train_dataset, 
+        batch_size=config.model['group_activity']['batch_size'],
+        shuffle=config.model['group_activity']['shuffle_train'],
+        num_workers=config.model['group_activity']['num_workers'],
+        pin_memory=config.model['group_activity']['pin_memory']
+        )
+    val_loader = DataLoader(
+        val_dataset, 
+        batch_size=config.model['group_activity']['batch_size'],
+        shuffle=False,
+        num_workers=config.model['group_activity']['num_workers'],
+        pin_memory=config.model['group_activity']['pin_memory']
+        )
     
 
     total_train = len(train_dataset)
@@ -196,14 +190,25 @@ if __name__ == '__main__':
     classes=torch.bincount(torch.tensor(labels))
     classes_weights = total_train / (len(classes) * classes)
     classes_weights = classes_weights.to(device)
-    criterion = nn.CrossEntropyLoss(label_smoothing=0.15,weight=classes_weights)
+    criterion = nn.CrossEntropyLoss(
+        label_smoothing=config.training['group_activity']['label_smoothing'],
+        weight=classes_weights
+        )
 
     # Training loop with validation and scheduler
-    num_epochs = 40
+    num_epochs = config.training['group_activity']['num_epochs']
     best_val_loss = float('inf')
-    scaler = GradScaler()
 
-    checkpoint_dir = "checkpoints"
+    # Initialize mixed precision scaler if enabled
+    scaler = GradScaler() if config.training['group_activity']['use_amp'] else None
+    
+    print(f"Starting training for {num_epochs} epochs...")
+    print(f"Mixed Precision: {'Enabled' if config.training['group_activity']['use_amp'] else 'Disabled'}")
+
+    model_name=config.training['group_activity']['model_name']
+
+
+    checkpoint_dir = config.training['group_activity']['checkpoint_dir']
     os.makedirs(checkpoint_dir, exist_ok=True)
 
     logger.info(f"Checkpoint directory created: {checkpoint_dir}")
@@ -223,13 +228,20 @@ if __name__ == '__main__':
             target = target.to(device)
 
             optimizer.zero_grad()
-            with autocast(dtype=torch.float16):
+            
+            # Use mixed precision if enabled
+            if config.training['group_activity']['use_amp'] and scaler is not None:
+                with autocast(dtype=torch.float16):
+                    output = model(data)
+                    loss = criterion(output, target)
+                scaler.scale(loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
+            else:
                 output = model(data)
                 loss = criterion(output, target)
-
-            scaler.scale(loss).backward()
-            scaler.step(optimizer)
-            scaler.update()
+                loss.backward()
+                optimizer.step()
 
             train_loss += loss.item()
 
@@ -291,7 +303,8 @@ if __name__ == '__main__':
         # Save best model
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            torch.save(model.state_dict(), 'best_Baseline_B4_model.pth')
+            model_save_path = os.path.join(checkpoint_dir, f'best_{model_name}.pth')
+            torch.save(model.state_dict(), model_save_path)
             logger.info(f"New best model saved with validation loss: {val_loss:.4f}")
             logger.info(f"Best model saved to: best_Baseline_B4_model.pth")
 

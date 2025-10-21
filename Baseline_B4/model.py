@@ -1,33 +1,26 @@
 import os
 import sys
-from PIL import __version__ as PILLOW_VERSION
-from PIL import Image
-import cv2
-import numpy as np
 import torch
 import torch.nn as nn
 import albumentations as albu
 from albumentations.pytorch import ToTensorV2
-from torch.cuda.amp import autocast, GradScaler
 import torchvision.models as models
-from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
-import logging
-from datetime import datetime
-import torchvision.transforms as transforms
 from sklearn.metrics import classification_report, confusion_matrix
-
 
 sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/warmup-code')
 
 from data.data_loader import get_B4_loaders
 
-from evaluation.eval import plot_confusion_matrix, plot_class_accuracies
+from evaluation.eval import plot_confusion_matrix, plot_class_accuracies , create_text_results
 
+from helper import load_yaml_config
 
-class ResNetSequenceClassifier(nn.Module):
+CONFIG_PATH="configs/b4_config.yaml"
+
+class Temporal_Sequence_Model(nn.Module):
     def __init__(self, num_classes=8):
-        super(ResNetSequenceClassifier,self).__init__()
+        super(Temporal_Sequence_Model,self).__init__()
         self.base_model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
 
         layers = list(self.base_model.children())[:-1]
@@ -142,12 +135,19 @@ def test_model(model, test_loader, criterion, device):
 
 
 if __name__ == '__main__':
-    # Configuration
-    root_dataset = 'D:/volleyball-datasets'  # Change this to your dataset path
-    model_path = 'Baseline_B4/resulates/best_Baseline_B4_model.pth'  # Path to your saved model
+    # Load B4 Configuration
+    print("Loading Baseline 4 Configuration...")
+    config = load_yaml_config(CONFIG_PATH)
     
-    # Test split - use different videos than training/validation
-    test = [0, 2, 8, 12, 17, 19, 24, 26, 27, 28, 30, 33, 46, 49, 51]  # Example test split
+    # Extract configuration parameters
+    root_dataset = config.data['dataset_root']
+    model_path = os.path.join(config.evaluation['results_dir'], 'best_Baseline_B7_B_model.pth')
+    test_split = config.data['test_split']
+    batch_size = config.evaluation['batch_size']
+    
+    print(f"Dataset Root: {root_dataset}")
+    print(f"Model Path: {model_path}")
+    print(f"Test Split: {test_split}")
     
     # Test preprocessing (same as validation)
     test_preprocess = albu.Compose([
@@ -162,8 +162,17 @@ if __name__ == '__main__':
     print(f"Using device: {device}")
     
     # Load model
-    model = ResNetSequenceClassifier(8)
+    model = Temporal_Sequence_Model(num_classes=config.model['group_activity']['num_classes'])
     model.load_state_dict(torch.load(model_path, map_location=device))
+
+    if os.path.exists(model_path):
+        model.load_state_dict(torch.load(model_path, map_location=device))
+        print("Model loaded successfully!")
+    else:
+        print(f"Model file not found: {model_path}")
+        print("Please ensure the model has been trained and saved.")
+        sys.exit(1)
+
     model = model.to(device)
     print("Model loaded successfully!")
 
@@ -172,15 +181,21 @@ if __name__ == '__main__':
     
     # Create test dataset and dataloader
     test_dataset = get_B4_loaders(
-        videos_path=f"{root_dataset}/videos",
-        annot_path=f"{root_dataset}/annot_all.pkl",
-        split=test,
+        videos_path=config.data['videos_path'],
+        annot_path=config.data['annot_path'],
+        split=test_split,
         transform=test_preprocess
     )
     
     print(f"Test dataset size: {len(test_dataset)}")
     
-    test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=2,pin_memory=True)
+    test_loader = DataLoader(
+        test_dataset, 
+        batch_size=config.evaluation['batch_size'],
+        shuffle=False, 
+        num_workers=config.model['group_activity']['num_workers'],
+        pin_memory=config.model['group_activity']['pin_memory']
+    )
     
     # Test the model
     print("Starting model evaluation...")
@@ -206,11 +221,7 @@ if __name__ == '__main__':
         print(f"{class_name:12}: {accuracy:6.2f}%")
     
     # Generate detailed classification report
-    categories_dct = {
-        'l-pass': 0, 'r-pass': 1, 'l-spike': 2, 'r_spike': 3,
-        'l_set': 4, 'r_set': 5, 'l_winpoint': 6, 'r_winpoint': 7
-    }
-    class_names = list(categories_dct.keys())
+    class_names = config.model['group_activity']['class_names']
     
     print("\n" + "="*60)
     print("DETAILED CLASSIFICATION REPORT")
@@ -218,26 +229,26 @@ if __name__ == '__main__':
     report = classification_report(targets, predictions, target_names=class_names, digits=3)
     print(report)
     
-    # Plot results
-    plot_class_accuracies(class_accuracies,save_path='Baseline_B4/resulates/')
-    plot_confusion_matrix(targets, predictions, class_names,save_path='Baseline_B4/resulates/')
+    # Use config paths for saving results
+    save_path = config.evaluation['results_dir']
+    plots_path = config.evaluation['plots_dir']
     
-    # Save results to file
-    results_dir = 'Baseline_B4/resulates/'
-    os.makedirs(results_dir, exist_ok=True)
+    # Create directories if they don't exist
+    os.makedirs(save_path, exist_ok=True)
+    os.makedirs(plots_path, exist_ok=True)
     
-    with open(os.path.join(results_dir, 'test_results.txt'), 'w') as f:
-        f.write("VOLLEYBALL MODEL TEST RESULTS\n")
-        f.write("="*50 + "\n\n")
-        f.write(f"Overall Test Accuracy: {overall_accuracy:.2f}%\n\n")
-        f.write("Per-Class Accuracies:\n")
-        f.write("-" * 30 + "\n")
-        for class_name, accuracy in class_accuracies.items():
-            f.write(f"{class_name:12}: {accuracy:6.2f}%\n")
-        f.write("\n" + "="*50 + "\n")
-        f.write("DETAILED CLASSIFICATION REPORT\n")
-        f.write("="*50 + "\n")
-        f.write(report)
+    print(f"Saving results to: {save_path}")
+    print(f"Saving plots to: {plots_path}")
+    
+    # Plot results using config parameters
+    if config.evaluation['plot_class_accuracies']:
+        plot_class_accuracies(class_accuracies, save_path=save_path)
+        
+    if config.evaluation['plot_confusion_matrix']:
+        plot_confusion_matrix(targets, predictions, class_names, save_path=save_path)
+        
+    if config.evaluation['save_classification_report']:
+        create_text_results(overall_accuracy, class_accuracies, report, save_path=save_path)
     
     print(f"\nResults saved to 'test_results.txt'")
     print("Confusion matrix saved as 'confusion_matrix.png'")
