@@ -793,6 +793,316 @@ class get_B4_loaders(Dataset):
         return seq_of_frames, labels
 
 
+class get_B5_A_loaders(Dataset):
+    def __init__(self, videos_path,annot_path, split, transform=None):
+        self.samples = []
+        self.transform = transform
+        self.categories_dct = {
+            'waiting': 0,
+            'setting': 1,
+            'digging': 2,
+            'falling': 3,
+            'spiking': 4,
+            'blocking': 5,
+            'jumping': 6,
+            'moving': 7,
+            'standing': 8
+        }
+        # print("Available videos in data:", list(dataset_dict.keys()))
+        # print("Available labels in labels_dict:", list(label_dict.keys()))
+
+        self.data=[]
+        self.clip={}
+        
+        with open(annot_path,'rb')as file:
+            videos_annot=pickle.load(file)
+
+
+        for idx in split:
+            video_annot=videos_annot[str(idx)]
+
+            for clip in video_annot.keys():
+                frames_data = video_annot[str(clip)]['frame_boxes_dct']
+                category = video_annot[str(clip)]['category']
+                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items()) # 9 frames per clip
+
+                
+                self.dict_all_players = {}
+
+                for frame_id,boxes in dir_frames:
+                    image_path=f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg'
+                    image_path=os.path.join(image_path)
+                    
+
+                    
+                    for box_info in boxes: # 12 players boxes per frame
+                        x1,y1,x2,y2=box_info.box
+                        if box_info.player_ID not in self.dict_all_players:
+                            self.dict_all_players[box_info.player_ID] = []
+                        self.dict_all_players[box_info.player_ID].append(box_info)
+
+                        
+                self.data.append(
+                    {
+                        'clip_path':f'{videos_path}/{str(idx)}/{str(clip)}',
+                        'dict_all_players':self.dict_all_players,
+                        'frame_path':f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg',
+                        'category':category
+                    }
+                )
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        sample=self.data[idx]
+        num_classes=len(self.categories_dct)
+        # labels=torch.zeros(num_classes)
+
+        dict_all_players=sample['dict_all_players']
+        clip_path=sample['clip_path']
+        print(f"Processing clip: {clip_path}")
+        all_players=[]
+        all_labels=[]
+        for player_id, boxes in dict_all_players.items():
+            seq_player=[]
+            labels=torch.zeros(num_classes)
+            
+            for box_info in boxes:
+                category = box_info.category
+                labels[self.categories_dct[category]] = 1
+                x1, y1, x2, y2 = box_info.box
+                # Crop the image based on the bounding box
+                frame_path = f"{clip_path}/{box_info.frame_ID}.jpg"
+                image = Image.open(frame_path).convert('RGB')
+                image = image.crop((x1, y1, x2, y2))
+                if self.transform:
+                    image = self.transform(image=np.array(image))['image']
+                seq_player.append(image)
+                
+            if len(seq_player) < 9:
+                seq_player += [torch.zeros(3, 224, 224)] * (9 - len(seq_player))
+            # labels[self.categories_dct[category]] = 1
+            seq_player = torch.stack(seq_player)
+            all_players.append(seq_player)
+            all_labels.append(labels.clone())
+
+        if len(all_players) < 12:
+            all_players += [torch.zeros(9, 3, 224, 224)] * (12 - len(all_players))
+            all_labels += [torch.zeros(len(self.categories_dct))] * (12 - len(all_labels))
+        all_players = torch.stack(all_players)
+        labels = torch.stack(all_labels)
+
+        print(f"all_players shape: {all_players.shape}, all_labels shape: {labels.shape}")
+        # Ensure the shape is (12, 9, 3, 224, 224)
+        # if all_players.shape[0] < 12:
+        #     all_players = torch.cat([all_players, torch.zeros(12 - all_players.shape[0], 9, 3, 224, 224)], dim=0)
+        # if all_players.shape[1] < 9:
+        #     all_players = torch.cat([all_players, torch.zeros(all_players.shape[0], 9 - all_players.shape[1], 3, 224, 224)], dim=1)
+        # if labels.shape[0] < 12:
+        #     labels = torch.cat([labels, torch.zeros(12 - labels.shape[0], len(self.categories_dct))], dim=0)
+        # if labels.shape[1] < len(self.categories_dct):
+        #     labels = torch.cat([labels, torch.zeros(labels.shape[0], len(self.categories_dct) - labels.shape[1])], dim=1)
+        
+       
+        return all_players, labels
+
+class get_B5_B_loaders(Dataset):
+    def __init__(self, videos_path,annot_path, split, transform=None):
+        self.samples = []
+        self.transform = transform
+        self.categories_dct = {
+            'l-pass': 0,
+            'r-pass': 1,
+            'l-spike': 2,
+            'r_spike': 3,
+            'l_set': 4,
+            'r_set': 5,
+            'l_winpoint': 6,
+            'r_winpoint': 7
+        }
+        
+
+        self.data=[]
+        self.clip={}
+        
+        with open(annot_path,'rb')as file:
+            videos_annot=pickle.load(file)
+
+
+        for idx in split:
+            video_annot=videos_annot[str(idx)]
+
+            for clip in video_annot.keys():
+                frames_data = video_annot[str(clip)]['frame_boxes_dct']
+                category = video_annot[str(clip)]['category']
+                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items()) # 9 frames per clip
+
+                
+                self.dict_all_players = {}
+
+                for frame_id,boxes in dir_frames:
+                    image_path=f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg'
+                    image_path=os.path.join(image_path)
+                    
+
+                    
+                    for box_info in boxes: # 12 players boxes per frame
+                        x1,y1,x2,y2=box_info.box
+                        if box_info.player_ID not in self.dict_all_players:
+                            self.dict_all_players[box_info.player_ID] = []
+                        self.dict_all_players[box_info.player_ID].append(box_info)
+
+                        
+                self.data.append(
+                    {
+                        'clip_path':f'{videos_path}/{str(idx)}/{str(clip)}',
+                        'dict_all_players':self.dict_all_players,
+                        'frame_path':f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg',
+                        'category':category
+                    }
+                )
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        sample=self.data[idx]
+        num_classes=len(self.categories_dct)
+        category=sample['category']
+        labels=torch.zeros(num_classes)
+        labels[self.categories_dct[category]] = 1
+
+        dict_all_players=sample['dict_all_players']
+        clip_path=sample['clip_path']
+
+        all_players=[]
+        # all_labels=[]
+        for player_id, boxes in dict_all_players.items():
+            seq_player=[]
+            #labels=torch.zeros(num_classes)
+            
+            for box_info in boxes:
+                #category = box_info.category
+                #labels[self.categories_dct[category]] = 1
+                x1, y1, x2, y2 = box_info.box
+                # Crop the image based on the bounding box
+                frame_path = f"{clip_path}/{box_info.frame_ID}.jpg"
+                image = Image.open(frame_path).convert('RGB')
+                image = image.crop((x1, y1, x2, y2))
+                if self.transform:
+                    image = self.transform(image=np.array(image))['image']
+                seq_player.append(image)
+                
+            if len(seq_player) < 9:
+                seq_player += [torch.zeros(3, 224, 224)] * (9 - len(seq_player))
+            # labels[self.categories_dct[category]] = 1
+            seq_player = torch.stack(seq_player)
+            all_players.append(seq_player)
+
+        if len(all_players) < 12:
+            all_players += [torch.zeros(9, 3, 224, 224)] * (12 - len(all_players))
+
+        all_players = torch.stack(all_players)
+        
+       
+        return all_players, labels
+
+class get_B6_loaders(Dataset):
+    def __init__(self, videos_path,annot_path, split, transform=None):
+        self.samples = []
+        self.transform = transform
+        self.categories_dct = {
+            'l-pass': 0,
+            'r-pass': 1,
+            'l-spike': 2,
+            'r_spike': 3,
+            'l_set': 4,
+            'r_set': 5,
+            'l_winpoint': 6,
+            'r_winpoint': 7
+        }
+        # print("Available videos in data:", list(dataset_dict.keys()))
+        # print("Available labels in labels_dict:", list(label_dict.keys()))
+
+        self.data=[]
+        self.clip={}
+        
+        with open(annot_path,'rb')as file:
+            videos_annot=pickle.load(file)
+
+
+        for idx in split:
+            video_annot=videos_annot[str(idx)]
+
+            for clip in video_annot.keys():
+
+                category = video_annot[str(clip)]['category']
+                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items()) # 9 frames per clip
+
+                
+                frame_data = []
+
+                for frame_id,boxes in dir_frames:
+
+                    frame_path=f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg'
+                    
+                    frame_boxes=[]
+                    
+                    for box_info in boxes: 
+
+                        frame_boxes.append(box_info)
+                        
+                    frame_data.append((frame_path,frame_boxes))
+                        
+                self.data.append(
+                    {
+                        'frame_data':frame_data,
+                        'category':category
+                    }
+                )
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        sample=self.data[idx]
+        num_classes=len(self.categories_dct)
+        category=sample['category']
+        label=torch.zeros(num_classes)
+        label[self.categories_dct[category]] = 1
+
+        frame_data=sample['frame_data']
+
+        clip=[]
+        labels=[]
+        for frame_path, frame_boxes in frame_data:
+            seq_player=[]
+            #labels=torch.zeros(num_classes)
+
+            frame = cv2.imread(frame_path)
+            
+            for box_info in frame_boxes:
+
+                x1, y1, x2, y2 = box_info.box
+
+                # Crop the image based on the bounding box
+                person_crop = frame[y1:y2, x1:x2]
+                #image = image.crop((x1, y1, x2, y2))
+
+                if self.transform:
+                    transformed = self.transform(image=person_crop)
+                    image = transformed['image']
+                seq_player.append(image)
+
+            seq_player = torch.stack(seq_player)
+            clip.append(seq_player)
+            labels.append(label)
+
+        clip = torch.stack(clip).permute(1, 0, 2, 3, 4)
+        labels = torch.stack(labels)
+
+        return clip, labels
 
 
 
