@@ -73,7 +73,7 @@ training:
     
     # Learning rate scheduler
     use_scheduler: true
-    scheduler_type: "ReduceLROnPlateau"
+    scheduler_type: "reduce_on_plateau"
     scheduler_patience: 3
     scheduler_factor: 0.1
     

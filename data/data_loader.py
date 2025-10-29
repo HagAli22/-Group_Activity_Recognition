@@ -92,336 +92,6 @@ def load_volleyball_dataset(videos_root, annot_root):
     return videos_annot
 
 
-class VolleyballDataset(Dataset):
-    """
-    General purpose volleyball dataset loader for different baseline models
-    """
-
-    def __init__(self,
-                 dataset_root,
-                 mode='B1',  # B1, B3, B4, B5, B6, B7, B8
-                 split='train',  # train, val, test
-                 transform=None,
-                 sequence_length=9,
-                 middle_frame_only=False,
-                 load_players=False,
-                 team_split=False):
-
-        self.dataset_root = dataset_root
-        self.mode = mode
-        self.split = split
-        self.transform = transform
-        self.sequence_length = sequence_length
-        self.middle_frame_only = middle_frame_only
-        self.load_players = load_players
-        self.team_split = team_split
-
-        # Load annotations
-        annot_path = os.path.join(dataset_root, 'annot_all.pkl')
-        if os.path.exists(annot_path):
-            with open(annot_path, 'rb') as f:
-                self.videos_annot = pickle.load(f)
-        else:
-            # Create annotations if not exist
-            videos_root = os.path.join(dataset_root, 'videos')
-            annot_root = os.path.join(dataset_root, 'volleyball_tracking_annotation')
-            self.videos_annot = load_volleyball_dataset(videos_root, annot_root)
-
-            # Save for future use
-            with open(annot_path, 'wb') as f:
-                pickle.dump(self.videos_annot, f)
-
-        # Class mapping
-        self.action_classes = ['r_set', 'r_spike', 'r-pass', 'r_winpoint',
-                               'l_set', 'l-spike', 'l-pass', 'l_winpoint']
-        self.individual_classes = ['blocking', 'digging', 'falling', 'jumping',
-                                   'moving', 'setting', 'spiking', 'standing', 'waiting']
-
-        self.action_to_idx = {action: idx for idx, action in enumerate(self.action_classes)}
-        self.individual_to_idx = {action: idx for idx, action in enumerate(self.individual_classes)}
-
-        # Data split (you may want to modify this based on your actual split)
-        self.video_splits = self._create_splits()
-        self.data_samples = self._prepare_samples()
-
-    def _create_splits(self):
-        """Create train/val/test splits"""
-        videos = list(self.videos_annot.keys())
-        videos.sort()
-
-        # Simple split: 70% train, 15% val, 15% test
-        n_videos = len(videos)
-        n_train = int(0.7 * n_videos)
-        n_val = int(0.15 * n_videos)
-
-        splits = {
-            'train': videos[:n_train],
-            'val': videos[n_train:n_train + n_val],
-            'test': videos[n_train + n_val:]
-        }
-
-        return splits
-
-    def _prepare_samples(self):
-        """Prepare data samples based on mode and split"""
-        samples = []
-
-        for video_id in self.video_splits[self.split]:
-            video_data = self.videos_annot[video_id]
-
-            for clip_id, clip_data in video_data.items():
-                clip_path = os.path.join(self.dataset_root, 'videos', video_id, clip_id)
-
-                if not os.path.exists(clip_path):
-                    continue
-
-                # Get all frames in clip
-                frames = [f for f in os.listdir(clip_path) if f.endswith('.jpg')]
-                frames.sort()
-
-                if len(frames) < self.sequence_length:
-                    continue
-
-                sample = {
-                    'video_id': video_id,
-                    'clip_id': clip_id,
-                    'clip_path': clip_path,
-                    'category': clip_data['category'],
-                    'frame_boxes_dct': clip_data['frame_boxes_dct'],
-                    'frames': frames
-                }
-
-                samples.append(sample)
-
-        return samples
-
-    def _load_image(self, image_path):
-        """Load and preprocess image"""
-        image = cv2.imread(image_path)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-        if self.transform:
-            image = Image.fromarray(image)
-            image = self.transform(image)
-        else:
-            image = torch.from_numpy(image).permute(2, 0, 1).float() / 255.0
-
-        return image
-
-    def _crop_player(self, image, box, target_size=(224, 224)):
-        """Crop player from image based on bounding box"""
-        if isinstance(image, torch.Tensor):
-            # Convert tensor to numpy for cropping
-            image_np = image.permute(1, 2, 0).numpy()
-            if image_np.max() <= 1.0:
-                image_np = (image_np * 255).astype(np.uint8)
-        else:
-            image_np = image
-
-        x1, y1, x2, y2 = box
-        crop = image_np[y1:y2, x1:x2]
-
-        if crop.size == 0:
-            crop = np.zeros((target_size[0], target_size[1], 3), dtype=np.uint8)
-        else:
-            crop = cv2.resize(crop, target_size)
-
-        crop = torch.from_numpy(crop).permute(2, 0, 1).float() / 255.0
-        return crop
-
-    def _get_middle_frame_data(self, sample):
-        """Get middle frame data for B1 baseline"""
-        frames = sample['frames']
-        middle_idx = len(frames) // 2
-        middle_frame = frames[middle_idx]
-
-        image_path = os.path.join(sample['clip_path'], middle_frame)
-        image = self._load_image(image_path)
-
-        label = self.action_to_idx[sample['category']]
-
-        return image, label
-
-    def _get_sequence_data(self, sample):
-        """Get sequence data for temporal models"""
-        frames = sample['frames']
-
-        # Sample sequence_length frames
-        if len(frames) >= self.sequence_length:
-            start_idx = (len(frames) - self.sequence_length) // 2
-            selected_frames = frames[start_idx:start_idx + self.sequence_length]
-        else:
-            selected_frames = frames + [frames[-1]] * (self.sequence_length - len(frames))
-
-        sequence = []
-        for frame in selected_frames:
-            image_path = os.path.join(sample['clip_path'], frame)
-            image = self._load_image(image_path)
-            sequence.append(image)
-
-        sequence = torch.stack(sequence)
-        label = self.action_to_idx[sample['category']]
-
-        return sequence, label
-
-    def _get_players_data(self, sample):
-        """Get players data for player-level models"""
-        frames = sample['frames']
-        frame_boxes_dct = sample['frame_boxes_dct']
-
-        # Sample sequence_length frames
-        if len(frames) >= self.sequence_length:
-            start_idx = (len(frames) - self.sequence_length) // 2
-            selected_frames = frames[start_idx:start_idx + self.sequence_length]
-        else:
-            selected_frames = frames + [frames[-1]] * (self.sequence_length - len(frames))
-
-        players_sequence = []
-
-        for frame in selected_frames:
-            frame_num = int(frame.split('.')[0])
-            image_path = os.path.join(sample['clip_path'], frame)
-            image = cv2.imread(image_path)
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-            frame_players = []
-
-            if frame_num in frame_boxes_dct:
-                boxes_info = frame_boxes_dct[frame_num]
-
-                if self.team_split:
-                    # Separate teams (B8 baseline)
-                    team1_crops = []
-                    team2_crops = []
-
-                    for box_info in boxes_info:
-                        if box_info.lost or box_info.generated:
-                            continue
-
-                        crop = self._crop_player(image, box_info.box)
-
-                        # Simple team assignment based on player_ID
-                        if box_info.player_ID < 6:
-                            team1_crops.append(crop)
-                        else:
-                            team2_crops.append(crop)
-
-                    # Pad to 6 players per team
-                    while len(team1_crops) < 6:
-                        team1_crops.append(torch.zeros(3, 224, 224))
-                    while len(team2_crops) < 6:
-                        team2_crops.append(torch.zeros(3, 224, 224))
-
-                    team1_crops = torch.stack(team1_crops[:6])
-                    team2_crops = torch.stack(team2_crops[:6])
-                    frame_players = [team1_crops, team2_crops]
-
-                else:
-                    # All players together
-                    for box_info in boxes_info:
-                        if box_info.lost or box_info.generated:
-                            continue
-                        crop = self._crop_player(image, box_info.box)
-                        frame_players.append(crop)
-
-                    # Pad to maximum players
-                    while len(frame_players) < 12:
-                        frame_players.append(torch.zeros(3, 224, 224))
-
-                    frame_players = torch.stack(frame_players[:12])
-
-            else:
-                # No players detected, use zero tensors
-                if self.team_split:
-                    team1_crops = torch.zeros(6, 3, 224, 224)
-                    team2_crops = torch.zeros(6, 3, 224, 224)
-                    frame_players = [team1_crops, team2_crops]
-                else:
-                    frame_players = torch.zeros(12, 3, 224, 224)
-
-            players_sequence.append(frame_players)
-
-        if self.team_split:
-            # Separate team sequences
-            team1_sequence = torch.stack([frame[0] for frame in players_sequence])
-            team2_sequence = torch.stack([frame[1] for frame in players_sequence])
-            players_data = [team1_sequence, team2_sequence]
-        else:
-            players_data = torch.stack(players_sequence)
-
-        label = self.action_to_idx[sample['category']]
-        return players_data, label
-
-    def __len__(self):
-        return len(self.data_samples)
-
-    def __getitem__(self, idx):
-        sample = self.data_samples[idx]
-
-        if self.mode == 'B1' and self.middle_frame_only:
-            data=[]
-            frames=sample['frames']
-            clip_path=sample['clip_path']
-            label = self.action_to_idx[sample['category']]
-
-            for idx,frame in frames:
-                frame_path=os.path.join(clip_path,frame)
-                data.append({
-                    'frame':frame_path,
-                    'label':label
-                })
-
-
-            # B1: Middle frame only
-            return self._get_middle_frame_data(sample)
-
-        elif self.mode in ['B4', 'B6']:
-            # B4, B6: Sequence of frames
-            return self._get_sequence_data(sample)
-
-        elif self.mode in ['B3']:
-            # B3: Players in middle frame
-            frames = sample['frames']
-            middle_idx = len(frames) // 2
-            middle_frame = frames[middle_idx]
-            frame_num = int(middle_frame.split('.')[0])
-
-            image_path = os.path.join(sample['clip_path'], middle_frame)
-            image = cv2.imread(image_path)
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-            players = []
-            frame_boxes_dct = sample['frame_boxes_dct']
-
-            if frame_num in frame_boxes_dct:
-                boxes_info = frame_boxes_dct[frame_num]
-                for box_info in boxes_info:
-                    if box_info.lost or box_info.generated:
-                        continue
-                    crop = self._crop_player(image, box_info.box)
-                    players.append(crop)
-
-            # Pad to maximum players
-            while len(players) < 12:
-                players.append(torch.zeros(3, 224, 224))
-
-            players = torch.stack(players[:12])
-            label = self.action_to_idx[sample['category']]
-            return players, label
-
-        elif self.mode in ['B5', 'B7']:
-            # B5, B7: Player sequences
-            return self._get_players_data(sample)
-
-        elif self.mode == 'B8':
-            # B8: Team-separated player sequences
-            return self._get_players_data(sample)
-
-        else:
-            # Default: return sequence data
-            return self._get_sequence_data(sample)
-
-
 def create_data_loaders(dataset_root,
                         mode='B1',
                         batch_size=32,
@@ -506,8 +176,6 @@ def create_data_loaders(dataset_root,
 
     return train_loader, val_loader, test_loader
 
-
-# Usage examples for each baseline:
 
 
 class get_B1_loaders(Dataset):
@@ -1105,55 +773,225 @@ class get_B6_loaders(Dataset):
         return clip, labels
 
 
+# get_B7_step_A
+class PersonActivityTempDataset(Dataset):
+    def __init__(self, videos_path,annot_path, split, transform=None):
+        self.samples = []
+        self.videos_path=videos_path
+        self.transform = transform
+        self.categories_dct = {
+            'waiting': 0,
+            'setting': 1,
+            'digging': 2,
+            'falling': 3,
+            'spiking': 4,
+            'blocking': 5,
+            'jumping': 6,
+            'moving': 7,
+            'standing': 8
+        }
+        
+        with open(annot_path,'rb')as file:
+            videos_annot=pickle.load(file)
 
-def get_B5_loaders(dataset_root, batch_size=32, sequence_length=9):
-    """B5: LSTM on player-level"""
-    return create_data_loaders(
-        dataset_root=dataset_root,
-        mode='B5',
-        batch_size=batch_size,
-        sequence_length=sequence_length
-    )
+        self.frames_index=[]
+
+        for idx in split:
+            video_annot=videos_annot[str(idx)]
+
+            for clip in video_annot.keys():
+
+                #category = video_annot[str(clip)]['category']
+                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items()) # 9 frames per clip
+
+                
+                frame_seq = []
+
+                for frame_id,boxes in dir_frames:
+
+                    frame_seq.append({
+                        'frame_id':frame_id,
+                        'boxes':boxes
+                    })
+                        
+                    #frame_data.append((frame_path,frame_boxes))
+                        
+                self.frames_index.append(
+                    {
+                        'frame_seq':frame_seq,
+                        'idx':idx,
+                        'clip':clip
+                    }
+                )
+
+    def __len__(self):
+        return len(self.frames_index)
+
+    
+
+    def __getitem__(self, idx):
+        sample=self.frames_index[idx]
+        num_classes=len(self.categories_dct)
+        #category=sample['category']
+        # label=torch.zeros(num_classes)
+        # label[self.categories_dct[category]] = 1
+
+        seq_crops=[]
+        seq_labels=[]
+
+        frame_seq=sample['frame_seq']
+
+        for frame_data in frame_seq:
+            # print("idx",sample["idx"])
+            # print("clip",sample['clip'])
+            idx=str(sample["idx"])
+            clip=str(sample['clip'])
+            # print("idx2",idx)
+            # print("clip2",clip)
+            frame_path = f"{self.videos_path}/{idx}/{clip}/{frame_data['frame_id']}.jpg"
+            # print(frame_path)
+            frame = cv2.imread(frame_path)
+
+            frame_crops=[]
+            frame_lables=[]
+            for box in frame_data['boxes']:
+                seq_player=[]
+                #labels=torch.zeros(num_classes)
+                
+                x1, y1, x2, y2 = box.box
+
+                # Crop the image based on the bounding box
+                person_crop = frame[y1:y2, x1:x2]
+                #image = image.crop((x1, y1, x2, y2))
+
+                if self.transform:
+                    transformed = self.transform(image=person_crop)
+                    person_crop = transformed['image']
+
+                label = np.zeros(len(self.categories_dct))
+                label[self.categories_dct[box.category]] = 1
+
+                frame_crops.append(person_crop)
+                frame_lables.append(label)
+
+            seq_crops.append(np.stack(frame_crops))
+            seq_labels.append(np.stack(frame_lables))
 
 
-def get_B6_loaders(dataset_root, batch_size=32, sequence_length=9):
-    """B6: LSTM on image level only"""
-    return create_data_loaders(
-        dataset_root=dataset_root,
-        mode='B6',
-        batch_size=batch_size,
-        sequence_length=sequence_length
-    )
+        # Stack and transpose to get (num_people, num_frames, C, H, W)
+
+        seq_crops = np.stack(seq_crops)
+        seq_crops = np.transpose(seq_crops, (1, 0, 2, 3, 4))
+
+        seq_labels = np.stack(seq_labels)
+        seq_labels = np.transpose(seq_labels, (1, 0, 2))
+
+        return torch.from_numpy(seq_crops), torch.from_numpy(seq_labels)
 
 
-def get_B7_loaders(dataset_root, batch_size=32, sequence_length=9):
-    """B7: Full model V1 - LSTM on both player and frame level"""
-    return create_data_loaders(
-        dataset_root=dataset_root,
-        mode='B7',
-        batch_size=batch_size,
-        sequence_length=sequence_length
-    )
+# get_B7_step_B and get_B8
+class GroupActivityTempDataset(Dataset):
+    def __init__(self, videos_path,annot_path, split, sort = False, transform=None):
+        self.samples = []
+        self.transform = transform
+        self.sort = sort # If True, prepares data for the 2-group model
+        self.categories_dct = {
+            'l-pass': 0,
+            'r-pass': 1,
+            'l-spike': 2,
+            'r_spike': 3,
+            'l_set': 4,
+            'r_set': 5,
+            'l_winpoint': 6,
+            'r_winpoint': 7
+        }
+
+        self.data=[]
+        self.clip={}
+        
+        with open(annot_path,'rb')as file:
+            videos_annot=pickle.load(file)
 
 
-def get_B8_loaders(dataset_root, batch_size=32, sequence_length=9):
-    """B8: Team-separated representation"""
-    return create_data_loaders(
-        dataset_root=dataset_root,
-        mode='B8',
-        batch_size=batch_size,
-        sequence_length=sequence_length,
-        team_split=True
-    )
+        for idx in split:
+            video_annot=videos_annot[str(idx)]
+
+            for clip in video_annot.keys():
+
+                category = video_annot[str(clip)]['category']
+                dir_frames = list(video_annot[str(clip)]['frame_boxes_dct'].items()) # 9 frames per clip
+
+                
+                frame_data = []
+
+                for frame_id,boxes in dir_frames:
+
+                    frame_path=f'{videos_path}/{str(idx)}/{str(clip)}/{frame_id}.jpg'
+                    
+                    frame_boxes=[]
+                    
+                    for box_info in boxes: 
+
+                        frame_boxes.append(box_info)
+                        
+                    frame_data.append((frame_path,frame_boxes))
+                        
+                self.data.append(
+                    {
+                        'frame_data':frame_data,
+                        'category':category
+                    }
+                )
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        sample=self.data[idx]
+        num_classes=len(self.categories_dct)
+        category=sample['category']
+        label=torch.zeros(num_classes)
+        label[self.categories_dct[category]] = 1
+
+        frame_data=sample['frame_data']
+
+        clip=[]
+        labels=[]
+        for frame_path, frame_boxes in frame_data:
+            seq_player=[]
+            orders=[]
+            #labels=torch.zeros(num_classes)
+
+            frame = cv2.imread(frame_path)
+            
+            for box_info in frame_boxes:
+
+                x1, y1, x2, y2 = box_info.box
+
+                x_center = (x1 + x2) // 2
+                orders.append(x_center)
+
+                # Crop the image based on the bounding box
+                person_crop = frame[y1:y2, x1:x2]
+
+                if self.transform:
+                    transformed = self.transform(image=person_crop)
+                    image = transformed['image']
+                seq_player.append(image)
+
+            if self.sort:
+                # Sort seq_player based on orders
+                orders_with_images = list(zip(orders, seq_player))
+                orders_with_images.sort(key=lambda x: x[0])  # Sort by x_center
+                seq_player = [img for _, img in orders_with_images]
+
+            seq_player = torch.stack(seq_player)
+            clip.append(seq_player)
+            labels.append(label)
+
+        clip = torch.stack(clip).permute(1, 0, 2, 3, 4)
+        labels = torch.stack(labels)
+
+        return clip, labels
 
 
-if __name__ == "__main__":
-    # Example usage
-    dataset_root = "path/to/volleyball/dataset"
-
-    # Test B1 loader
-    train_loader, val_loader, test_loader = get_B1_loaders(dataset_root)
-
-    for batch_idx, (data, target) in enumerate(train_loader):
-        print(f"Batch {batch_idx}: Data shape: {data.shape}, Target shape: {target.shape}")
-        break

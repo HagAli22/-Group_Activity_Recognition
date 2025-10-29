@@ -1,0 +1,361 @@
+2025-10-24 22:18:25 - root - INFO - Start Baseline_B8 Training
+2025-10-24 22:18:25 - root - INFO - Training videos: 24 videos
+2025-10-24 22:18:25 - root - INFO - Validation videos: 15 videos
+2025-10-24 22:18:25 - root - INFO - Training video IDs: [1, 3, 6, 7, 10, 13, 15, 16, 18, 22, 23, 31, 32, 36, 38, 39, 40, 41, 42, 48, 50, 52, 53, 54]
+2025-10-24 22:18:25 - root - INFO - Validation video IDs: [0, 2, 8, 12, 17, 19, 24, 26, 27, 28, 30, 33, 46, 49, 51]
+2025-10-24 22:18:25 - root - INFO - Using device: cuda
+2025-10-24 22:18:36 - root - INFO - Training dataset size: 2152
+2025-10-24 22:18:36 - root - INFO - Validation dataset size: 1341
+2025-10-24 22:18:36 - root - INFO - Checkpoint directory created: Baseline_B8/checkpoints
+2025-10-24 22:18:36 - root - INFO - Starting training for 25 epochs
+2025-10-24 22:18:36 - root - INFO - Starting epoch 1/25
+2025-10-24 22:20:01 - root - INFO -   Batch 50/269 - Loss: 2.1752, Acc: 14.50%
+2025-10-24 22:21:24 - root - INFO -   Batch 100/269 - Loss: 1.6867, Acc: 15.75%
+2025-10-24 22:22:45 - root - INFO -   Batch 150/269 - Loss: 2.0623, Acc: 18.25%
+2025-10-24 22:24:07 - root - INFO -   Batch 200/269 - Loss: 1.6358, Acc: 22.00%
+2025-10-24 22:25:27 - root - INFO -   Batch 250/269 - Loss: 1.5622, Acc: 25.50%
+2025-10-24 22:25:56 - root - INFO - Running validation...
+2025-10-24 22:29:48 - root - INFO - Learning rate reduced from 0.000600 to 0.000563
+2025-10-24 22:29:48 - root - INFO - Epoch 1/25 Results:
+2025-10-24 22:29:48 - root - INFO -   Train Loss: 1.9623, Train Acc: 26.81%
+2025-10-24 22:29:48 - root - INFO -   Val Loss: 1.5937, Val Acc: 51.83%
+2025-10-24 22:29:48 - root - INFO -   Learning Rate: 0.000563
+2025-10-24 22:29:48 - root - INFO - ------------------------------------------------------------
+2025-10-24 22:29:48 - root - INFO - New best model saved with validation loss: 1.5937
+2025-10-24 22:29:48 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-24 22:29:48 - root - INFO - Starting epoch 2/25
+2025-10-24 22:31:11 - root - INFO -   Batch 50/269 - Loss: 1.7199, Acc: 51.75%
+2025-10-24 22:32:27 - root - INFO -   Batch 100/269 - Loss: 1.7232, Acc: 50.50%
+2025-10-24 22:33:45 - root - INFO -   Batch 150/269 - Loss: 1.9403, Acc: 50.75%
+2025-10-24 22:35:00 - root - INFO -   Batch 200/269 - Loss: 1.2526, Acc: 52.50%
+2025-10-24 22:36:17 - root - INFO -   Batch 250/269 - Loss: 1.2680, Acc: 54.45%
+2025-10-24 22:36:44 - root - INFO - Running validation...
+2025-10-24 22:40:23 - root - INFO - Learning rate reduced from 0.000563 to 0.000580
+2025-10-24 22:40:23 - root - INFO - Epoch 2/25 Results:
+2025-10-24 22:40:23 - root - INFO -   Train Loss: 1.5138, Train Acc: 55.02%
+2025-10-24 22:40:23 - root - INFO -   Val Loss: 1.1565, Val Acc: 75.99%
+2025-10-24 22:40:23 - root - INFO -   Learning Rate: 0.000580
+2025-10-24 22:40:23 - root - INFO - ------------------------------------------------------------
+2025-10-24 22:40:24 - root - INFO - New best model saved with validation loss: 1.1565
+2025-10-24 22:40:24 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-24 22:40:24 - root - INFO - Starting epoch 3/25
+2025-10-24 22:41:45 - root - INFO -   Batch 50/269 - Loss: 1.1116, Acc: 67.00%
+2025-10-24 22:43:00 - root - INFO -   Batch 100/269 - Loss: 0.9814, Acc: 67.00%
+2025-10-24 22:44:17 - root - INFO -   Batch 150/269 - Loss: 1.2851, Acc: 67.83%
+2025-10-24 22:45:32 - root - INFO -   Batch 200/269 - Loss: 1.2852, Acc: 67.44%
+2025-10-24 22:46:48 - root - INFO -   Batch 250/269 - Loss: 1.2335, Acc: 67.80%
+2025-10-24 22:47:15 - root - INFO - Running validation...
+2025-10-24 22:50:53 - root - INFO - Learning rate reduced from 0.000580 to 0.000583
+2025-10-24 22:50:53 - root - INFO - Epoch 3/25 Results:
+2025-10-24 22:50:53 - root - INFO -   Train Loss: 1.3110, Train Acc: 68.17%
+2025-10-24 22:50:53 - root - INFO -   Val Loss: 1.0708, Val Acc: 78.97%
+2025-10-24 22:50:53 - root - INFO -   Learning Rate: 0.000583
+2025-10-24 22:50:53 - root - INFO - ------------------------------------------------------------
+2025-10-24 22:50:53 - root - INFO - New best model saved with validation loss: 1.0708
+2025-10-24 22:50:53 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-24 22:50:53 - root - INFO - Starting epoch 4/25
+2025-10-24 22:52:14 - root - INFO -   Batch 50/269 - Loss: 1.1756, Acc: 73.25%
+2025-10-24 22:53:30 - root - INFO -   Batch 100/269 - Loss: 1.4087, Acc: 72.62%
+2025-10-24 22:54:46 - root - INFO -   Batch 150/269 - Loss: 1.6166, Acc: 71.58%
+2025-10-24 22:56:02 - root - INFO -   Batch 200/269 - Loss: 1.5016, Acc: 71.31%
+2025-10-24 22:57:18 - root - INFO -   Batch 250/269 - Loss: 0.8789, Acc: 73.15%
+2025-10-24 22:57:44 - root - INFO - Running validation...
+2025-10-24 23:01:22 - root - INFO - Learning rate reduced from 0.000583 to 0.000582
+2025-10-24 23:01:22 - root - INFO - Epoch 4/25 Results:
+2025-10-24 23:01:22 - root - INFO -   Train Loss: 1.2224, Train Acc: 72.86%
+2025-10-24 23:01:22 - root - INFO -   Val Loss: 1.1009, Val Acc: 76.36%
+2025-10-24 23:01:22 - root - INFO -   Learning Rate: 0.000582
+2025-10-24 23:01:22 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:01:22 - root - INFO - Starting epoch 5/25
+2025-10-24 23:02:43 - root - INFO -   Batch 50/269 - Loss: 1.0689, Acc: 75.75%
+2025-10-24 23:03:58 - root - INFO -   Batch 100/269 - Loss: 1.2169, Acc: 76.12%
+2025-10-24 23:05:16 - root - INFO -   Batch 150/269 - Loss: 1.3867, Acc: 75.42%
+2025-10-24 23:06:31 - root - INFO -   Batch 200/269 - Loss: 0.9032, Acc: 76.00%
+2025-10-24 23:07:47 - root - INFO -   Batch 250/269 - Loss: 1.0376, Acc: 76.70%
+2025-10-24 23:08:14 - root - INFO - Running validation...
+2025-10-24 23:11:52 - root - INFO - Learning rate reduced from 0.000582 to 0.000584
+2025-10-24 23:11:52 - root - INFO - Epoch 5/25 Results:
+2025-10-24 23:11:52 - root - INFO -   Train Loss: 1.1625, Train Acc: 76.95%
+2025-10-24 23:11:52 - root - INFO -   Val Loss: 1.0482, Val Acc: 78.45%
+2025-10-24 23:11:52 - root - INFO -   Learning Rate: 0.000584
+2025-10-24 23:11:52 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:11:52 - root - INFO - New best model saved with validation loss: 1.0482
+2025-10-24 23:11:52 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-24 23:11:52 - root - INFO - Starting epoch 6/25
+2025-10-24 23:13:13 - root - INFO -   Batch 50/269 - Loss: 0.9127, Acc: 82.50%
+2025-10-24 23:14:27 - root - INFO -   Batch 100/269 - Loss: 1.4354, Acc: 80.75%
+2025-10-24 23:15:45 - root - INFO -   Batch 150/269 - Loss: 1.1262, Acc: 80.08%
+2025-10-24 23:17:00 - root - INFO -   Batch 200/269 - Loss: 1.2666, Acc: 80.31%
+2025-10-24 23:18:17 - root - INFO -   Batch 250/269 - Loss: 1.3914, Acc: 81.35%
+2025-10-24 23:18:44 - root - INFO - Running validation...
+2025-10-24 23:22:23 - root - INFO - Learning rate reduced from 0.000584 to 0.000583
+2025-10-24 23:22:23 - root - INFO - Epoch 6/25 Results:
+2025-10-24 23:22:23 - root - INFO -   Train Loss: 1.0972, Train Acc: 81.55%
+2025-10-24 23:22:23 - root - INFO -   Val Loss: 1.0648, Val Acc: 79.42%
+2025-10-24 23:22:23 - root - INFO -   Learning Rate: 0.000583
+2025-10-24 23:22:23 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:22:23 - root - INFO - Starting epoch 7/25
+2025-10-24 23:23:45 - root - INFO -   Batch 50/269 - Loss: 1.1492, Acc: 80.50%
+2025-10-24 23:25:00 - root - INFO -   Batch 100/269 - Loss: 1.2104, Acc: 82.62%
+2025-10-24 23:26:16 - root - INFO -   Batch 150/269 - Loss: 0.8083, Acc: 83.08%
+2025-10-24 23:27:30 - root - INFO -   Batch 200/269 - Loss: 0.9346, Acc: 82.94%
+2025-10-24 23:28:47 - root - INFO -   Batch 250/269 - Loss: 1.2332, Acc: 83.05%
+2025-10-24 23:29:14 - root - INFO - Running validation...
+2025-10-24 23:32:53 - root - INFO - Learning rate reduced from 0.000583 to 0.000585
+2025-10-24 23:32:53 - root - INFO - Epoch 7/25 Results:
+2025-10-24 23:32:53 - root - INFO -   Train Loss: 1.0546, Train Acc: 83.22%
+2025-10-24 23:32:53 - root - INFO -   Val Loss: 0.9967, Val Acc: 81.66%
+2025-10-24 23:32:53 - root - INFO -   Learning Rate: 0.000585
+2025-10-24 23:32:53 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:32:53 - root - INFO - New best model saved with validation loss: 0.9967
+2025-10-24 23:32:53 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-24 23:32:53 - root - INFO - Starting epoch 8/25
+2025-10-24 23:34:15 - root - INFO -   Batch 50/269 - Loss: 0.9019, Acc: 85.25%
+2025-10-24 23:35:30 - root - INFO -   Batch 100/269 - Loss: 1.2871, Acc: 83.88%
+2025-10-24 23:36:46 - root - INFO -   Batch 150/269 - Loss: 0.9959, Acc: 83.58%
+2025-10-24 23:38:01 - root - INFO -   Batch 200/269 - Loss: 0.8748, Acc: 83.75%
+2025-10-24 23:39:18 - root - INFO -   Batch 250/269 - Loss: 1.3690, Acc: 83.05%
+2025-10-24 23:39:45 - root - INFO - Running validation...
+2025-10-24 23:43:23 - root - INFO - Learning rate reduced from 0.000585 to 0.000584
+2025-10-24 23:43:23 - root - INFO - Epoch 8/25 Results:
+2025-10-24 23:43:23 - root - INFO -   Train Loss: 1.0410, Train Acc: 83.18%
+2025-10-24 23:43:23 - root - INFO -   Val Loss: 1.0319, Val Acc: 81.73%
+2025-10-24 23:43:23 - root - INFO -   Learning Rate: 0.000584
+2025-10-24 23:43:23 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:43:23 - root - INFO - Starting epoch 9/25
+2025-10-24 23:44:45 - root - INFO -   Batch 50/269 - Loss: 1.1189, Acc: 84.00%
+2025-10-24 23:45:59 - root - INFO -   Batch 100/269 - Loss: 0.9455, Acc: 85.25%
+2025-10-24 23:47:16 - root - INFO -   Batch 150/269 - Loss: 0.9700, Acc: 85.75%
+2025-10-24 23:48:31 - root - INFO -   Batch 200/269 - Loss: 0.8514, Acc: 86.19%
+2025-10-24 23:49:48 - root - INFO -   Batch 250/269 - Loss: 1.2594, Acc: 85.70%
+2025-10-24 23:50:15 - root - INFO - Running validation...
+2025-10-24 23:53:54 - root - INFO - Learning rate reduced from 0.000584 to 0.000582
+2025-10-24 23:53:54 - root - INFO - Epoch 9/25 Results:
+2025-10-24 23:53:54 - root - INFO -   Train Loss: 0.9981, Train Acc: 85.83%
+2025-10-24 23:53:54 - root - INFO -   Val Loss: 1.1133, Val Acc: 80.46%
+2025-10-24 23:53:54 - root - INFO -   Learning Rate: 0.000582
+2025-10-24 23:53:54 - root - INFO - ------------------------------------------------------------
+2025-10-24 23:53:54 - root - INFO - Starting epoch 10/25
+2025-10-24 23:55:14 - root - INFO -   Batch 50/269 - Loss: 0.7866, Acc: 87.75%
+2025-10-24 23:56:30 - root - INFO -   Batch 100/269 - Loss: 1.2331, Acc: 87.50%
+2025-10-24 23:57:46 - root - INFO -   Batch 150/269 - Loss: 1.2919, Acc: 87.08%
+2025-10-24 23:59:02 - root - INFO -   Batch 200/269 - Loss: 1.0645, Acc: 86.12%
+2025-10-25 00:00:19 - root - INFO -   Batch 250/269 - Loss: 0.9527, Acc: 86.25%
+2025-10-25 00:00:46 - root - INFO - Running validation...
+2025-10-25 00:04:24 - root - INFO - Learning rate reduced from 0.000582 to 0.000586
+2025-10-25 00:04:24 - root - INFO - Epoch 10/25 Results:
+2025-10-25 00:04:24 - root - INFO -   Train Loss: 1.0031, Train Acc: 86.52%
+2025-10-25 00:04:24 - root - INFO -   Val Loss: 0.9931, Val Acc: 81.88%
+2025-10-25 00:04:24 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 00:04:24 - root - INFO - ------------------------------------------------------------
+2025-10-25 00:04:24 - root - INFO - New best model saved with validation loss: 0.9931
+2025-10-25 00:04:24 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-25 00:04:24 - root - INFO - Starting epoch 11/25
+2025-10-25 00:05:46 - root - INFO -   Batch 50/269 - Loss: 0.8770, Acc: 86.75%
+2025-10-25 00:07:02 - root - INFO -   Batch 100/269 - Loss: 1.0172, Acc: 88.12%
+2025-10-25 00:08:18 - root - INFO -   Batch 150/269 - Loss: 0.9324, Acc: 88.92%
+2025-10-25 00:09:32 - root - INFO -   Batch 200/269 - Loss: 0.9268, Acc: 88.56%
+2025-10-25 00:10:50 - root - INFO -   Batch 250/269 - Loss: 1.1191, Acc: 88.35%
+2025-10-25 00:11:18 - root - INFO - Running validation...
+2025-10-25 00:14:58 - root - INFO - Learning rate reduced from 0.000586 to 0.000585
+2025-10-25 00:14:58 - root - INFO - Epoch 11/25 Results:
+2025-10-25 00:14:58 - root - INFO -   Train Loss: 0.9568, Train Acc: 88.43%
+2025-10-25 00:14:58 - root - INFO -   Val Loss: 1.0259, Val Acc: 83.97%
+2025-10-25 00:14:58 - root - INFO -   Learning Rate: 0.000585
+2025-10-25 00:14:58 - root - INFO - ------------------------------------------------------------
+2025-10-25 00:14:58 - root - INFO - Starting epoch 12/25
+2025-10-25 00:16:18 - root - INFO -   Batch 50/269 - Loss: 0.9173, Acc: 89.00%
+2025-10-25 00:17:34 - root - INFO -   Batch 100/269 - Loss: 0.9834, Acc: 89.75%
+2025-10-25 00:18:58 - root - INFO -   Batch 150/269 - Loss: 0.7331, Acc: 90.50%
+2025-10-25 00:20:21 - root - INFO -   Batch 200/269 - Loss: 0.8206, Acc: 90.56%
+2025-10-25 00:21:45 - root - INFO -   Batch 250/269 - Loss: 0.7812, Acc: 90.00%
+2025-10-25 00:22:14 - root - INFO - Running validation...
+2025-10-25 00:26:10 - root - INFO - Learning rate reduced from 0.000585 to 0.000586
+2025-10-25 00:26:10 - root - INFO - Epoch 12/25 Results:
+2025-10-25 00:26:10 - root - INFO -   Train Loss: 0.9353, Train Acc: 90.15%
+2025-10-25 00:26:10 - root - INFO -   Val Loss: 0.9868, Val Acc: 85.09%
+2025-10-25 00:26:10 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 00:26:10 - root - INFO - ------------------------------------------------------------
+2025-10-25 00:26:10 - root - INFO - New best model saved with validation loss: 0.9868
+2025-10-25 00:26:10 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-25 00:26:10 - root - INFO - Starting epoch 13/25
+2025-10-25 00:27:43 - root - INFO -   Batch 50/269 - Loss: 0.9460, Acc: 86.25%
+2025-10-25 00:29:06 - root - INFO -   Batch 100/269 - Loss: 0.7859, Acc: 87.62%
+2025-10-25 00:30:33 - root - INFO -   Batch 150/269 - Loss: 0.9868, Acc: 88.50%
+2025-10-25 00:31:56 - root - INFO -   Batch 200/269 - Loss: 0.9079, Acc: 89.25%
+2025-10-25 00:33:23 - root - INFO -   Batch 250/269 - Loss: 0.7567, Acc: 90.10%
+2025-10-25 00:33:53 - root - INFO - Running validation...
+2025-10-25 00:37:53 - root - INFO - Learning rate reduced from 0.000586 to 0.000586
+2025-10-25 00:37:53 - root - INFO - Epoch 13/25 Results:
+2025-10-25 00:37:53 - root - INFO -   Train Loss: 0.9321, Train Acc: 90.33%
+2025-10-25 00:37:53 - root - INFO -   Val Loss: 0.9766, Val Acc: 86.43%
+2025-10-25 00:37:53 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 00:37:53 - root - INFO - ------------------------------------------------------------
+2025-10-25 00:37:53 - root - INFO - New best model saved with validation loss: 0.9766
+2025-10-25 00:37:53 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-25 00:37:53 - root - INFO - Starting epoch 14/25
+2025-10-25 00:39:23 - root - INFO -   Batch 50/269 - Loss: 1.1289, Acc: 92.25%
+2025-10-25 00:40:48 - root - INFO -   Batch 100/269 - Loss: 0.8286, Acc: 92.00%
+2025-10-25 00:42:14 - root - INFO -   Batch 150/269 - Loss: 0.9404, Acc: 91.75%
+2025-10-25 00:43:39 - root - INFO -   Batch 200/269 - Loss: 0.7070, Acc: 92.06%
+2025-10-25 00:45:04 - root - INFO -   Batch 250/269 - Loss: 1.0722, Acc: 91.60%
+2025-10-25 00:45:33 - root - INFO - Running validation...
+2025-10-25 00:49:26 - root - INFO - Learning rate reduced from 0.000586 to 0.000587
+2025-10-25 00:49:26 - root - INFO - Epoch 14/25 Results:
+2025-10-25 00:49:26 - root - INFO -   Train Loss: 0.9066, Train Acc: 91.82%
+2025-10-25 00:49:26 - root - INFO -   Val Loss: 0.9538, Val Acc: 86.43%
+2025-10-25 00:49:26 - root - INFO -   Learning Rate: 0.000587
+2025-10-25 00:49:26 - root - INFO - ------------------------------------------------------------
+2025-10-25 00:49:26 - root - INFO - New best model saved with validation loss: 0.9538
+2025-10-25 00:49:26 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-25 00:49:26 - root - INFO - Starting epoch 15/25
+2025-10-25 00:50:55 - root - INFO -   Batch 50/269 - Loss: 0.9107, Acc: 92.75%
+2025-10-25 00:52:18 - root - INFO -   Batch 100/269 - Loss: 0.7245, Acc: 92.88%
+2025-10-25 00:53:40 - root - INFO -   Batch 150/269 - Loss: 1.3756, Acc: 93.08%
+2025-10-25 00:55:02 - root - INFO -   Batch 200/269 - Loss: 1.1161, Acc: 92.69%
+2025-10-25 00:56:26 - root - INFO -   Batch 250/269 - Loss: 0.6987, Acc: 92.35%
+2025-10-25 00:56:55 - root - INFO - Running validation...
+2025-10-25 01:00:47 - root - INFO - Learning rate reduced from 0.000587 to 0.000585
+2025-10-25 01:00:47 - root - INFO - Epoch 15/25 Results:
+2025-10-25 01:00:47 - root - INFO -   Train Loss: 0.9080, Train Acc: 92.52%
+2025-10-25 01:00:47 - root - INFO -   Val Loss: 1.0186, Val Acc: 84.56%
+2025-10-25 01:00:47 - root - INFO -   Learning Rate: 0.000585
+2025-10-25 01:00:47 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:00:47 - root - INFO - Starting epoch 16/25
+2025-10-25 01:02:18 - root - INFO -   Batch 50/269 - Loss: 0.8093, Acc: 92.25%
+2025-10-25 01:03:39 - root - INFO -   Batch 100/269 - Loss: 0.7816, Acc: 93.00%
+2025-10-25 01:05:03 - root - INFO -   Batch 150/269 - Loss: 0.7299, Acc: 93.75%
+2025-10-25 01:06:25 - root - INFO -   Batch 200/269 - Loss: 1.0092, Acc: 93.81%
+2025-10-25 01:07:46 - root - INFO -   Batch 250/269 - Loss: 0.7308, Acc: 93.30%
+2025-10-25 01:08:14 - root - INFO - Running validation...
+2025-10-25 01:12:04 - root - INFO - Learning rate reduced from 0.000585 to 0.000586
+2025-10-25 01:12:04 - root - INFO - Epoch 16/25 Results:
+2025-10-25 01:12:04 - root - INFO -   Train Loss: 0.8723, Train Acc: 93.08%
+2025-10-25 01:12:04 - root - INFO -   Val Loss: 0.9866, Val Acc: 85.38%
+2025-10-25 01:12:04 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 01:12:04 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:12:04 - root - INFO - Starting epoch 17/25
+2025-10-25 01:13:33 - root - INFO -   Batch 50/269 - Loss: 0.8220, Acc: 91.75%
+2025-10-25 01:14:54 - root - INFO -   Batch 100/269 - Loss: 0.8919, Acc: 93.12%
+2025-10-25 01:16:19 - root - INFO -   Batch 150/269 - Loss: 0.7380, Acc: 93.50%
+2025-10-25 01:17:39 - root - INFO -   Batch 200/269 - Loss: 0.7874, Acc: 93.69%
+2025-10-25 01:19:02 - root - INFO -   Batch 250/269 - Loss: 1.7191, Acc: 93.60%
+2025-10-25 01:19:30 - root - INFO - Running validation...
+2025-10-25 01:23:20 - root - INFO - Learning rate reduced from 0.000586 to 0.000586
+2025-10-25 01:23:20 - root - INFO - Epoch 17/25 Results:
+2025-10-25 01:23:20 - root - INFO -   Train Loss: 0.8816, Train Acc: 93.54%
+2025-10-25 01:23:20 - root - INFO -   Val Loss: 0.9662, Val Acc: 86.88%
+2025-10-25 01:23:20 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 01:23:20 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:23:20 - root - INFO - Starting epoch 18/25
+2025-10-25 01:24:50 - root - INFO -   Batch 50/269 - Loss: 0.8788, Acc: 97.00%
+2025-10-25 01:26:10 - root - INFO -   Batch 100/269 - Loss: 1.1603, Acc: 95.50%
+2025-10-25 01:27:31 - root - INFO -   Batch 150/269 - Loss: 0.7224, Acc: 96.17%
+2025-10-25 01:28:51 - root - INFO -   Batch 200/269 - Loss: 0.7148, Acc: 95.44%
+2025-10-25 01:30:14 - root - INFO -   Batch 250/269 - Loss: 0.8435, Acc: 95.15%
+2025-10-25 01:30:43 - root - INFO - Running validation...
+2025-10-25 01:34:31 - root - INFO - Learning rate reduced from 0.000586 to 0.000586
+2025-10-25 01:34:31 - root - INFO - Epoch 18/25 Results:
+2025-10-25 01:34:31 - root - INFO -   Train Loss: 0.8595, Train Acc: 94.80%
+2025-10-25 01:34:31 - root - INFO -   Val Loss: 0.9704, Val Acc: 87.25%
+2025-10-25 01:34:31 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 01:34:31 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:34:31 - root - INFO - Starting epoch 19/25
+2025-10-25 01:36:01 - root - INFO -   Batch 50/269 - Loss: 1.0159, Acc: 93.75%
+2025-10-25 01:37:23 - root - INFO -   Batch 100/269 - Loss: 0.7287, Acc: 93.62%
+2025-10-25 01:38:45 - root - INFO -   Batch 150/269 - Loss: 0.7081, Acc: 93.92%
+2025-10-25 01:40:07 - root - INFO -   Batch 200/269 - Loss: 0.7291, Acc: 94.38%
+2025-10-25 01:41:30 - root - INFO -   Batch 250/269 - Loss: 0.8151, Acc: 94.60%
+2025-10-25 01:41:57 - root - INFO - Running validation...
+2025-10-25 01:45:46 - root - INFO - Learning rate reduced from 0.000586 to 0.000586
+2025-10-25 01:45:46 - root - INFO - Epoch 19/25 Results:
+2025-10-25 01:45:46 - root - INFO -   Train Loss: 0.8576, Train Acc: 94.42%
+2025-10-25 01:45:46 - root - INFO -   Val Loss: 0.9705, Val Acc: 87.25%
+2025-10-25 01:45:46 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 01:45:46 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:45:46 - root - INFO - Starting epoch 20/25
+2025-10-25 01:47:12 - root - INFO -   Batch 50/269 - Loss: 0.8859, Acc: 95.75%
+2025-10-25 01:48:32 - root - INFO -   Batch 100/269 - Loss: 0.7577, Acc: 95.25%
+2025-10-25 01:49:53 - root - INFO -   Batch 150/269 - Loss: 0.9040, Acc: 95.00%
+2025-10-25 01:51:13 - root - INFO -   Batch 200/269 - Loss: 0.8643, Acc: 95.06%
+2025-10-25 01:52:34 - root - INFO -   Batch 250/269 - Loss: 0.6952, Acc: 95.65%
+2025-10-25 01:53:04 - root - INFO - Running validation...
+2025-10-25 01:56:50 - root - INFO - Learning rate reduced from 0.000586 to 0.000585
+2025-10-25 01:56:50 - root - INFO - Epoch 20/25 Results:
+2025-10-25 01:56:50 - root - INFO -   Train Loss: 0.8305, Train Acc: 95.63%
+2025-10-25 01:56:50 - root - INFO -   Val Loss: 1.0009, Val Acc: 85.98%
+2025-10-25 01:56:50 - root - INFO -   Learning Rate: 0.000585
+2025-10-25 01:56:50 - root - INFO - ------------------------------------------------------------
+2025-10-25 01:56:50 - root - INFO - Starting epoch 21/25
+2025-10-25 01:58:16 - root - INFO -   Batch 50/269 - Loss: 0.7170, Acc: 95.00%
+2025-10-25 01:59:35 - root - INFO -   Batch 100/269 - Loss: 0.7237, Acc: 95.75%
+2025-10-25 02:00:55 - root - INFO -   Batch 150/269 - Loss: 0.7508, Acc: 95.75%
+2025-10-25 02:02:18 - root - INFO -   Batch 200/269 - Loss: 0.7303, Acc: 95.94%
+2025-10-25 02:03:40 - root - INFO -   Batch 250/269 - Loss: 0.8142, Acc: 95.30%
+2025-10-25 02:04:09 - root - INFO - Running validation...
+2025-10-25 02:07:58 - root - INFO - Learning rate reduced from 0.000585 to 0.000586
+2025-10-25 02:07:58 - root - INFO - Epoch 21/25 Results:
+2025-10-25 02:07:58 - root - INFO -   Train Loss: 0.8277, Train Acc: 95.17%
+2025-10-25 02:07:58 - root - INFO -   Val Loss: 0.9601, Val Acc: 87.55%
+2025-10-25 02:07:58 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 02:07:58 - root - INFO - ------------------------------------------------------------
+2025-10-25 02:07:58 - root - INFO - Starting epoch 22/25
+2025-10-25 02:09:24 - root - INFO -   Batch 50/269 - Loss: 0.8222, Acc: 96.50%
+2025-10-25 02:10:42 - root - INFO -   Batch 100/269 - Loss: 1.5662, Acc: 95.12%
+2025-10-25 02:12:04 - root - INFO -   Batch 150/269 - Loss: 0.7008, Acc: 95.58%
+2025-10-25 02:13:27 - root - INFO -   Batch 200/269 - Loss: 0.7266, Acc: 95.50%
+2025-10-25 02:14:51 - root - INFO -   Batch 250/269 - Loss: 0.8908, Acc: 95.55%
+2025-10-25 02:15:19 - root - INFO - Running validation...
+2025-10-25 02:19:11 - root - INFO - Learning rate reduced from 0.000586 to 0.000585
+2025-10-25 02:19:11 - root - INFO - Epoch 22/25 Results:
+2025-10-25 02:19:11 - root - INFO -   Train Loss: 0.8310, Train Acc: 95.72%
+2025-10-25 02:19:11 - root - INFO -   Val Loss: 1.0208, Val Acc: 85.68%
+2025-10-25 02:19:11 - root - INFO -   Learning Rate: 0.000585
+2025-10-25 02:19:11 - root - INFO - ------------------------------------------------------------
+2025-10-25 02:19:11 - root - INFO - Starting epoch 23/25
+2025-10-25 02:20:40 - root - INFO -   Batch 50/269 - Loss: 0.7891, Acc: 95.75%
+2025-10-25 02:22:02 - root - INFO -   Batch 100/269 - Loss: 0.7942, Acc: 96.50%
+2025-10-25 02:23:25 - root - INFO -   Batch 150/269 - Loss: 0.7773, Acc: 96.25%
+2025-10-25 02:24:48 - root - INFO -   Batch 200/269 - Loss: 0.7318, Acc: 96.06%
+2025-10-25 02:26:13 - root - INFO -   Batch 250/269 - Loss: 0.7839, Acc: 95.95%
+2025-10-25 02:26:42 - root - INFO - Running validation...
+2025-10-25 02:30:37 - root - INFO - Learning rate reduced from 0.000585 to 0.000587
+2025-10-25 02:30:37 - root - INFO - Epoch 23/25 Results:
+2025-10-25 02:30:37 - root - INFO -   Train Loss: 0.8195, Train Acc: 96.10%
+2025-10-25 02:30:37 - root - INFO -   Val Loss: 0.9536, Val Acc: 88.29%
+2025-10-25 02:30:37 - root - INFO -   Learning Rate: 0.000587
+2025-10-25 02:30:37 - root - INFO - ------------------------------------------------------------
+2025-10-25 02:30:38 - root - INFO - New best model saved with validation loss: 0.9536
+2025-10-25 02:30:38 - root - INFO - Best model saved to: best_Baseline_B8_model.pth
+2025-10-25 02:30:38 - root - INFO - Starting epoch 24/25
+2025-10-25 02:32:07 - root - INFO -   Batch 50/269 - Loss: 1.2081, Acc: 94.75%
+2025-10-25 02:33:29 - root - INFO -   Batch 100/269 - Loss: 0.7363, Acc: 94.75%
+2025-10-25 02:34:53 - root - INFO -   Batch 150/269 - Loss: 0.9791, Acc: 95.42%
+2025-10-25 02:36:15 - root - INFO -   Batch 200/269 - Loss: 0.8462, Acc: 95.56%
+2025-10-25 02:37:38 - root - INFO -   Batch 250/269 - Loss: 0.9402, Acc: 95.85%
+2025-10-25 02:38:07 - root - INFO - Running validation...
+2025-10-25 02:42:00 - root - INFO - Learning rate reduced from 0.000587 to 0.000586
+2025-10-25 02:42:00 - root - INFO - Epoch 24/25 Results:
+2025-10-25 02:42:00 - root - INFO -   Train Loss: 0.8191, Train Acc: 96.00%
+2025-10-25 02:42:00 - root - INFO -   Val Loss: 0.9750, Val Acc: 87.62%
+2025-10-25 02:42:00 - root - INFO -   Learning Rate: 0.000586
+2025-10-25 02:42:00 - root - INFO - ------------------------------------------------------------
+2025-10-25 02:42:00 - root - INFO - Starting epoch 25/25
+2025-10-25 02:43:32 - root - INFO -   Batch 50/269 - Loss: 0.6983, Acc: 98.25%
+2025-10-25 02:44:57 - root - INFO -   Batch 100/269 - Loss: 0.7432, Acc: 96.25%
+2025-10-25 02:46:25 - root - INFO -   Batch 150/269 - Loss: 0.7547, Acc: 96.42%
+2025-10-25 02:47:50 - root - INFO -   Batch 200/269 - Loss: 1.1301, Acc: 96.50%
+2025-10-25 02:49:14 - root - INFO -   Batch 250/269 - Loss: 0.7031, Acc: 96.50%
+2025-10-25 02:49:44 - root - INFO - Running validation...
+2025-10-25 02:53:41 - root - INFO - Learning rate reduced from 0.000586 to 0.000585
+2025-10-25 02:53:41 - root - INFO - Epoch 25/25 Results:
+2025-10-25 02:53:41 - root - INFO -   Train Loss: 0.8033, Train Acc: 96.61%
+2025-10-25 02:53:41 - root - INFO -   Val Loss: 1.0017, Val Acc: 86.20%
+2025-10-25 02:53:41 - root - INFO -   Learning Rate: 0.000585
+2025-10-25 02:53:41 - root - INFO - ------------------------------------------------------------
+2025-10-25 02:53:41 - root - INFO - Training completed!
+2025-10-25 02:53:41 - root - INFO - Best validation loss achieved: 0.9536
+2025-10-25 02:53:41 - root - INFO - Loading best model for final evaluation...
+2025-10-25 02:57:40 - root - INFO - Final validation accuracy: 88.29%
+2025-10-25 02:57:40 - root - INFO - training completed successfully
+2025-10-25 02:57:41 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.

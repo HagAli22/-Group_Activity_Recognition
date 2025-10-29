@@ -1,6 +1,3 @@
-# Baseline 3 Configuration: Individual Player Action Recognition
-# Recognizes individual player actions from cropped player regions
-
 experiment_name: "B7_Full model V1"
 description: ""
 seed: 42
@@ -83,7 +80,7 @@ training:
     
     # Learning rate scheduler
     use_scheduler: true
-    scheduler_type: "ReduceLROnPlateau"
+    scheduler_type: "reduce_on_plateau"
     scheduler_patience: 3
     scheduler_factor: 0.1
     
@@ -101,7 +98,7 @@ training:
 
   group_activity:
     # Training parameters
-    num_epochs: 25
+    num_epochs: 30
     learning_rate: 0.0004
     weight_decay: 1
     label_smoothing : 0.1

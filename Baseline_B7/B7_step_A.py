@@ -1,22 +1,34 @@
 
 import os
 import sys
+from PIL import __version__ as PILLOW_VERSION
+from PIL import Image
+import cv2
+import numpy as np
 import torch
 import torch.nn as nn
 import albumentations as albu
 from albumentations.pytorch import ToTensorV2
 from torch.cuda.amp import autocast, GradScaler
 import torchvision.models as models
+from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
+import logging
+from datetime import datetime
+import torchvision.transforms as transforms
+from pathlib import Path
+import pickle
+from typing import List,Tuple
 
-sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/Group-Activity-Recognition')
+sys.path.append('D:/pycharm project/slidesdeep/15 Final Project/warmup-code')
 
 from data.boxinfo import BoxInfo
-from data.data_loader import get_B5_B_loaders
+from data.data_loader import PersonActivityTempDataset
 from helper import check, setup_logger , load_yaml_config
-from eval_model import Person_Classifer,Group_Classifer
+from eval_model import Person_Classifer ,collate_fn_person
+
 root_dataset = 'D:/volleyball-datasets'
-CONFIG_PATH = 'configs/b5_config.yaml'
+CONFIG_PATH="configs/b7_config.yaml"
 
 def validate_model(model, val_loader, criterion, device):
     """Function to validate the model and return validation loss and accuracy"""
@@ -54,9 +66,8 @@ def validate_model(model, val_loader, criterion, device):
 
 if __name__ == '__main__':
     check()
-
-    # Load B5 step_B Configuration
-    print("Loading Baseline B5 step_B Training Configuration...")
+    # Load B7 Configuration
+    print("Loading Baseline 7 Training Configuration...")
     config = load_yaml_config(CONFIG_PATH)
 
     # Extract configuration parameters
@@ -66,7 +77,7 @@ if __name__ == '__main__':
     val_split = config.data['val_split']
 
     logger= setup_logger()
-    logger.info("Starting Baseline_B5_stepB Training")
+    logger.info("Starting Baseline_B7_stepB Training")
 
     logger.info(f"Training videos: {len(train_split)} videos")
     logger.info(f"Validation videos: {len(val_split)} videos")
@@ -74,7 +85,8 @@ if __name__ == '__main__':
     logger.info(f"Validation video IDs: {val_split}")
 
 
-    train_transforms =albu.Compose([
+    # Create data transforms using config parameters
+    train_preprocess = albu.Compose([
         albu.Resize(224, 224),
         
         albu.OneOf([ albu.GaussianBlur(blur_limit=(3, 7)), albu.ColorJitter(brightness=0.2),
@@ -85,8 +97,8 @@ if __name__ == '__main__':
         
         ToTensorV2()
     ])
-
-    val_transforms =  albu.Compose([
+    
+    val_preprocess = albu.Compose([
         albu.Resize(224, 224),
         albu.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225]
         ),
@@ -96,119 +108,72 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     logger.info(f"Using device: {device}")
 
-    Person=Person_Classifer(num_classes=config.model['person_activity']['num_classes'])
-    Person.load_state_dict(torch.load('Baseline_B5/results/best_Baseline_B5_A_model.pth'))
-
     # Initialize model with config parameters
-    model = Group_Classifer(Person_Classifer=Person,num_classes=config.model['group_activity']['num_classes'])
+    model = Person_Classifer(num_classes=config.model['person_activity']['num_classes'])
     model = model.to(device)
-    print(f"Model initialized with {config.model['group_activity']['num_classes']} classes")
+    print(f"Model initialized with {config.model['person_activity']['num_classes']} classes")
 
     # Initialize optimizer with config parameters
-    if config.training['group_activity']['optimizer'].lower() == 'adamw':
+    if config.training['person_activity']['optimizer'].lower() == 'adamw':
         optimizer = torch.optim.AdamW(
             model.parameters(), 
-            lr=config.training['group_activity']['learning_rate'],
-            weight_decay=config.training['group_activity']['weight_decay']
+            lr=config.training['person_activity']['learning_rate'],
+            weight_decay=config.training['person_activity']['weight_decay']
         )
-    elif config.training['group_activity']['optimizer'].lower() == 'adam':
+    elif config.training['person_activity']['optimizer'].lower() == 'adam':
         optimizer = torch.optim.Adam(
             model.parameters(), 
-            lr=config.training['group_activity']['learning_rate'],
-            weight_decay=config.training['group_activity']['weight_decay']
+            lr=config.training['person_activity']['learning_rate'],
+            weight_decay=config.training['person_activity']['weight_decay']
         )
     else:
         optimizer = torch.optim.SGD(
             model.parameters(), 
-            lr=config.training['group_activity']['learning_rate'],
-            weight_decay=config.training['group_activity']['weight_decay'],
-            momentum=config.training['group_activity']['momentum']
+            lr=config.training['person_activity']['learning_rate'],
+            weight_decay=config.training['person_activity']['weight_decay'],
+            momentum=config.training['person_activity']['momentum']
         )
 
-    print(f"Optimizer: {config.training['group_activity']['optimizer'].upper()}, LR: {config.training['group_activity']['learning_rate']}")
-
-    start_epoch = 0
-    best_val_loss = float('inf')
-    if config.training['group_activity']['resume_from_checkpoint']:
-        # === Resume training from checkpoint ===
-        checkpoint_path = config.training['group_activity']['checkpoint_path']
-        
-        if os.path.exists(checkpoint_path):
-            print(f"Loading checkpoint from {checkpoint_path} ...")
-            checkpoint = torch.load(checkpoint_path, map_location=device)
-        
-            model.load_state_dict(checkpoint['model_state_dict'])
-            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-            
-            start_epoch = checkpoint['epoch'] + 1
-            best_val_loss = checkpoint.get('val_loss', float('inf'))
-
-            # Update optimizer with config parameters
-            if config.training['group_activity']['optimizer'].lower() == 'adamw':
-                optimizer = torch.optim.AdamW(
-                    model.parameters(), 
-                    lr=config.training['group_activity']['learning_rate'],
-                    weight_decay=config.training['group_activity']['weight_decay']
-                )
-            elif config.training['group_activity']['optimizer'].lower() == 'adam':
-                optimizer = torch.optim.Adam(
-                    model.parameters(), 
-                    lr=config.training['group_activity']['learning_rate'],
-                    weight_decay=config.training['group_activity']['weight_decay']
-                )
-            else:
-                optimizer = torch.optim.SGD(
-                    model.parameters(), 
-                    lr=config.training['group_activity']['learning_rate'],
-                    weight_decay=config.training['group_activity']['weight_decay'],
-                    momentum=config.training['group_activity']['momentum']
-                )
-            
-            
-            print(f"Resumed from epoch {start_epoch}, best val loss = {best_val_loss:.4f}")
-        else:
-            print("No checkpoint found, starting from scratch.")
-            start_epoch = 0
-            best_val_loss = float('inf')
+    print(f"Optimizer: {config.training['person_activity']['optimizer'].upper()}, LR: {config.training['person_activity']['learning_rate']}")
 
     # Initialize scheduler with config parameters
-    if config.training['group_activity']['use_scheduler']:
-        if config.training['group_activity']['scheduler_type'] == 'reduce_on_plateau':
+    if config.training['person_activity']['use_scheduler']:
+        if config.training['person_activity']['scheduler_type'] == 'reduce_on_plateau':
             scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
                 optimizer,
                 mode='min',
-                patience=config.training['group_activity']['scheduler_patience'],
-                factor=config.training['group_activity']['scheduler_factor'],
+                patience=config.training['person_activity']['scheduler_patience'],
+                factor=config.training['person_activity']['scheduler_factor'],
                 verbose=True,
             )
-        elif config.training['group_activity']['scheduler_type'] == 'cosine':
+        elif config.training['person_activity']['scheduler_type'] == 'cosine':
             scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
                 optimizer,
-                T_max=config.training['group_activity']['num_epochs']
+                T_max=config.training['person_activity']['num_epochs']
             )
         else:
             scheduler = torch.optim.lr_scheduler.StepLR(
                 optimizer,
-                step_size=config.training['group_activity']['scheduler_patience'],
-                gamma=config.training['group_activity']['scheduler_factor']
+                step_size=config.training['person_activity']['scheduler_patience'],
+                gamma=config.training['person_activity']['scheduler_factor']
             )
-        print(f"Scheduler: {config.training['group_activity']['scheduler_type']}")
+        print(f"Scheduler: {config.training['person_activity']['scheduler_type']}")
     else:
         scheduler = None
 
 
     # Create datasets using config parameters
-    train_dataset = get_B5_B_loaders(
+    train_dataset = PersonActivityTempDataset(
         videos_path=config.data['videos_path'],
         annot_path=config.data['annot_path'],
         split=train_split,
-        transform=train_transforms)
+        transform=train_preprocess)
 
-    val_dataset = get_B5_B_loaders(
+    val_dataset = PersonActivityTempDataset(
         videos_path=config.data['videos_path'],
         annot_path=config.data['annot_path'],
         split=val_split,
-        transform=val_transforms)
+        transform=val_preprocess)
     
     logger.info(f"Training dataset size: {len(train_dataset)}")
     logger.info(f"Validation dataset size: {len(val_dataset)}")
@@ -218,39 +183,43 @@ if __name__ == '__main__':
     # Create data loaders using config parameters
     train_loader = DataLoader(
         train_dataset, 
-        batch_size=config.model['group_activity']['batch_size'],
-        shuffle=config.model['group_activity']['shuffle_train'],
-        num_workers=config.model['group_activity']['num_workers'],
-        pin_memory=config.model['group_activity']['pin_memory']
+        batch_size=config.model['person_activity']['batch_size'],
+        collate_fn=collate_fn_person, 
+        shuffle=config.model['person_activity']['shuffle_train'],
+        num_workers=config.model['person_activity']['num_workers'],
+        pin_memory=config.model['person_activity']['pin_memory']
     )
     val_loader = DataLoader(
         val_dataset, 
-        batch_size=config.model['group_activity']['batch_size'], 
+        batch_size=config.model['person_activity']['batch_size'], 
+        collate_fn=collate_fn_person,
         shuffle=False,
-        num_workers=config.model['group_activity']['num_workers'],
-        pin_memory=config.model['group_activity']['pin_memory']
+        num_workers=config.model['person_activity']['num_workers'],
+        pin_memory=config.model['person_activity']['pin_memory']
     )
 
-    num_epochs = config.training['group_activity']['num_epochs']
+    num_epochs = config.training['person_activity']['num_epochs']
+    best_val_loss = float('inf')
     
-    criterion = nn.CrossEntropyLoss()
-
+    criterion = nn.CrossEntropyLoss(
+        label_smoothing=config.training['person_activity']['label_smoothing'],
+    )
     # Initialize mixed precision scaler if enabled
-    scaler = GradScaler() if config.training['group_activity']['use_amp'] else None
+    scaler = GradScaler() if config.training['person_activity']['use_amp'] else None
     
     print(f"Starting training for {num_epochs} epochs...")
-    print(f"Mixed Precision: {'Enabled' if config.training['group_activity']['use_amp'] else 'Disabled'}")
+    print(f"Mixed Precision: {'Enabled' if config.training['person_activity']['use_amp'] else 'Disabled'}")
 
-    model_name=config.training['group_activity']['model_name']
+    model_name=config.training['person_activity']['model_name']
 
 
-    checkpoint_dir = config.training['group_activity']['checkpoint_dir']
+    checkpoint_dir = config.training['person_activity']['checkpoint_dir']
     os.makedirs(checkpoint_dir, exist_ok=True)
 
     logger.info(f"Checkpoint directory created: {checkpoint_dir}")
     logger.info(f"Starting training for {num_epochs} epochs")
 
-    for epoch in range(start_epoch,num_epochs):
+    for epoch in range(num_epochs):
         logger.info(f"Starting epoch {epoch + 1}/{num_epochs}")
         # Training phase
         model.train()
@@ -265,9 +234,8 @@ if __name__ == '__main__':
             
 
             optimizer.zero_grad()
-
             # Use mixed precision if enabled
-            if config.training['group_activity']['use_amp'] and scaler is not None:
+            if config.training['person_activity']['use_amp'] and scaler is not None:
                 with autocast(dtype=torch.float16):
                     output = model(data)
                     loss = criterion(output, target)
@@ -284,14 +252,12 @@ if __name__ == '__main__':
 
             # Calculate training accuracy
             target_class = target.argmax(1)
-            # _, predicted = torch.max(output, 1)
             predictedd = output.argmax(1)
             train_total += target.size(0)
-            # train_correct += (target == predicted).sum().item()
             correct += predictedd.eq(target_class).sum().item()
 
-            # Log progress every 100 batches
-            if (batch_idx + 1) % 100 == 0:
+            # Log progress every 50 batches
+            if (batch_idx + 1) % 50 == 0:
                 current_acc = (correct / train_total) * 100
                 logger.info(f"  Batch {batch_idx + 1}/{len(train_loader)} - "
                            f"Loss: {loss.item():.4f}, Acc: {current_acc:.2f}%")
@@ -313,7 +279,7 @@ if __name__ == '__main__':
             logger.info(f"Learning rate reduced from {old_lr:.6f} to {new_lr:.6f}")
 
         
-        if (epoch+1) % 5 == 0 or epoch < num_epochs:
+        if (epoch+1) % 2 == 0 or epoch < num_epochs:
             # Save checkpoint
             checkpoint = {
                 'epoch': epoch,
@@ -343,7 +309,7 @@ if __name__ == '__main__':
             model_save_path = os.path.join(checkpoint_dir, f'best_{model_name}.pth')
             torch.save(model.state_dict(), model_save_path)
             logger.info(f"New best model saved with validation loss: {val_loss:.4f}")
-            logger.info(f"Best model saved to: best_Baseline_B5_B_model.pth")
+            logger.info(f"Best model saved to: best_Baseline_B7_A_model.pth")
 
     # Final evaluation
     logger.info("Training completed!")
@@ -351,7 +317,7 @@ if __name__ == '__main__':
 
     # Load best model for final evaluation
     logger.info("Loading best model for final evaluation...")
-    model.load_state_dict(torch.load('best_Baseline_B5_B_model.pth'))
+    model.load_state_dict(torch.load('best_Baseline_B7_A_model.pth'))
     final_val_loss, final_val_accuracy = validate_model(model, val_loader, criterion, device)
     logger.info(f"Final validation accuracy: {final_val_accuracy:.2f}%")
-    
+    logger.info("training completed successfully")

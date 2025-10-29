@@ -1,0 +1,33 @@
+VOLLEYBALL MODEL TEST RESULTS
+==================================================
+
+Overall Test Accuracy: 90.50%
+
+Per-Class Accuracies:
+------------------------------
+l-pass      :  92.48%
+r-pass      :  89.05%
+l-spike     :  93.85%
+r_spike     :  91.91%
+l_set       :  88.69%
+r_set       :  81.77%
+l_winpoint  :  95.10%
+r_winpoint  :  96.55%
+
+==================================================
+DETAILED CLASSIFICATION REPORT
+==================================================
+              precision    recall  f1-score   support
+
+      l-pass      0.901     0.925     0.913       226
+      r-pass      0.858     0.890     0.874       210
+     l-spike      0.918     0.939     0.928       179
+     r_spike      0.935     0.919     0.927       173
+       l_set      0.892     0.887     0.890       168
+       r_set      0.918     0.818     0.865       192
+  l_winpoint      0.942     0.951     0.946       102
+  r_winpoint      0.903     0.966     0.933        87
+
+    accuracy                          0.905      1337
+   macro avg      0.908     0.912     0.910      1337
+weighted avg      0.906     0.905     0.905      1337
