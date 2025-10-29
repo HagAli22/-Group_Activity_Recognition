@@ -677,11 +677,6 @@ print(f"Confidence: {results['confidence']*100:.2f}%")
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 
 
